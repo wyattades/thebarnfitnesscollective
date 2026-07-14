@@ -7,12 +7,41 @@ description: One-time environment setup for The Barn website — install depende
 
 Walk through these steps in order. Several require the **owner** to click
 something (they own the accounts) — pause and ask them clearly when needed. Never
-ask them for passwords; direct them to log in themselves.
+ask them for passwords; direct them to log in themselves. The owner is
+non-technical: explain each pause in plain language and do all the commands
+yourself.
+
+## 0. Bootstrap on a brand-new computer (getting the code)
+
+Skip this if the project is already on the machine (a `package.json` is present).
+Otherwise the owner is starting fresh — likely from the README setup prompt.
+Note: the cloned repo IS the site — `package.json` and `src/` are at its top
+level (there is no `site/` subfolder in a clone). Run everything from that folder.
+
+1. **Verify the tools exist.** Check `git --version` and `node --version`. If Node
+   is missing, point them to https://nodejs.org (LTS) or `brew install node`. Git
+   ships with the Xcode command-line tools (`xcode-select --install`).
+2. **Authenticate GitHub** (needed because the repo is private). Easiest is the
+   GitHub CLI: if `gh` exists, run `gh auth login` and read them the on-screen
+   steps (they pick GitHub.com → HTTPS → "Login with a web browser", then paste
+   the one-time code the terminal shows into the browser page that opens). If
+   `gh` isn't installed, `brew install gh` first. Confirm the owner has already
+   been added as a collaborator on the repo (README step 1); if a clone 403s,
+   that's the missing piece — ask them to have Wyatt add them.
+3. **Clone the repo** into a sensible place (e.g. `~/Documents`):
+   ```bash
+   cd ~/Documents
+   git clone https://github.com/wyattades/thebarnfitnesscollective.git
+   cd thebarnfitnesscollective
+   ```
+   The site itself lives at the repo root here (the Astro project). Do the
+   remaining steps from that folder.
 
 ## 1. Install dependencies
 
+From the project folder (the one containing `package.json`):
+
 ```bash
-cd site        # if not already in the site/ folder
 npm install
 ```
 

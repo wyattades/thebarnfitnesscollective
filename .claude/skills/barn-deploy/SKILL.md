@@ -16,8 +16,7 @@ Default to the **local dev server** — it's instant, free, and perfect for
 back-and-forth tweaks.
 
 ```bash
-cd site
-npm run dev        # serves at http://localhost:4321
+npm run dev        # from the project folder — serves at http://localhost:4321
 ```
 
 Then, in plain language:
@@ -49,8 +48,7 @@ Wait for a clear go-ahead: "publish it", "make it live", "ship it", "looks good"
 Never publish on your own.
 
 ```bash
-cd site
-npm run build      # must succeed — never publish a failing build
+npm run build      # from the project folder — must succeed; never publish a failing build
 git add -A
 git commit -m "Plain description, e.g. Raise Unlimited membership to $209/mo"
 git push           # pushing to main auto-deploys via Netlify (~30s)
