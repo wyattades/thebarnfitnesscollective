@@ -20,6 +20,23 @@ export const site = {
   email: "zoe@thebarnfitnesscollective.com",
   coachChrisEmail: "chris@thebarnfitnesscollective.com",
 
+  /** Display phone + the E.164 form used for tel: links and structured data. */
+  phone: "(415) 246-3803",
+  phoneE164: "+14152463803",
+
+  /**
+   * SEO / structured-data facts about the business. These power the LocalBusiness
+   * schema and social-share tags. Keep them accurate — they're what Google shows.
+   */
+  seo: {
+    /** Default social-share image (Open Graph / Twitter). 1200×630, in /public. */
+    ogImage: "/og-image.jpg",
+    priceRange: "$$",
+    foundingYear: "2023",
+    /** Approximate map coordinates for the Sebastopol studio. Refine if needed. */
+    geo: { latitude: 38.4021, longitude: -122.8069 },
+  },
+
   /** The Glofox booking portal — used by every "Book" button on the site. */
   bookingUrl:
     "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes",

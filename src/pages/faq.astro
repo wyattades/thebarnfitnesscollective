@@ -3,9 +3,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { faq } from "../data/faq";
 import { renderInlineLinks } from "../lib/inline";
+
+// FAQPage structured data — lets Google show these Q&As as rich results.
+// Answers are flattened to plain text (markdown links → their label).
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.flatMap((cat) =>
+    cat.items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"),
+      },
+    })),
+  ),
+};
 ---
 
 <BaseLayout title="FAQ" description="Everything you need to know before your first class at The Barn Fitness Collective.">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline slot="head" />
   <PageHero
     eyebrow="FAQ"
     title="Got <em>questions?</em>"

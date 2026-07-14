@@ -73,9 +73,14 @@ to a different font family).
 ## Add a whole new page
 
 Create `src/pages/<slug>.astro`. Start from an existing interior page (e.g.
-`src/pages/contact.astro`) — wrap content in `<BaseLayout title="…">` and use
-`<PageHero …/>` plus the shared `.section` / `.section-title` classes. Add it to
-`mainNav` and/or `footerNav` in `src/data/site.ts` so it's reachable.
+`src/pages/contact.astro`) — wrap content in `<BaseLayout>` and use `<PageHero …/>`
+plus the shared `.section` / `.section-title` classes. Add it to `mainNav` and/or
+`footerNav` in `src/data/site.ts` so it's reachable.
+
+**Always pass a `title` and a unique `description`** to `<BaseLayout>` — the
+description is required (the build errors without it) and everything else about
+SEO (canonical, social cards, structured data) is then handled automatically.
+Example: `<BaseLayout title="Kickboxing" description="Drop-in kickboxing classes at The Barn in Sebastopol — all levels welcome.">`.
 
 ## After any edit: preview, then publish
 

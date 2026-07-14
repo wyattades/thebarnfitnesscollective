@@ -118,6 +118,28 @@ npm run preview   # preview the production build locally
 Pushing to the GitHub `main` branch auto-deploys to Netlify (~30s). See the
 `barn-deploy` skill. First-time environment setup is in the `barn-setup` skill.
 
+## SEO (mostly automatic — keep it that way)
+
+Every page gets strong SEO **for free** via `BaseLayout` → `Seo.astro`: canonical
+URL, Open Graph + Twitter cards (with the `/og-image.jpg` share image), robots,
+and `HealthClub` LocalBusiness structured data (address, phone, geo, socials)
+built from `src/data/site.ts`. There's a sitemap (`@astrojs/sitemap`) and a
+`robots.txt`.
+
+The only per-page SEO work — and it's **required** (TypeScript enforces it):
+
+- Every page MUST pass a `title` and a unique `description` to `<BaseLayout>`.
+  Keep `description` to ~150 chars, specific to that page. A dev-build warning
+  fires if it's missing or too long.
+- To give a page its own share image: `<BaseLayout … image="/some-image.jpg">`.
+- Business facts (address, phone, geo, price range) live in `site.ts` → they feed
+  the structured data. Update them there, never hardcode in `Seo.astro`.
+- Page-specific structured data (like the FAQ's `FAQPage` schema) goes via the
+  named head slot: `<script type="application/ld+json" slot="head" …>`.
+
+Don't add SEO tags ad hoc in individual pages — extend `Seo.astro` so every page
+benefits and nothing drifts.
+
 ## Integrations to preserve (do not rebuild these)
 
 - **Booking / schedule**: external Glofox portal (`site.bookingUrl`).

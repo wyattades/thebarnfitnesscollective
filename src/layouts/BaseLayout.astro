@@ -1,28 +1,30 @@
 ---
 /**
  * BaseLayout — the shell every page uses.
- * Provides <head> (fonts, meta, analytics), the global Header + Footer, and the
- * scroll fade-in behavior. Pages pass `title` and `description`, then their
- * content via the default <slot />.
+ * Provides <head> (fonts, SEO, analytics), the global Header + Footer, and the
+ * scroll fade-in behavior. Every page MUST pass a `title` and a `description`
+ * (that's the only SEO work a page author does — the rest is automatic via the
+ * Seo component). Content goes in the default <slot />.
  */
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Analytics from "../components/Analytics.astro";
+import Seo from "../components/Seo.astro";
 import { site } from "../data/site";
 
 interface Props {
+  /** Page name, e.g. "Our Team". Becomes "Our Team — The Barn". */
   title?: string;
-  description?: string;
+  /** REQUIRED: a unique 1–2 sentence summary (<=160 chars) for search + social. */
+  description: string;
+  /** Optional custom social-share image path; defaults to the site OG image. */
+  image?: string;
   /** Set false on the home page so the footer's own <footer id="contact"> is used. */
   showFooter?: boolean;
 }
 
-const {
-  title = site.name,
-  description = site.tagline,
-  showFooter = true,
-} = Astro.props;
+const { title = site.name, description, image, showFooter = true } = Astro.props;
 
 const fullTitle =
   title === site.name || title === site.shortName
@@ -36,15 +38,9 @@ const fullTitle =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, site && Astro.site).toString()} />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:site_name" content={site.name} />
+    <Seo title={fullTitle} description={description} image={image} />
 
     <!-- Fonts: Playfair Display (display), DM Sans (body), Bebas Neue (stamp) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,6 +51,9 @@ const fullTitle =
     />
 
     <Analytics />
+
+    <!-- Per-page extras (e.g. page-specific structured data) go here. -->
+    <slot name="head" />
   </head>
   <body>
     <Header />

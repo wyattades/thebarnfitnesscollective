@@ -1,0 +1,88 @@
+---
+/**
+ * Seo — all the <head> SEO tags for a page, in one place.
+ *
+ * Rendered once by BaseLayout on every page, so every page gets strong SEO for
+ * free. A page only needs to pass a good `title` and `description` (via
+ * BaseLayout); everything else (canonical, Open Graph, Twitter, robots,
+ * LocalBusiness structured data) is derived automatically and stays consistent.
+ *
+ * Business facts come from src/data/site.ts — edit there, never hardcode here.
+ */
+import { site } from "../data/site";
+
+interface Props {
+  title: string; // the full <title> text
+  description: string;
+  image?: string; // path or URL to the social-share image
+}
+const { title, description, image = site.seo.ogImage } = Astro.props;
+
+// Absolute URLs (needed by canonical + Open Graph). Astro.site is set in astro.config.
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const imageUrl = new URL(image, Astro.site).toString();
+const isHome = Astro.url.pathname === "/";
+
+// Gentle build-time guardrails so pages don't ship weak SEO by accident.
+if (import.meta.env.DEV) {
+  if (!description) console.warn(`[SEO] ${Astro.url.pathname}: missing description`);
+  else if (description.length > 165)
+    console.warn(`[SEO] ${Astro.url.pathname}: description is ${description.length} chars (aim for <=160)`);
+}
+
+// LocalBusiness / gym structured data — helps Google show the address, map pin,
+// phone, and rating panel for local searches.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "HealthClub",
+  "@id": `${new URL("/", Astro.site).toString()}#business`,
+  name: site.name,
+  url: new URL("/", Astro.site).toString(),
+  image: imageUrl,
+  logo: new URL("/og-image.jpg", Astro.site).toString(),
+  description: site.tagline,
+  email: site.email,
+  telephone: site.phoneE164,
+  priceRange: site.seo.priceRange,
+  foundingDate: site.seo.foundingYear,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "6731 Sebastopol Ave, Suite 110",
+    addressLocality: "Sebastopol",
+    addressRegion: "CA",
+    postalCode: "95472",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.seo.geo.latitude,
+    longitude: site.seo.geo.longitude,
+  },
+  sameAs: [site.instagram.url],
+};
+---
+
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#262626" />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={isHome ? "website" : "article"} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- Structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />
