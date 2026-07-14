@@ -48,7 +48,7 @@ import { instaPosts } from "../data/instagram";
   .insta-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 4px;
+    gap: 10px;
     margin-top: 56px;
     max-width: var(--content-max);
     margin-left: auto;
@@ -61,6 +61,7 @@ import { instaPosts } from "../data/instagram";
     cursor: pointer;
     background: var(--dark-2);
     display: block;
+    border-radius: var(--radius-sm);
   }
   .insta-item :global(.insta-img) {
     position: absolute;
@@ -92,20 +93,24 @@ import { instaPosts } from "../data/instagram";
     color: var(--cream);
   }
   .community-follow {
-    display: block;
-    text-align: center;
-    margin-top: 24px;
-    font-size: 0.8rem;
-    opacity: 0.5;
+    display: flex;
+    width: fit-content;
+    margin: 32px auto 0;
+    font-size: 0.78rem;
+    font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--cream);
     text-decoration: none;
-    transition: opacity 0.2s, color 0.2s;
+    padding: 12px 26px;
+    border: 1.5px solid rgba(241, 231, 212, 0.28);
+    border-radius: var(--radius-pill);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
   .community-follow:hover {
-    opacity: 1;
     color: var(--coral);
+    border-color: var(--coral);
+    background: rgba(255, 111, 100, 0.06);
   }
   @media (max-width: 900px) {
     .section-community {

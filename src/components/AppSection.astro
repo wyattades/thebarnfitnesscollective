@@ -127,11 +127,15 @@ import { site } from "../data/site";
     margin: 0 auto;
   }
   .app-eyebrow {
+    display: inline-block;
     font-family: var(--font-stamp);
     font-size: 0.85rem;
-    letter-spacing: 0.3em;
-    color: rgba(241, 231, 212, 0.6);
-    margin-bottom: 16px;
+    letter-spacing: 0.28em;
+    color: var(--cream);
+    margin-bottom: 20px;
+    padding: 7px 18px 5px;
+    border: 1px solid rgba(241, 231, 212, 0.4);
+    border-radius: var(--radius-pill);
   }
   .app-title {
     font-family: var(--font-display);
@@ -168,7 +172,7 @@ import { site } from "../data/site";
     transition: background 0.2s;
   }
   .app-store-btn:hover {
-    background: #3a3a3a;
+    background: var(--plum);
   }
   .app-store-btn .abt {
     font-size: 0.6rem;
