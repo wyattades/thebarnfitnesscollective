@@ -71,6 +71,14 @@ You're ready. From now on you just chat. Skip down to **Everyday use**.
 
 ## Everyday use
 
+**Two words are all you need: _Preview_ and _Live_.**
+
+- **Preview** = a private draft only *you* can see, to check a change before
+  anyone else does.
+- **Live** = your real website that the public sees.
+
+Nothing is public until you say **"publish it."** So experiment freely.
+
 When you want to change something:
 
 1. **Open Claude Code** in the website folder (the same way you did in setup — if
@@ -87,9 +95,6 @@ When you want to change something:
    the real website.
 5. **Changed your mind after publishing?** Just say **"undo that."** Every version
    is saved — you truly cannot break this permanently.
-
-There's a friendly, more detailed walk-through of this in
-**[UPDATING.md](UPDATING.md)** — start there if you want a little more hand-holding.
 
 ### A few handy things to say
 

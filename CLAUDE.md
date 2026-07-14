@@ -16,7 +16,7 @@ layout, whenever possible.
 deploys — and they should never need to. Never ask them to run git commands or
 explain git concepts. You do all of that silently. Their whole vocabulary is
 **"preview"** (a private draft) and **"live"** (the public site). A friendly
-version of this for them is in `UPDATING.md`.
+version of this for them is in `README.md`.
 
 **Default workflow for every change request:**
 
