@@ -77,9 +77,14 @@ Create `src/pages/<slug>.astro`. Start from an existing interior page (e.g.
 `<PageHero …/>` plus the shared `.section` / `.section-title` classes. Add it to
 `mainNav` and/or `footerNav` in `src/data/site.ts` so it's reachable.
 
-## Always, before publishing
+## After any edit: preview, then publish
 
-```bash
-npm run dev     # eyeball the change
-npm run build   # must complete with no errors
-```
+The owner is non-technical — always **show them a preview automatically** (don't
+wait to be asked), then publish only when they approve. Follow the `barn-deploy`
+skill:
+
+1. `npm run dev` → share the link (`http://localhost:4321`) and/or screenshot the
+   change into the chat.
+2. Iterate on their feedback.
+3. On their go-ahead ("publish it"), `npm run build` (must pass) → commit → push.
+4. Confirm it's live and remind them "undo that" rolls it back.

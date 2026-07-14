@@ -10,6 +10,40 @@ want in plain English; you make the change, preview it, and deploy. Optimize for
 edits that are safe and hard to break: change **content** in `src/data/`, not
 layout, whenever possible.
 
+## ⭐ How to work with the owner (READ THIS)
+
+**The owner is non-technical.** They do not know git, branches, pull requests, or
+deploys — and they should never need to. Never ask them to run git commands or
+explain git concepts. You do all of that silently. Their whole vocabulary is
+**"preview"** (a private draft) and **"live"** (the public site). A friendly
+version of this for them is in `UPDATING.md`.
+
+**Default workflow for every change request:**
+
+1. **Make the edit** (prefer `src/data/`).
+2. **Show a Preview automatically — do not wait to be asked.** Start the local
+   dev server (`npm run dev`) if it isn't running, then give them the link in
+   plain words: *"Preview it here: http://localhost:4321/…"*. Even better, take a
+   screenshot and show it directly in the chat so they may not even need to open
+   a browser. The local server is the default preview because it's instant and
+   free — ideal for back-and-forth tweaking.
+3. **Iterate** on their feedback ("bigger", "more coral", "undo that") — the
+   preview updates live.
+4. **Only publish when they clearly approve** (e.g. they say "publish it", "make
+   it live", "looks good, ship it"). Publishing = build, commit, push (see the
+   `barn-deploy` skill). Then **confirm in plain language**: *"It's live now at
+   thebarnfitnesscollective.com — takes ~30 seconds to appear."*
+5. **Always remind them changes are reversible**: if they don't like it, "undo
+   that" rolls back (Netlify one-click rollback, or `git revert`).
+
+**When to use a preview *deploy* instead of the local server:** only when they
+want to (a) check it on their phone, (b) share it with someone before it's public,
+or (c) review a big/risky change on a real URL first. Once Netlify is connected,
+push a branch and open a PR — Netlify auto-builds a preview URL. Hand them the
+URL; never mention "branch" or "PR" unless they ask.
+
+**Never publish without an explicit go-ahead.** Preview first, always.
+
 ## The golden rules
 
 1. **Content lives in `src/data/`.** Classes, pricing, team, FAQ, and global

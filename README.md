@@ -34,6 +34,9 @@ to $209" or "add a new coach named …"). Detailed recipes live in the
 `.claude/skills/` folder (`barn-setup`, `barn-edit`, `barn-deploy`) and in
 [CLAUDE.md](CLAUDE.md).
 
+**Non-technical owner?** Start with [UPDATING.md](UPDATING.md) — a plain-English
+guide to updating the site by chatting with Claude (preview → publish, no code).
+
 ## Running locally
 
 ```bash
