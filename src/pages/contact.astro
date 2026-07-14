@@ -88,7 +88,12 @@ const isExternal = (h: string) => /^https?:\/\//.test(h);
     text-transform: uppercase;
     color: var(--coral);
   }
-  .contact-value { font-size: 0.95rem; color: var(--cream); opacity: 0.85; }
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--cream);
+    opacity: 0.85;
+    overflow-wrap: anywhere; /* long emails wrap instead of overflowing the card */
+  }
 
   .contact-address-block, .contact-coaches { margin-top: 56px; }
   .contact-address {
@@ -99,6 +104,6 @@ const isExternal = (h: string) => /^https?:\/\//.test(h);
     line-height: 1.5;
   }
   .coach-contact-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .coach-contact-list a { color: var(--coral); text-decoration: none; font-size: 1rem; }
+  .coach-contact-list a { color: var(--coral); text-decoration: none; font-size: 1rem; overflow-wrap: anywhere; }
   .coach-contact-list a:hover { text-decoration: underline; }
 </style>
