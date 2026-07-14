@@ -19,3 +19,5 @@ pnpm-debug.log*
 .idea/
 # Claude Code local settings (per-machine, not shared)
 .claude/settings.local.json
+# Transient input for the Instagram updater (expiring signed URLs)
+scripts/insta-urls.txt

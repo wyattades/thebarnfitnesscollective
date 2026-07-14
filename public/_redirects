@@ -1,5 +1,5 @@
-# Netlify redirects. Maps old Squarespace URLs to the new pages so existing
-# links and search results don't 404. Format: <from>  <to>  <status>
+# Netlify redirects. Maps old page URLs to the new ones so existing links and
+# search results don't 404. Format: <from>  <to>  <status>
 # Add a line here whenever a page is renamed.
 
 /home                    /                          301

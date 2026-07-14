@@ -102,8 +102,8 @@ and put the ID there temporarily.
 
 ## 5. Point the domain (when ready to go live)
 
-The domain `thebarnfitnesscollective.com` is currently at Squarespace. Keep the
-Squarespace site up until this one is verified, then:
+Keep the previous site up at `thebarnfitnesscollective.com` until this one is
+verified, then:
 - In Netlify: **Domain management → Add a custom domain** → follow the DNS
   instructions (either move the domain's DNS to Netlify, or add the records
   Netlify shows at the current registrar).
