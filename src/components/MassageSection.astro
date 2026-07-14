@@ -109,12 +109,8 @@ import { site } from "../data/site";
     font-weight: 600;
     backdrop-filter: blur(6px);
   }
-  .massage-eyebrow {
-    color: var(--rust);
-  }
-  .massage-eyebrow::before {
-    background: var(--rust);
-  }
+  /* Massage section is dark, so the eyebrow keeps the default coral (rust would
+     fail contrast on the dark background). */
   .massage-title em {
     color: var(--teal);
   }

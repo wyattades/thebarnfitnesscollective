@@ -17,8 +17,7 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
 
 <header id="mainNav">
   <a class="nav-logo" href="/" aria-label={`${site.name} — home`}>
-    <Image src={goat} alt="" class="logo-mark" width={72} loading="eager" />
-    <span>The Barn</span>
+    <Image src={goat} alt="" class="logo-mark" width={88} loading="eager" />
   </a>
 
   <nav aria-label="Primary">
@@ -88,20 +87,13 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
   }
 
   .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--cream);
-    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px;
+    text-decoration: none;
   }
   .nav-logo :global(.logo-mark) {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
   }
 

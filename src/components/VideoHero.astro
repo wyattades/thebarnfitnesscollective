@@ -27,6 +27,17 @@
   </video>
 </section>
 
+<script>
+  // Respect reduced-motion preferences: don't autoplay the background video
+  // (the poster frame stays shown instead).
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll<HTMLVideoElement>(".video-hero-media").forEach((v) => {
+      v.removeAttribute("autoplay");
+      v.pause();
+    });
+  }
+</script>
+
 <style>
   .video-hero {
     /* Reserve the fixed header at top + a small inset all around, so the video

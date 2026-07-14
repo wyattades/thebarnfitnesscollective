@@ -11,6 +11,7 @@
   --rust: #98382e; /* deep brick red — strong accents, hovers */
   --coral: #ff6f64; /* primary accent — buttons, eyebrows, links */
   --teal: #4096ad; /* secondary accent */
+  --teal-text: #5cb0c8; /* lightened teal for small text on dark (meets contrast) */
   --sky: #a6d5ff; /* light-blue accent — credential tags */
   --cream: #f1e7d4; /* primary light text on dark backgrounds */
   --dark: #262626; /* primary dark background */
