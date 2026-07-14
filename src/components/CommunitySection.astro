@@ -19,7 +19,7 @@ import { instaPosts } from "../data/instagram";
       instaPosts.map((post) => (
         <a
           class="insta-item"
-          href={site.instagram.url}
+          href={post.link || site.instagram.url}
           target="_blank"
           rel="noopener"
           aria-label={`${post.alt} — view on Instagram`}

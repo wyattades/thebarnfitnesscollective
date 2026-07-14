@@ -17,7 +17,8 @@ behind a login wall + JavaScript that a plain script can't get past.
    A login modal appears, but the recent post thumbnails are already in the DOM
    behind it — that's all we need.
 
-2. **Extract recent post image URLs + captions** by running this in the page:
+2. **Extract recent post image URLs + captions + permalinks** by running this in
+   the page:
 
    ```js
    (() => {
@@ -26,14 +27,19 @@ behind a login wall + JavaScript that a plain script can't get past.
        .filter(i => /cdninstagram|fbcdn/.test(i.src) && !/profile_pic|t51.82787-19/.test(i.src) && i.naturalWidth > 150)
        .filter(i => { const id = i.src.split('/v/')[1]?.slice(0,40); if (seen.has(id)) return false; seen.add(id); return true; })
        .slice(0, 8)
-       .map(i => `${i.src} | ${(i.alt||'').replace(/\s+/g,' ').split('.')[0].slice(0,60)}`)
+       .map(i => {
+         const a = i.closest('a');
+         const link = a ? new URL(a.getAttribute('href'), location.origin).href : '';
+         const alt = (i.alt||'').replace(/\s+/g,' ').split('.')[0].slice(0,60);
+         return `${i.src} | ${alt} | ${link}`;
+       })
        .join('\n');
    })()
    ```
 
-   Each line is `<image-url> | <short caption>`. Prefer lines that look like real
-   photos of people/the gym over pure text flyers, but a mix is fine (it's their
-   real feed).
+   Each line is `<image-url> | <short caption> | <post permalink>`. Prefer lines
+   that look like real photos of people/the gym over pure text flyers, but a mix
+   is fine (it's their real feed).
 
 3. **Save the output** to `scripts/insta-urls.txt` (one post per line). Keep the
    6 best.
