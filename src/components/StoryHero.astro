@@ -4,21 +4,32 @@
  * video banner. Dark background with a faint decorative grid.
  */
 import { site } from "../data/site";
+import Img from "./Img.astro";
 ---
 
 <section class="hero" id="story">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Sebastopol, CA · Est. 2023</div>
-    <h1 class="hero-headline">
-      Where <em>strength</em><br />
-      <span class="alt-line">comes to life.</span>
-    </h1>
-    <p class="hero-sub">Functional Fitness · Community · Sebastopol</p>
-    <div class="hero-actions">
-      <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">Book Your First Class</a>
-      <a href="#about" class="btn-ghost">Our Story</a>
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Sebastopol, CA · Est. 2023</div>
+      <h1 class="hero-headline">
+        Where <em>strength</em><br />
+        <span class="alt-line">comes to life.</span>
+      </h1>
+      <p class="hero-sub">Functional Fitness · Community · Sebastopol</p>
+      <div class="hero-actions">
+        <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">Book Your First Class</a>
+        <a href="#about" class="btn-ghost">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <Img
+        name="home-strength.png"
+        alt="Members training with dumbbells during a class at The Barn"
+        class="hero-photo-img"
+        width={1000}
+      />
     </div>
   </div>
 </section>
@@ -60,7 +71,39 @@ import { site } from "../data/site";
     position: relative;
     z-index: 2;
     padding: 0 48px;
-    max-width: 900px;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-copy {
+    min-width: 0;
+  }
+  .hero-photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .hero-photo :global(.hero-photo-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  /* Thin coral frame accent to tie into the brand. */
+  .hero-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(241, 231, 212, 0.15);
+    border-radius: var(--radius);
+    pointer-events: none;
   }
   .hero-eyebrow {
     font-family: var(--font-stamp);
@@ -86,7 +129,7 @@ import { site } from "../data/site";
   }
   .hero-headline {
     font-family: var(--font-display);
-    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-size: clamp(3rem, 5.5vw, 5.75rem);
     letter-spacing: -0.02em;
     line-height: 0.98;
     font-weight: 500;
@@ -118,8 +161,15 @@ import { site } from "../data/site";
   }
   @media (max-width: 900px) {
     .hero-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
       padding-left: 24px;
       padding-right: 24px;
+    }
+    /* On mobile, photo drops below the headline block. */
+    .hero-photo {
+      aspect-ratio: 16 / 11;
+      max-height: 60vh;
     }
   }
   @media (max-width: 600px) {
