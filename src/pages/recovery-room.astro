@@ -1,0 +1,619 @@
+---
+/**
+ * RECOVERY ROOM — sauna + cold plunge "experience" page.
+ * A self-contained page (its own scoped styles) so it's isolated and safe to
+ * tweak. Copy lives inline here; the Book Now link + app links come from
+ * src/data/site.ts (recoveryBookingUrl / app).
+ *
+ * IMAGES: the hero + app photos below use existing recovery-themed photos as
+ * PLACEHOLDERS (marked "PLACEHOLDER"). When the owner sends the real sauna /
+ * cold plunge / shower photos, drop them in src/assets/images/ and swap the
+ * `name=` values — nothing else needs to change.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Img from "../components/Img.astro";
+import { site } from "../data/site";
+
+const features = [
+  {
+    kicker: "The Heat",
+    title: "Sauna",
+    body:
+      "Warm up, loosen tight muscles, and unwind. A quiet place to sit and sweat after training — or any time you need it.",
+    tone: "heat",
+  },
+  {
+    kicker: "The Cold",
+    title: "Cold Plunge",
+    body:
+      "Cold water, ready when you are. A minute or two in the plunge to wake up, take the edge off sore muscles, and feel sharp again.",
+    tone: "cold",
+  },
+  {
+    kicker: "Included",
+    title: "Towel Service",
+    body:
+      "Fresh towels every visit. Leave yours at home — we've got you covered.",
+    tone: "neutral",
+  },
+  {
+    kicker: "Two of Them",
+    title: "Private Showers",
+    body:
+      "Two private showers, so you can rinse off and head straight to whatever's next.",
+    tone: "neutral",
+  },
+];
+
+const ritual = [
+  { n: "01", title: "Warm up", desc: "Start in the sauna and give the heat a few minutes to do its thing." },
+  { n: "02", title: "Plunge", desc: "Into the cold plunge. Breathe, and give it a minute or two." },
+  { n: "03", title: "Repeat", desc: "Go back and forth between hot and cold a few times." },
+  { n: "04", title: "Rinse off", desc: "Grab a towel, use one of the private showers, and you're done." },
+];
+
+const gallery = [
+  { name: "recovery-cold-plunge.png", alt: "The BlueCube cold plunge in the Recovery Room", label: "Cold plunge" },
+  { name: "recovery-shower-green.png", alt: "A private shower with deep green tile and brass fixtures", label: "Private shower" },
+  { name: "recovery-shower-cedar.png", alt: "A cedar-framed private shower beside the cold plunge", label: "Private shower" },
+];
+
+const pricing = [
+  { price: "$15", label: "Single drop-in", note: "One visit — sauna, plunge & showers." },
+  { price: "$80", label: "10-visit pack", note: "Ten sessions. Just $8 a visit." },
+];
+---
+
+<BaseLayout
+  title="Recovery Room"
+  description="The Recovery Room at The Barn — a sauna + cold plunge experience in Sebastopol. Heat, cold, towel service, and private showers. Book now, easiest in our app."
+>
+  <!-- ==================== IMMERSIVE HERO ==================== -->
+  <section class="rr-hero">
+    <Img
+      name="recovery-sauna.png"
+      alt="The cedar sauna in The Barn's Recovery Room, door open and warmly lit, surrounded by ferns"
+      class="rr-hero-img"
+      width={1800}
+      loading="eager"
+    />
+    <div class="rr-hero-scrim"></div>
+    <div class="rr-hero-inner">
+      <div class="section-eyebrow rr-hero-eyebrow">New at The Barn</div>
+      <h1 class="rr-hero-title">The <em>Recovery Room</em></h1>
+      <p class="rr-hero-sub">
+        A sauna and cold plunge, right here at The Barn. Warm up, cool down,
+        rinse off. Towels and two private showers included — book a time and show
+        up.
+      </p>
+      <div class="rr-hero-cta">
+        <a
+          href={site.recoveryBookingUrl}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener">Book Now</a
+        >
+        <a href="#book" class="btn-ghost">Easiest in the app ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== THE EXPERIENCE ==================== -->
+  <section class="rr-intro section">
+    <div class="section-inner rr-intro-inner">
+      <div class="section-eyebrow">What It Is</div>
+      <h2 class="section-title">Sauna &amp; <em>cold plunge.</em></h2>
+      <p class="rr-intro-body">
+        We added a sauna and a cold plunge at The Barn. Go back and forth between
+        the two — the heat loosens you up, the cold wakes you up — and you leave
+        feeling better than you came in. Fresh towels and two private showers are
+        part of it. Come after a workout, or just for the plunge.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== WHAT'S INSIDE ==================== -->
+  <section class="rr-features section">
+    <div class="section-inner">
+      <div class="rr-features-grid">
+        {
+          features.map((f) => (
+            <article class={`rr-card fade-up tone-${f.tone}`}>
+              <div class="rr-card-kicker">{f.kicker}</div>
+              <h3 class="rr-card-title">{f.title}</h3>
+              <p class="rr-card-body">{f.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STEP INSIDE (GALLERY) ==================== -->
+  <section class="rr-gallery section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">Step Inside</div>
+        <h2 class="section-title">Take a <em>look.</em></h2>
+      </div>
+      <div class="rr-gallery-grid">
+        {
+          gallery.map((g) => (
+            <figure class="rr-shot fade-up">
+              <Img name={g.name} alt={g.alt} class="rr-shot-img" width={900} />
+              <figcaption class="rr-shot-label">{g.label}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== THE RITUAL ==================== -->
+  <section class="rr-ritual section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">How it <em>goes.</em></h2>
+      </div>
+      <div class="rr-steps">
+        {
+          ritual.map((s) => (
+            <div class="rr-step fade-up">
+              <div class="rr-step-n">{s.n}</div>
+              <h3 class="rr-step-title">{s.title}</h3>
+              <p class="rr-step-desc">{s.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BOOK + APP NUDGE ==================== -->
+  <section class="rr-book section" id="book">
+    <div class="section-inner rr-book-inner">
+      <div class="rr-book-copy">
+        <div class="section-eyebrow">Reserve Your Time</div>
+        <h2 class="section-title rr-book-title">
+          Book the <em>Recovery Room.</em>
+        </h2>
+        <p class="rr-book-body">
+          Book a time before you come by. The <strong>easiest way is right in
+          our app</strong> — pick a slot, and you'll get a reminder. Prefer a
+          browser? You can book online too.
+        </p>
+
+        <div class="rr-app-buttons">
+          <a href={site.app.ios} class="rr-app-btn" target="_blank" rel="noopener">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="#F1E7D4" aria-hidden="true">
+              <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
+            </svg>
+            <div>
+              <div class="abt">Download on the</div>
+              <div class="abn">App Store</div>
+            </div>
+          </a>
+          <a href={site.app.android} class="rr-app-btn" target="_blank" rel="noopener">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="#F1E7D4" aria-hidden="true">
+              <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z" />
+            </svg>
+            <div>
+              <div class="abt">Get it on</div>
+              <div class="abn">Google Play</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="rr-book-cta">
+          <a href={site.recoveryBookingUrl} class="btn-primary rr-book-btn" target="_blank" rel="noopener">
+            Book Now
+          </a>
+          <span class="rr-book-alt">
+            or <a href={site.recoveryBookingUrl} target="_blank" rel="noopener">book online →</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="rr-pricing">
+        <div class="rr-pricing-eyebrow">Recovery Room Rates</div>
+        {
+          pricing.map((p) => (
+            <div class="rr-price-row">
+              <div class="rr-price-amount">{p.price}</div>
+              <div class="rr-price-detail">
+                <div class="rr-price-label">{p.label}</div>
+                <div class="rr-price-note">{p.note}</div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .rr-hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: flex-end;
+    padding: calc(var(--header-height) + 80px) 48px 80px;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .rr-hero :global(.rr-hero-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .rr-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(22, 22, 22, 0.9) 0%,
+      rgba(22, 22, 22, 0.55) 40%,
+      rgba(22, 22, 22, 0.2) 75%,
+      rgba(22, 22, 22, 0.35) 100%
+    );
+  }
+  .rr-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    width: 100%;
+  }
+  .rr-hero-eyebrow {
+    color: var(--sky);
+  }
+  .rr-hero-eyebrow::before {
+    background: var(--sky);
+  }
+  .rr-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.02;
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 0.03em;
+    margin-top: 8px;
+  }
+  .rr-hero-title em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .rr-hero-sub {
+    max-width: 620px;
+    margin-top: 22px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.85;
+  }
+  .rr-hero-cta {
+    margin-top: 38px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== INTRO ==================== */
+  .rr-intro {
+    background: var(--dark);
+  }
+  .rr-intro-inner {
+    max-width: 820px;
+  }
+  .rr-intro-body {
+    margin-top: 28px;
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--cream);
+    opacity: 0.72;
+  }
+
+  /* ==================== FEATURES ==================== */
+  .rr-features {
+    background: var(--dark-2);
+    padding-top: 0;
+  }
+  .rr-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .rr-card {
+    padding: 44px 40px;
+    border-radius: var(--radius);
+    background: var(--dark-1);
+    border-top: 4px solid rgba(241, 231, 212, 0.25);
+  }
+  .rr-card.tone-heat {
+    border-top-color: var(--coral);
+  }
+  .rr-card.tone-cold {
+    border-top-color: var(--teal);
+  }
+  .rr-card-kicker {
+    font-family: var(--font-stamp);
+    font-size: 0.9rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.55;
+  }
+  .rr-card.tone-heat .rr-card-kicker {
+    color: var(--coral);
+    opacity: 1;
+  }
+  .rr-card.tone-cold .rr-card-kicker {
+    color: var(--teal-text);
+    opacity: 1;
+  }
+  .rr-card-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--cream);
+    margin: 10px 0 16px;
+  }
+  .rr-card-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--cream);
+    opacity: 0.68;
+  }
+
+  /* ==================== GALLERY ==================== */
+  .rr-gallery {
+    background: var(--dark);
+    padding-top: 0;
+  }
+  .rr-gallery-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+  }
+  /* First shot spans both rows on the left — a tall "feature" image. */
+  .rr-shot:first-child {
+    grid-row: 1 / span 2;
+  }
+  .rr-shot {
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    min-height: 260px;
+  }
+  .rr-shot :global(.rr-shot-img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .rr-shot-label {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    background: rgba(22, 22, 22, 0.78);
+    backdrop-filter: blur(6px);
+    color: var(--cream);
+    font-family: var(--font-stamp);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ==================== RITUAL ==================== */
+  .rr-ritual {
+    background: var(--dark);
+  }
+  .rr-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .rr-step {
+    border-left: 2px solid rgba(241, 231, 212, 0.14);
+    padding-left: 22px;
+  }
+  .rr-step-n {
+    font-family: var(--font-stamp);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--coral);
+    letter-spacing: 0.05em;
+  }
+  .rr-step-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin: 14px 0 8px;
+  }
+  .rr-step-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.65;
+  }
+
+  /* ==================== BOOK + APP ==================== */
+  .rr-book {
+    background: var(--rust);
+  }
+  .rr-book-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .rr-book .section-eyebrow {
+    color: var(--sky);
+  }
+  .rr-book .section-eyebrow::before {
+    background: var(--sky);
+  }
+  .rr-book-title em {
+    color: var(--sky);
+  }
+  .rr-book-body {
+    margin-top: 24px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.9;
+  }
+  .rr-book-body strong {
+    color: var(--cream);
+    opacity: 1;
+  }
+  .rr-app-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .rr-app-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dark);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+  }
+  .rr-app-btn:hover {
+    background: #3a3a3a;
+  }
+  .rr-app-btn .abt {
+    font-size: 0.6rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .rr-app-btn .abn {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .rr-book-cta {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .rr-book-btn {
+    background: var(--dark);
+    color: var(--cream);
+  }
+  .rr-book-btn:hover {
+    background: #3a3a3a;
+    color: var(--cream);
+  }
+  .rr-book-alt {
+    font-size: 0.95rem;
+    color: var(--cream);
+    opacity: 0.9;
+  }
+  .rr-book-alt a {
+    color: var(--cream);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Pricing card */
+  .rr-pricing {
+    background: rgba(22, 22, 22, 0.35);
+    border: 1px solid rgba(241, 231, 212, 0.18);
+    border-radius: var(--radius);
+    padding: 36px 34px;
+  }
+  .rr-pricing-eyebrow {
+    font-family: var(--font-stamp);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 22px;
+  }
+  .rr-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding: 18px 0;
+  }
+  .rr-price-row + .rr-price-row {
+    border-top: 1px solid rgba(241, 231, 212, 0.14);
+  }
+  .rr-price-amount {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--cream);
+    min-width: 92px;
+  }
+  .rr-price-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .rr-price-note {
+    font-size: 0.9rem;
+    color: var(--cream);
+    opacity: 0.7;
+    margin-top: 3px;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 900px) {
+    .rr-hero {
+      padding-left: 24px;
+      padding-right: 24px;
+      min-height: 80vh;
+    }
+    .rr-features-grid {
+      grid-template-columns: 1fr;
+    }
+    .rr-steps {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 24px;
+    }
+    .rr-book-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .rr-gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .rr-shot:first-child {
+      grid-row: auto;
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 10;
+    }
+  }
+  @media (max-width: 560px) {
+    .rr-steps {
+      grid-template-columns: 1fr;
+    }
+    .rr-gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

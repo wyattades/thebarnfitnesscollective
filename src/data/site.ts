@@ -42,6 +42,11 @@ export const site = {
   bookingUrl:
     "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes",
 
+  /** Direct link to book the Recovery Room (sauna + cold plunge) — Glofox
+   *  "facilities" booking. Used on the /recovery-room page. */
+  recoveryBookingUrl:
+    "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/facilities",
+
   /** The on-site schedule page that embeds the booking portal. Nav + footer
    *  "Schedule & Book" point here so people stay on the site. */
   scheduleUrl: "/schedule",
@@ -65,6 +70,7 @@ export const site = {
 export const mainNav = [
   { label: "Schedule & Book", href: site.scheduleUrl },
   { label: "Programming & Pricing", href: "/programming-and-pricing" },
+  { label: "Recovery Room", href: "/recovery-room" },
   { label: "Legends Program", href: "/legends-program" },
   { label: "Our Team", href: "/our-team" },
   { label: "Contact", href: "/contact" },
@@ -77,6 +83,7 @@ export const footerNav = {
   explore: [
     { label: "Programming & Pricing", href: "/programming-and-pricing" },
     { label: "Schedule & Book", href: site.scheduleUrl },
+    { label: "Recovery Room", href: "/recovery-room" },
     { label: "Legends Program", href: "/legends-program" },
     { label: "Our Team", href: "/our-team" },
     { label: "Mobile App", href: "/mobile-app" },
