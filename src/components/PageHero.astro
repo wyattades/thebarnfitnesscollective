@@ -43,13 +43,25 @@ const external = ctaHref && (/^https?:\/\//.test(ctaHref) || ctaHref.startsWith(
     padding: 200px 48px 90px;
     overflow: hidden;
   }
+  /* Warm "clubby" lighting: a soft coral glow washing up from below-left, with
+     a faint grid for structure. */
   .page-hero-grid {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(241, 231, 212, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(241, 231, 212, 0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
+      radial-gradient(
+        70% 90% at 15% 120%,
+        color-mix(in srgb, var(--coral) 26%, transparent),
+        transparent 60%
+      ),
+      radial-gradient(
+        55% 80% at 100% -10%,
+        color-mix(in srgb, var(--teal) 16%, transparent),
+        transparent 55%
+      ),
+      linear-gradient(rgba(241, 231, 212, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241, 231, 212, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 64px 64px, 64px 64px;
   }
   .page-hero-inner {
     position: relative;
@@ -59,12 +71,12 @@ const external = ctaHref && (/^https?:\/\//.test(ctaHref) || ctaHref.startsWith(
   }
   .page-hero-title {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    line-height: 1.03;
-    font-weight: 900;
+    font-size: clamp(2.7rem, 6.4vw, 5.2rem);
+    line-height: 1.0;
+    font-weight: 500;
     color: var(--cream);
-    letter-spacing: 0.04em;
-    margin-top: 8px;
+    letter-spacing: -0.015em;
+    margin-top: 14px;
   }
   .page-hero-title :global(em) {
     font-style: italic;

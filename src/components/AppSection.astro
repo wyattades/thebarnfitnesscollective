@@ -114,7 +114,7 @@ import { site } from "../data/site";
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: rgba(38, 38, 38, 0.15);
+    background: rgba(23, 18, 19, 0.15);
   }
   .app-inner {
     display: grid;
@@ -127,16 +127,20 @@ import { site } from "../data/site";
     margin: 0 auto;
   }
   .app-eyebrow {
+    display: inline-block;
     font-family: var(--font-stamp);
     font-size: 0.85rem;
-    letter-spacing: 0.3em;
-    color: rgba(241, 231, 212, 0.6);
-    margin-bottom: 16px;
+    letter-spacing: 0.28em;
+    color: var(--cream);
+    margin-bottom: 20px;
+    padding: 7px 18px 5px;
+    border: 1px solid rgba(241, 231, 212, 0.4);
+    border-radius: var(--radius-pill);
   }
   .app-title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 900;
+    font-weight: 500;
     color: var(--cream);
     line-height: 1.05;
     margin-bottom: 20px;
@@ -168,7 +172,7 @@ import { site } from "../data/site";
     transition: background 0.2s;
   }
   .app-store-btn:hover {
-    background: #3a3a3a;
+    background: var(--plum);
   }
   .app-store-btn .abt {
     font-size: 0.6rem;
@@ -224,7 +228,7 @@ import { site } from "../data/site";
   .psh-title {
     font-family: var(--font-display);
     font-size: 0.85rem;
-    font-weight: 900;
+    font-weight: 500;
     color: var(--cream);
   }
   .phone-classes {
