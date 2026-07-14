@@ -1,11 +1,12 @@
 ---
 /**
- * CommunitySection — "More than a gym, a collective" Instagram teaser grid.
- * The tiles are decorative gradient placeholders (matching the current site).
- * The whole grid links out to Instagram.
+ * CommunitySection — "More than a gym, a collective" Instagram photo grid.
+ * Shows real photos from @thebarnfitnesscollective (see src/data/instagram.ts).
+ * Every tile links out to the Instagram profile.
  */
+import Img from "./Img.astro";
 import { site } from "../data/site";
-const tiles = ["i1", "i2", "i3", "i4", "i5", "i6"];
+import { instaPosts } from "../data/instagram";
 ---
 
 <section class="section-community">
@@ -15,15 +16,23 @@ const tiles = ["i1", "i2", "i3", "i4", "i5", "i6"];
   </div>
   <div class="insta-grid">
     {
-      tiles.map((t) => (
-        <a class="insta-item" href={site.instagram.url} target="_blank" rel="noopener" aria-label="View on Instagram">
-          <div class={`insta-item-bg ${t}`} />
-          <div class="insta-overlay"><span class="insta-icon">📸</span></div>
+      instaPosts.map((post) => (
+        <a
+          class="insta-item"
+          href={site.instagram.url}
+          target="_blank"
+          rel="noopener"
+          aria-label={`${post.alt} — view on Instagram`}
+        >
+          <Img name={post.image} alt={post.alt} class="insta-img" width={500} />
+          <div class="insta-overlay"><span class="insta-icon">↗</span></div>
         </a>
       ))
     }
   </div>
-  <p class="community-follow">Follow us {site.instagram.handle}</p>
+  <a class="community-follow" href={site.instagram.url} target="_blank" rel="noopener">
+    Follow us {site.instagram.handle}
+  </a>
 </section>
 
 <style>
@@ -53,36 +62,22 @@ const tiles = ["i1", "i2", "i3", "i4", "i5", "i6"];
     background: var(--dark-2);
     display: block;
   }
-  .insta-item-bg {
+  .insta-item :global(.insta-img) {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     transition: transform 0.5s;
   }
-  .insta-item:hover .insta-item-bg {
+  .insta-item:hover :global(.insta-img) {
     transform: scale(1.08);
-  }
-  .insta-item-bg.i1 {
-    background: linear-gradient(135deg, #3d1a14, #6b2a22);
-  }
-  .insta-item-bg.i2 {
-    background: linear-gradient(135deg, #1a2e35, #2d4d5e);
-  }
-  .insta-item-bg.i3 {
-    background: linear-gradient(135deg, #2a1f10, #463418);
-  }
-  .insta-item-bg.i4 {
-    background: linear-gradient(135deg, #2a1a28, #46304a);
-  }
-  .insta-item-bg.i5 {
-    background: linear-gradient(135deg, #1a2630, #263845);
-  }
-  .insta-item-bg.i6 {
-    background: linear-gradient(135deg, #3d2215, #5c3520);
   }
   .insta-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(38, 38, 38, 0.6);
+    background: rgba(38, 38, 38, 0.55);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,13 +92,20 @@ const tiles = ["i1", "i2", "i3", "i4", "i5", "i6"];
     color: var(--cream);
   }
   .community-follow {
+    display: block;
     text-align: center;
     margin-top: 24px;
     font-size: 0.8rem;
-    opacity: 0.4;
+    opacity: 0.5;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--cream);
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .community-follow:hover {
+    opacity: 1;
+    color: var(--coral);
   }
   @media (max-width: 900px) {
     .section-community {

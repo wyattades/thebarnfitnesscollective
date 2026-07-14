@@ -37,9 +37,14 @@ export const site = {
     geo: { latitude: 38.4021, longitude: -122.8069 },
   },
 
-  /** The Glofox booking portal — used by every "Book" button on the site. */
+  /** The external Glofox booking portal (embedded on /schedule, and offered as
+   *  a direct-link fallback there). */
   bookingUrl:
     "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes",
+
+  /** The on-site schedule page that embeds the booking portal. Nav + footer
+   *  "Schedule & Book" point here so people stay on the site. */
+  scheduleUrl: "/schedule",
 
   instagram: {
     handle: "@thebarnfitnesscollective",
@@ -58,7 +63,7 @@ export const site = {
  * `href` values starting with "/" are internal pages; full URLs open externally.
  */
 export const mainNav = [
-  { label: "Schedule & Book", href: site.bookingUrl },
+  { label: "Schedule & Book", href: site.scheduleUrl },
   { label: "Programming & Pricing", href: "/programming-and-pricing" },
   { label: "Legends Program", href: "/legends-program" },
   { label: "Our Team", href: "/our-team" },
@@ -71,7 +76,7 @@ export const mainNav = [
 export const footerNav = {
   explore: [
     { label: "Programming & Pricing", href: "/programming-and-pricing" },
-    { label: "Schedule & Book", href: site.bookingUrl },
+    { label: "Schedule & Book", href: site.scheduleUrl },
     { label: "Legends Program", href: "/legends-program" },
     { label: "Our Team", href: "/our-team" },
     { label: "Mobile App", href: "/mobile-app" },

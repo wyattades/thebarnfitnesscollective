@@ -5,6 +5,3 @@
 /home                    /                          301
 /our-team-1              /our-team                  301
 /programmingandpricing   /programming-and-pricing   301
-
-# "Schedule & Book" always pointed at the external booking portal.
-/schedule                https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes  301

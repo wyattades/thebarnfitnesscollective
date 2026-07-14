@@ -1,7 +1,8 @@
 ---
 /**
- * Global site header. Transparent over the hero, fades to charcoal on scroll.
- * Nav items come from src/data/site.ts (mainNav). Collapses to a mobile menu.
+ * Global site header — solid charcoal bar, fixed to the top. Nav items come from
+ * src/data/site.ts (mainNav). The link for the current page is highlighted.
+ * Collapses to a mobile menu below 1040px.
  */
 import { mainNav, site } from "../data/site";
 import { getImageByName } from "../lib/images";
@@ -9,6 +10,9 @@ import { Image } from "astro:assets";
 
 const goat = getImageByName("goat-logo.png");
 const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWith("mailto:");
+const norm = (p: string) => (p.replace(/\/+$/, "") || "/");
+const current = norm(Astro.url.pathname);
+const isActive = (href: string) => !isExternal(href) && norm(href) === current;
 ---
 
 <header id="mainNav">
@@ -20,11 +24,12 @@ const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWit
   <nav aria-label="Primary">
     <ul class="nav-links">
       {
-        mainNav.map((item, i) => (
+        mainNav.map((item) => (
           <li>
             <a
               href={item.href}
-              class={i === 0 ? "nav-cta" : ""}
+              class:list={{ active: isActive(item.href) }}
+              aria-current={isActive(item.href) ? "page" : undefined}
               {...(isExternal(item.href) ? { target: "_blank", rel: "noopener" } : {})}
             >
               {item.label}
@@ -47,7 +52,12 @@ const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWit
     {
       mainNav.map((item) => (
         <li>
-          <a href={item.href} {...(isExternal(item.href) ? { target: "_blank", rel: "noopener" } : {})}>
+          <a
+            href={item.href}
+            class:list={{ active: isActive(item.href) }}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            {...(isExternal(item.href) ? { target: "_blank", rel: "noopener" } : {})}
+          >
             {item.label}
           </a>
         </li>
@@ -115,18 +125,17 @@ const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWit
     opacity: 1;
     color: var(--coral);
   }
-  .nav-cta {
-    background: var(--coral);
-    color: var(--dark) !important;
-    padding: 10px 20px;
-    border-radius: var(--radius-sm);
-    font-weight: 700 !important;
-    opacity: 1 !important;
-    transition: background 0.2s !important;
+  /* Current page: coral text + underline. */
+  .nav-links a.active {
+    opacity: 1;
+    color: var(--coral);
   }
-  .nav-cta:hover {
-    background: var(--rust) !important;
-    color: var(--cream) !important;
+  .nav-links a.active::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: var(--coral);
+    margin-top: 5px;
   }
 
   /* Hamburger */
@@ -182,7 +191,8 @@ const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWit
     padding: 14px 4px;
     border-bottom: 1px solid rgba(241, 231, 212, 0.08);
   }
-  .mobile-menu a:hover {
+  .mobile-menu a:hover,
+  .mobile-menu a.active {
     color: var(--coral);
   }
 
