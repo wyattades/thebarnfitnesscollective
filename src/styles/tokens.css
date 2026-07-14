@@ -7,23 +7,28 @@
    ========================================================================== */
 
 :root {
-  /* ---- Brand colors ---- */
+  /* ---- Brand colors ----
+     A warm, clubby palette: deep espresso darks lit by hot coral, a rebellious
+     acid-lime pop, and a cool teal to balance. Light sections sit on cream. */
   --rust: #98382e; /* deep brick red — strong accents, hovers */
   --coral: #ff6f64; /* primary accent — buttons, eyebrows, links */
+  --acid: #d7f25a; /* rebellious lime — sparing pops, highlights, chips */
   --teal: #4096ad; /* secondary accent */
   --teal-text: #5cb0c8; /* lightened teal for small text on dark (meets contrast) */
   --sky: #a6d5ff; /* light-blue accent — credential tags */
   --cream: #f1e7d4; /* primary light text on dark backgrounds */
-  --dark: #262626; /* primary dark background */
+  --dark: #211a1b; /* primary dark background — warm espresso */
   --off-white: #faf6ef; /* light surface (cards on light sections) */
+  --paper: #f3ebdd; /* warm light section background (editorial "paper") */
 
-  /* Darker background shades used by individual sections */
-  --dark-1: #1e1e1e;
-  --dark-2: #1a1a1a;
-  --dark-3: #161616;
+  /* Darker + surface shades used by individual sections */
+  --dark-1: #1b1516;
+  --dark-2: #171213;
+  --dark-3: #130f10;
+  --plum: #2c2224; /* raised card surface on dark backgrounds */
 
   /* ---- Typography ---- */
-  --font-display: "Playfair Display", serif; /* headlines */
+  --font-display: "Playfair Display", serif; /* editorial headlines */
   --font-body: "DM Sans", sans-serif; /* body copy, nav */
   --font-stamp: "Bebas Neue", sans-serif; /* condensed labels / "stamps" */
 
@@ -33,6 +38,12 @@
   --section-padding-x: 48px;
   --section-padding-x-mobile: 24px;
   --content-max: 1280px; /* max content width for centered layouts */
-  --radius: 4px;
-  --radius-sm: 2px;
+
+  /* ---- Radii ----
+     Rounded, friendly geometry. Pills for buttons + nav chips; soft rounding
+     on cards and media panels. */
+  --radius-pill: 999px;
+  --radius-lg: 24px;
+  --radius: 16px;
+  --radius-sm: 10px;
 }

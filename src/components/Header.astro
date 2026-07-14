@@ -78,7 +78,7 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
     justify-content: space-between;
     padding: 0 48px;
     /* Solid dark bar, always visible (including over the bright video hero). */
-    background: rgba(38, 38, 38, 0.97);
+    background: rgba(23, 18, 19, 0.97);
     backdrop-filter: blur(10px);
     transition: box-shadow 0.3s;
   }
@@ -99,35 +99,37 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
 
   .nav-links {
     display: flex;
-    gap: 28px;
+    gap: 6px;
     list-style: none;
     align-items: center;
   }
+  /* Each nav item is a rounded pill chip that fills in on hover / when active. */
   .nav-links a {
+    display: inline-block;
     color: var(--cream);
     text-decoration: none;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
     opacity: 0.85;
-    transition: opacity 0.2s, color 0.2s;
+    padding: 9px 15px;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    transition: opacity 0.2s, color 0.2s, background 0.2s, border-color 0.2s;
   }
   .nav-links a:hover {
     opacity: 1;
-    color: var(--coral);
+    color: var(--cream);
+    border-color: rgba(241, 231, 212, 0.28);
+    background: rgba(241, 231, 212, 0.06);
   }
-  /* Current page: coral text + underline. */
+  /* Current page: filled coral pill. */
   .nav-links a.active {
     opacity: 1;
-    color: var(--coral);
-  }
-  .nav-links a.active::after {
-    content: "";
-    display: block;
-    height: 2px;
+    color: #2a1210;
     background: var(--coral);
-    margin-top: 5px;
+    border-color: var(--coral);
   }
 
   /* Hamburger */
@@ -164,7 +166,7 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
     right: 0;
     z-index: 99;
     padding: 90px 24px 32px;
-    background: rgba(38, 38, 38, 0.98);
+    background: rgba(23, 18, 19, 0.98);
     backdrop-filter: blur(10px);
   }
   .mobile-menu ul {
@@ -191,14 +193,15 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
   /* Tighten spacing on mid widths before collapsing to the mobile menu. */
   @media (max-width: 1140px) {
     #mainNav {
-      padding: 18px 32px;
+      padding: 0 28px;
     }
     .nav-links {
-      gap: 20px;
+      gap: 3px;
     }
     .nav-links a {
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      padding: 8px 11px;
     }
   }
   @media (max-width: 1040px) {
