@@ -184,7 +184,20 @@ const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWit
     color: var(--coral);
   }
 
-  @media (max-width: 900px) {
+  /* Tighten spacing on mid widths before collapsing to the mobile menu. */
+  @media (max-width: 1140px) {
+    #mainNav {
+      padding: 18px 32px;
+    }
+    .nav-links {
+      gap: 20px;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+  }
+  @media (max-width: 1040px) {
     #mainNav {
       padding: 16px 24px;
     }
