@@ -63,16 +63,18 @@ const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWit
     left: 0;
     right: 0;
     z-index: 100;
+    min-height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 48px;
-    background: transparent;
-    transition: background 0.4s;
+    padding: 0 48px;
+    /* Solid dark bar, always visible (including over the bright video hero). */
+    background: rgba(38, 38, 38, 0.97);
+    backdrop-filter: blur(10px);
+    transition: box-shadow 0.3s;
   }
   #mainNav.scrolled {
-    background: rgba(38, 38, 38, 0.96);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgba(241, 231, 212, 0.08), 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
   .nav-logo {

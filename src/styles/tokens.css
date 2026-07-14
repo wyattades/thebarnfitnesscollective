@@ -27,6 +27,7 @@
   --font-stamp: "Bebas Neue", sans-serif; /* condensed labels / "stamps" */
 
   /* ---- Layout ---- */
+  --header-height: 84px; /* height of the fixed site header */
   --section-padding-y: 120px; /* vertical rhythm for major sections */
   --section-padding-x: 48px;
   --section-padding-x-mobile: 24px;

@@ -1,9 +1,13 @@
 ---
 /**
- * VideoHero — full-screen autoplaying background video.
+ * VideoHero — the home page's opening video banner.
  * The "THE BARN / A FITNESS COLLECTIVE" wordmark + goat are baked into the
- * video footage itself, so no text overlay is needed. Muted + looping so it
- * autoplays on all browsers (including iOS via playsinline).
+ * footage, so no text overlay is needed. Muted + looping so it autoplays
+ * everywhere (including iOS via playsinline).
+ *
+ * Layout matches the original site: the video sits BELOW the fixed header and is
+ * slightly inset from the edges (dark margins), so the wordmark reads fully
+ * without being zoomed/cropped.
  *
  * To swap the video: replace public/video/hero.mp4 (and hero-poster.jpg).
  */
@@ -21,55 +25,31 @@
   >
     <source src="/video/hero.mp4" type="video/mp4" />
   </video>
-  <a href="#story" class="video-hero-arrow" aria-label="Scroll to content">
-    <svg width="20" height="28" viewBox="0 0 20 28" fill="none">
-      <path
-        d="M10 0v24M2 16l8 10 8-10"
-        stroke="#F1E7D4"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"></path>
-    </svg>
-  </a>
 </section>
 
 <style>
   .video-hero {
-    position: relative;
-    height: 100vh;
-    min-height: 480px;
-    overflow: hidden;
-    background: #000;
+    /* Reserve the fixed header at top + a small inset all around, so the video
+       is a contained panel below the header (not a full-bleed background). */
+    padding: var(--header-height) 32px 32px;
+    background: var(--dark);
+    box-sizing: border-box;
   }
   .video-hero-media {
-    position: absolute;
-    inset: 0;
+    display: block;
     width: 100%;
-    height: 100%;
+    /* Show the video at its natural 16:9 so the baked-in wordmark reads fully
+       (no zoom/crop), matching the original. Capped to the viewport height. */
+    aspect-ratio: 16 / 9;
+    max-height: calc(100vh - var(--header-height) - 64px);
+    margin: 0 auto;
     object-fit: cover;
     object-position: center;
+    background: #000;
   }
-  .video-hero-arrow {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    opacity: 0.6;
-    animation: arrowBounce 2s ease-in-out infinite;
-  }
-  @keyframes arrowBounce {
-    0%,
-    100% {
-      transform: translateX(-50%) translateY(0);
-    }
-    50% {
-      transform: translateX(-50%) translateY(8px);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .video-hero-arrow {
-      animation: none;
+  @media (max-width: 900px) {
+    .video-hero {
+      padding: var(--header-height) 16px 16px;
     }
   }
 </style>
