@@ -1,0 +1,75 @@
+---
+/**
+ * VideoHero — full-screen autoplaying background video.
+ * The "THE BARN / A FITNESS COLLECTIVE" wordmark + goat are baked into the
+ * video footage itself, so no text overlay is needed. Muted + looping so it
+ * autoplays on all browsers (including iOS via playsinline).
+ *
+ * To swap the video: replace public/video/hero.mp4 (and hero-poster.jpg).
+ */
+---
+
+<section class="video-hero" aria-label="The Barn — A Fitness Collective">
+  <video
+    class="video-hero-media"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster="/video/hero-poster.jpg"
+  >
+    <source src="/video/hero.mp4" type="video/mp4" />
+  </video>
+  <a href="#story" class="video-hero-arrow" aria-label="Scroll to content">
+    <svg width="20" height="28" viewBox="0 0 20 28" fill="none">
+      <path
+        d="M10 0v24M2 16l8 10 8-10"
+        stroke="#F1E7D4"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
+</section>
+
+<style>
+  .video-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 480px;
+    overflow: hidden;
+    background: #000;
+  }
+  .video-hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .video-hero-arrow {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 0.6;
+    animation: arrowBounce 2s ease-in-out infinite;
+  }
+  @keyframes arrowBounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(8px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .video-hero-arrow {
+      animation: none;
+    }
+  }
+</style>

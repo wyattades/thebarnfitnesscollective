@@ -1,0 +1,117 @@
+---
+/**
+ * PricingCard — one plan in the pricing grid.
+ */
+import type { Plan } from "../data/pricing";
+const { label, name, price, freq, features, cta, link, featured, badge } =
+  Astro.props as Plan;
+const isExternal = /^https?:\/\//.test(link) || link.startsWith("mailto:");
+---
+
+<div class={`pricing-card fade-up${featured ? " featured" : ""}`}>
+  {featured && <div class="pricing-badge">{badge ?? "Most Popular"}</div>}
+  <div class="pricing-label">{label}</div>
+  <div class="pricing-name">{name}</div>
+  <div class="pricing-price"><span>$</span>{price}</div>
+  <div class="pricing-freq">{freq}</div>
+  <ul class="pricing-features">
+    {features.map((f) => <li>{f}</li>)}
+  </ul>
+  <a
+    href={link}
+    class="btn-primary pricing-cta"
+    {...(isExternal ? { target: "_blank", rel: "noopener" } : {})}
+  >
+    {cta}
+  </a>
+</div>
+
+<style>
+  .pricing-card {
+    border: 1.5px solid rgba(241, 231, 212, 0.12);
+    border-radius: var(--radius);
+    padding: 44px 36px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .pricing-card:hover {
+    border-color: var(--coral);
+    transform: translateY(-6px);
+  }
+  .pricing-card.featured {
+    border-color: var(--coral);
+    background: rgba(255, 111, 100, 0.06);
+  }
+  .pricing-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--coral);
+    color: var(--dark);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+  .pricing-label {
+    font-family: var(--font-stamp);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+  .pricing-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .pricing-price {
+    font-family: var(--font-stamp);
+    font-size: 3.5rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pricing-price span {
+    font-size: 1.4rem;
+    vertical-align: super;
+  }
+  .pricing-freq {
+    font-size: 0.78rem;
+    opacity: 0.45;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 36px;
+  }
+  .pricing-features li {
+    font-size: 0.88rem;
+    opacity: 0.7;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(241, 231, 212, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pricing-features li::before {
+    content: "→";
+    color: var(--coral);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .pricing-cta {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+</style>

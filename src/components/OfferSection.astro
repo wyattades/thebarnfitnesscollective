@@ -1,0 +1,52 @@
+---
+/**
+ * OfferSection — "What We Offer" heading + the grid of OfferCards.
+ * Content comes from src/data/classes.ts (offers).
+ */
+import OfferCard from "./OfferCard.astro";
+import { offers } from "../data/classes";
+---
+
+<section id="classes" class="section-offer">
+  <div class="section-header fade-up">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2 class="section-title">Train <em>smarter.</em><br />Move better.</h2>
+    <p class="section-body">
+      Purposeful programming, expert coaching, and a community that shows up for
+      each other.
+    </p>
+  </div>
+  <div class="offer-grid">
+    {offers.map((offer) => <OfferCard {...offer} />)}
+  </div>
+</section>
+
+<style>
+  .section-offer {
+    padding: 120px 48px;
+    background: var(--dark);
+  }
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3px;
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+  @media (min-width: 560px) {
+    .offer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 900px) {
+    .offer-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (max-width: 900px) {
+    .section-offer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+</style>

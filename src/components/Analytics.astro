@@ -1,0 +1,29 @@
+---
+/**
+ * Google Analytics 4.
+ * Only renders when PUBLIC_GA_MEASUREMENT_ID is set (see .env.example), so it
+ * stays OFF during local development and turns ON automatically in production
+ * once the ID is set in Netlify's environment variables.
+ */
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+
+{
+  GA_ID && (
+    <>
+      <script
+        is:inline
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        async
+      />
+      <script is:inline define:vars={{ GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", GA_ID);
+      </script>
+    </>
+  )
+}

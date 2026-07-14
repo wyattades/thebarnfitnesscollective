@@ -1,0 +1,10 @@
+# Netlify redirects. Maps old Squarespace URLs to the new pages so existing
+# links and search results don't 404. Format: <from>  <to>  <status>
+# Add a line here whenever a page is renamed.
+
+/home                    /                          301
+/our-team-1              /our-team                  301
+/programmingandpricing   /programming-and-pricing   301
+
+# "Schedule & Book" always pointed at the external booking portal.
+/schedule                https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes  301

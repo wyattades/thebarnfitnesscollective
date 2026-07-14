@@ -1,0 +1,157 @@
+---
+/**
+ * MassageSection — "Bodywork at The Barn" recovery/massage promo.
+ * Background photo is optimized via <Img> and referenced by filename.
+ */
+import Img from "./Img.astro";
+import { site } from "../data/site";
+---
+
+<section class="section-massage">
+  <div class="massage-visual">
+    <Img name="massage-bg.jpg" alt="Bodywork at The Barn" class="massage-visual-img" width={900} />
+    <div class="massage-visual-accent"></div>
+    <div class="massage-visual-text">Restore.</div>
+    <div class="massage-tag">Body Work at The Barn</div>
+    <div class="massage-duration-tags">
+      <span class="dur-tag">20 min</span>
+      <span class="dur-tag">40 min</span>
+      <span class="dur-tag">60 min</span>
+    </div>
+  </div>
+  <div class="massage-content">
+    <div class="section-eyebrow massage-eyebrow">Recovery</div>
+    <h2 class="section-title massage-title">Bodywork at <em>The Barn.</em></h2>
+    <div class="massage-quote">
+      "I've been performing massage for over 30 years. My style is deep tissue
+      with an emphasis on injury repair. My desire is to provide short &amp;
+      convenient massage sessions which can allow more regular bodywork."
+    </div>
+    <p class="massage-byline">— J. Dunivan, RN · Certified Massage Therapist</p>
+    <p class="massage-body">
+      Chair or table massage. Movement-based approach to break up adhesions and
+      promote real healing — not just temporary relief.
+    </p>
+    <div class="massage-cta">
+      <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">Book Your Massage</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-massage {
+    background: var(--dark-2);
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .massage-visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .massage-visual :global(.massage-visual-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .massage-visual-accent {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(152, 56, 46, 0.3), transparent 60%);
+  }
+  .massage-visual-text {
+    position: absolute;
+    bottom: 36px;
+    left: 36px;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 900;
+    font-style: italic;
+    color: rgba(241, 231, 212, 0.08);
+    line-height: 1;
+  }
+  .massage-tag {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    background: var(--rust);
+    color: var(--cream);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: var(--radius-sm);
+  }
+  .massage-duration-tags {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .dur-tag {
+    background: rgba(38, 38, 38, 0.85);
+    color: var(--sky);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+  }
+  .massage-eyebrow {
+    color: var(--rust);
+  }
+  .massage-eyebrow::before {
+    background: var(--rust);
+  }
+  .massage-title em {
+    color: var(--teal);
+  }
+  .massage-quote {
+    margin: 32px 0;
+    padding-left: 20px;
+    border-left: 3px solid var(--rust);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    opacity: 0.7;
+    font-style: italic;
+    color: var(--cream);
+  }
+  .massage-byline {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  .massage-body {
+    margin-top: 28px;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    line-height: 1.8;
+    color: var(--cream);
+  }
+  .massage-cta {
+    margin-top: 36px;
+  }
+  @media (max-width: 900px) {
+    .section-massage {
+      grid-template-columns: 1fr;
+      padding-left: 24px;
+      padding-right: 24px;
+      gap: 48px;
+    }
+  }
+</style>

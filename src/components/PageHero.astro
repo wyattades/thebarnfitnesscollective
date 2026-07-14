@@ -1,0 +1,89 @@
+---
+/**
+ * PageHero — the standard top-of-page banner for interior pages.
+ * Dark background, eyebrow + big title + optional intro + optional CTA button.
+ */
+import { site } from "../data/site";
+
+interface Props {
+  eyebrow?: string;
+  title: string; // may contain <em>…</em> for a colored accent word
+  intro?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+const { eyebrow, title, intro, ctaLabel, ctaHref } = Astro.props;
+const external = ctaHref && (/^https?:\/\//.test(ctaHref) || ctaHref.startsWith("mailto:"));
+---
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    {eyebrow && <div class="section-eyebrow">{eyebrow}</div>}
+    <h1 class="page-hero-title" set:html={title}></h1>
+    {intro && <p class="page-hero-intro">{intro}</p>}
+    {
+      ctaLabel && ctaHref && (
+        <a
+          href={ctaHref}
+          class="btn-primary page-hero-cta"
+          {...(external ? { target: "_blank", rel: "noopener" } : {})}
+        >
+          {ctaLabel}
+        </a>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    background: var(--dark);
+    padding: 200px 48px 90px;
+    overflow: hidden;
+  }
+  .page-hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(241, 231, 212, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241, 231, 212, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .page-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+  .page-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.03;
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+  }
+  .page-hero-title :global(em) {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .page-hero-intro {
+    max-width: 640px;
+    margin-top: 22px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.7;
+  }
+  .page-hero-cta {
+    margin-top: 36px;
+  }
+  @media (max-width: 900px) {
+    .page-hero {
+      padding: 150px 24px 64px;
+    }
+  }
+</style>

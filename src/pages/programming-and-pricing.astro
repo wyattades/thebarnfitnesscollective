@@ -1,0 +1,170 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PricingSection from "../components/PricingSection.astro";
+import { site } from "../data/site";
+
+const classes = [
+  {
+    name: "Body Armor",
+    days: "Mon · Wed · Fri",
+    desc: "A blend of strength training, bodybuilding, & mobility work to build muscle, strong bones, and bulletproof joints.",
+  },
+  {
+    name: "Build + Blast",
+    days: "Tue",
+    desc: "Compound lifts to build functional strength, followed by high intensity interval work to improve your aerobic capacity.",
+  },
+  {
+    name: "Build + Endurance",
+    days: "Thu",
+    desc: "Compound lifts to build functional strength, followed by longer sustained effort conditioning.",
+  },
+  {
+    name: "Pump Party",
+    days: "Fri",
+    desc: "Strength and muscle-building with lower skill yet highly effective movements. Come chase the pump!",
+  },
+  {
+    name: "Hybrid Hustle",
+    days: "Sat",
+    desc: "A little bit of everything and always a good sweat. Strength, conditioning, partner workouts, chippers, AMRAPs, EMOMs — you name it, we got it!",
+  },
+];
+
+const services = [
+  {
+    name: "Group Classes",
+    desc: "We offer the same workout throughout the day. All levels welcome — our coaches are well equipped to help you modify the workout to fit your needs. Classes capped at 15.",
+    link: site.bookingUrl,
+    label: "Book a Class →",
+  },
+  {
+    name: "Legends Program (55+)",
+    desc: "For those 55 and over who are excited to get strong while improving mobility, flexibility, stability, and balance. Lower intensity than regular group classes with full coaching.",
+    link: "/legends-program",
+    label: "Learn More →",
+  },
+  {
+    name: "Personal Training",
+    desc: "We offer personal training if you're looking to build confidence and skillset before joining group class — or want a fully individualized program. Contact us to inquire.",
+    link: `mailto:${site.email}`,
+    label: "Inquire →",
+  },
+];
+---
+
+<BaseLayout title="Programming & Pricing" description="Our classes, services, and membership options at The Barn Fitness Collective.">
+  <PageHero
+    eyebrow="Programming & Pricing"
+    title="Our Programming <em>& Pricing</em>"
+    intro="M · W · F is strength focused. T · TH · Sat is strength + conditioning. All levels welcome — every movement is scalable."
+    ctaLabel="Book Your First Class →"
+    ctaHref={site.bookingUrl}
+  />
+
+  <section class="pp-classes section">
+    <div class="pp-inner">
+      <div class="section-header fade-up">
+        <div class="section-eyebrow">Our Classes</div>
+        <h2 class="section-title">The <em>lineup.</em></h2>
+      </div>
+      <div class="pp-class-grid">
+        {classes.map((c) => (
+          <div class="pp-class fade-up">
+            <div class="pp-class-days">{c.days}</div>
+            <h3 class="pp-class-name">{c.name}</h3>
+            <p class="pp-class-desc">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pp-services section">
+    <div class="pp-inner">
+      <div class="section-header fade-up">
+        <div class="section-eyebrow">Our Services</div>
+        <h2 class="section-title">More ways <em>to train.</em></h2>
+      </div>
+      <div class="pp-service-grid">
+        {services.map((s) => {
+          const external = /^https?:\/\//.test(s.link) || s.link.startsWith("mailto:");
+          return (
+            <div class="pp-service fade-up">
+              <h3 class="pp-service-name">{s.name}</h3>
+              <p class="pp-service-desc">{s.desc}</p>
+              <a class="pp-service-link" href={s.link} {...(external ? { target: "_blank", rel: "noopener" } : {})}>{s.label}</a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <PricingSection />
+</BaseLayout>
+
+<style>
+  .pp-classes {
+    background: var(--dark);
+  }
+  .pp-services {
+    background: var(--dark-1);
+  }
+  .pp-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+  .pp-class-grid,
+  .pp-service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .pp-class,
+  .pp-service {
+    border: 1.5px solid rgba(241, 231, 212, 0.12);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    transition: border-color 0.25s, transform 0.25s;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .pp-class:hover,
+  .pp-service:hover {
+    border-color: var(--coral);
+    transform: translateY(-4px);
+  }
+  .pp-class-days {
+    font-family: var(--font-stamp);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+  .pp-class-name,
+  .pp-service-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .pp-class-desc,
+  .pp-service-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.72;
+  }
+  .pp-service-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--coral);
+    text-decoration: none;
+  }
+</style>

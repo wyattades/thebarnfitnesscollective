@@ -1,0 +1,203 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Img from "../components/Img.astro";
+import { team } from "../data/team";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="Our Team" description="Meet the coaches of The Barn Fitness Collective — credentials, heart, and a love of helping people move better.">
+  <PageHero
+    eyebrow="Meet the Team"
+    title="Meet the <em>Team</em>"
+    intro="Our coaches bring credentials, heart, and a genuine love of helping people move better, feel stronger, and show up for themselves."
+  />
+
+  <section class="team-bios section">
+    <div class="team-bios-inner">
+      {
+        team.map((coach, i) => (
+          <article class:list={["coach", { reverse: i % 2 === 1 }]}>
+            <div class="coach-photo">
+              <div class="coach-initial">{coach.initial}</div>
+              <Img name={coach.photo} alt={coach.name} class="coach-img" width={640} />
+              <div class="coach-creds">
+                {coach.creds.map((c) => <span class="cred-tag">{c}</span>)}
+              </div>
+            </div>
+            <div class="coach-info">
+              <h2 class="coach-name">{coach.name}</h2>
+              <div class="coach-role">{coach.role}</div>
+              {(coach.bio ?? []).map((p) => <p class="coach-bio">{p}</p>)}
+              {coach.email && (
+                <a class="coach-email" href={`mailto:${coach.email}`}>{coach.email} →</a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="team-cta section">
+    <div class="team-cta-inner">
+      <div class="section-eyebrow" style="justify-content:center;">Join Us</div>
+      <h2 class="section-title">Ready to train <em>with us?</em></h2>
+      <p class="section-body" style="margin-left:auto;margin-right:auto;">
+        Book your first class — all levels welcome, every movement scalable.
+      </p>
+      <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener" style="margin-top:8px;">
+        Book Your First Class →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .team-bios {
+    background: var(--dark);
+  }
+  .team-bios-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+  .coach {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .coach.reverse {
+    grid-template-columns: 1fr 340px;
+  }
+  .coach.reverse .coach-photo {
+    order: 2;
+  }
+  .coach-photo {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: linear-gradient(160deg, #3d2215 0%, #6b3a25 100%);
+    position: sticky;
+    top: 100px;
+  }
+  .coach-initial {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 6rem;
+    font-weight: 900;
+    font-style: italic;
+    color: rgba(241, 231, 212, 0.15);
+    z-index: 0;
+  }
+  .coach-photo :global(.coach-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 1;
+  }
+  .coach-creds {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    z-index: 2;
+  }
+  .cred-tag {
+    background: rgba(38, 38, 38, 0.75);
+    backdrop-filter: blur(6px);
+    color: var(--sky);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+  }
+  .coach-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 900;
+    color: var(--cream);
+  }
+  .coach-role {
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 600;
+    margin: 6px 0 20px;
+  }
+  .coach-bio {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--cream);
+    opacity: 0.72;
+    margin-bottom: 16px;
+  }
+  .coach-email {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--coral);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+  .team-cta {
+    background: var(--cream);
+    text-align: center;
+  }
+  .team-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .team-cta :global(.section-title) {
+    color: var(--dark);
+  }
+  .team-cta :global(.section-title em) {
+    color: var(--rust);
+  }
+  .team-cta :global(.section-eyebrow) {
+    color: var(--rust);
+  }
+  .team-cta :global(.section-eyebrow::before) {
+    background: var(--rust);
+  }
+  .team-cta :global(.section-body) {
+    color: var(--dark);
+    opacity: 0.6;
+  }
+  @media (max-width: 760px) {
+    .coach,
+    .coach.reverse {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .coach.reverse .coach-photo {
+      order: 0;
+    }
+    .coach-photo {
+      position: relative;
+      top: 0;
+      max-width: 340px;
+    }
+  }
+</style>

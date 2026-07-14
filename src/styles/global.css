@@ -1,0 +1,182 @@
+/* ============================================================================
+   GLOBAL STYLES — reset, base typography, and shared primitives.
+   ----------------------------------------------------------------------------
+   Shared, reused building blocks live here (buttons, section headers, the
+   fade-up animation). Section-specific styling lives inside each component's
+   own scoped <style> block. Edit component files for one-off tweaks; edit this
+   file only for things that are genuinely shared across the whole site.
+   ========================================================================== */
+
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--dark);
+  color: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------------------------------------------------------------------------
+   SECTION HEADER — the eyebrow + title + body used at the top of most sections
+   ------------------------------------------------------------------------- */
+.section-eyebrow {
+  font-family: var(--font-stamp);
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  color: var(--coral);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background: var(--coral);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.section-body {
+  max-width: 600px;
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.7;
+  margin-top: 20px;
+}
+
+.section-header {
+  margin-bottom: 72px;
+}
+
+/* ---------------------------------------------------------------------------
+   BUTTONS
+   ------------------------------------------------------------------------- */
+.btn-primary {
+  display: inline-block;
+  background: var(--coral);
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 18px 40px;
+  border-radius: var(--radius-sm);
+  transition: background 0.25s, transform 0.2s, color 0.25s;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+}
+.btn-primary:hover {
+  background: var(--rust);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  display: inline-block;
+  border: 1.5px solid rgba(241, 231, 212, 0.4);
+  color: var(--cream);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 18px 40px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.25s, background 0.25s;
+}
+.btn-ghost:hover {
+  border-color: var(--cream);
+  background: rgba(241, 231, 212, 0.08);
+}
+
+/* ---------------------------------------------------------------------------
+   FADE-UP ON SCROLL — elements with .fade-up start hidden and animate in when
+   they enter the viewport (see BaseLayout's IntersectionObserver script).
+   ------------------------------------------------------------------------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.fade-up:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.fade-up:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   SHARED SECTION WRAPPER — consistent horizontal padding + max width.
+   ------------------------------------------------------------------------- */
+.section {
+  padding: var(--section-padding-y) var(--section-padding-x);
+}
+.section-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding-left: var(--section-padding-x-mobile);
+    padding-right: var(--section-padding-x-mobile);
+  }
+}

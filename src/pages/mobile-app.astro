@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="Mobile App" description="Download the Barn Fitness Co. app to book classes and manage your membership.">
+  <PageHero
+    eyebrow="Mobile App"
+    title="Download our <em>Barn Fitness Co.</em> app"
+    intro="Book classes, manage your membership, and track your progress — all from your pocket. The Barn app is powered by ZenPlanner."
+  />
+
+  <section class="section app-page">
+    <div class="app-page-inner">
+      <div class="app-store-row">
+        <a class="app-store-btn" href={site.app.ios} target="_blank" rel="noopener">Apple App Store →</a>
+        <a class="app-store-btn" href={site.app.android} target="_blank" rel="noopener">Google Play Store →</a>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3 class="step-title">Download the app</h3>
+            <p class="step-desc">Get the “Barn Fitness Co” app from the Apple App Store or Google Play Store.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3 class="step-title">First time here?</h3>
+            <p class="step-desc">Register for an account and sign the waiver. Then add a payment method to book a class.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3 class="step-title">Had a ZenPlanner account?</h3>
+            <ul class="step-list">
+              <li>Tap <strong>Forgot Password</strong> (upper right)</li>
+              <li>Use your existing ZenPlanner email</li>
+              <li>Reset your password to get access</li>
+              <li>Sign the membership waiver</li>
+              <li>Check your membership type and confirm everything looks correct</li>
+              <li>Add a payment method if one does not already exist</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="app-note">
+        Prefer your computer? <a href={site.bookingUrl} target="_blank" rel="noopener">Book classes and manage your membership from our scheduling page →</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .app-page { background: var(--dark); }
+  .app-page-inner { max-width: 820px; margin: 0 auto; }
+  .app-store-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+  .app-store-btn {
+    background: var(--coral);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s, color 0.2s;
+  }
+  .app-store-btn:hover { background: var(--rust); color: var(--cream); }
+  .steps { display: flex; flex-direction: column; gap: 28px; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: start; }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--rust); color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 900;
+  }
+  .step-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
+  .step-desc { font-size: 1rem; line-height: 1.7; color: var(--cream); opacity: 0.72; }
+  .step-list { margin: 8px 0 0 18px; color: var(--cream); opacity: 0.72; line-height: 1.9; }
+  .step-list strong { color: var(--cream); opacity: 1; }
+  .app-note { margin-top: 48px; font-size: 1rem; color: var(--cream); opacity: 0.72; }
+  .app-note a { color: var(--coral); text-decoration: none; }
+  .app-note a:hover { text-decoration: underline; }
+</style>

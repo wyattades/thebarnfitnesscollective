@@ -1,0 +1,109 @@
+---
+/**
+ * OfferCard — one class/offering tile in the "What We Offer" grid.
+ */
+import type { Offer } from "../data/classes";
+const { tag, name, description, icon, accent, link, linkLabel } = Astro.props as Offer;
+const isExternal = /^https?:\/\//.test(link) || link.startsWith("mailto:");
+---
+
+<div class="offer-card fade-up">
+  <div class={`offer-card-bg ${accent}`}></div>
+  <div class="offer-card-icon">{icon}</div>
+  <div class="offer-card-content">
+    <span class="offer-tag">{tag}</span>
+    <div class="offer-name">{name}</div>
+    <p class="offer-desc">{description}</p>
+    <a href={link} class="offer-link" {...(isExternal ? { target: "_blank", rel: "noopener" } : {})}>
+      {linkLabel}
+    </a>
+  </div>
+</div>
+
+<style>
+  .offer-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    cursor: pointer;
+    min-height: 0;
+    background: var(--dark-2);
+  }
+  .offer-card-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .offer-card:hover .offer-card-bg {
+    transform: scale(1.06);
+  }
+  .offer-card-bg.c1 {
+    background: linear-gradient(160deg, #1e1a18 0%, #2a2420 100%);
+  }
+  .offer-card-bg.c2 {
+    background: linear-gradient(160deg, #1a2e35 0%, #2d4d5e 100%);
+  }
+  .offer-card-bg.c3 {
+    background: linear-gradient(160deg, #2a1a14 0%, #4a2e20 100%);
+  }
+  .offer-card-bg.c4 {
+    background: linear-gradient(160deg, #1e2830 0%, #2e4050 100%);
+  }
+  .offer-card-icon {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    font-family: var(--font-stamp);
+    font-size: 4.5rem;
+    line-height: 1;
+    opacity: 0.12;
+    color: var(--cream);
+    pointer-events: none;
+  }
+  .offer-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px;
+    background: linear-gradient(to top, rgba(38, 38, 38, 0.95) 0%, transparent 100%);
+  }
+  .offer-tag {
+    font-family: var(--font-stamp);
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+    color: var(--coral);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .offer-name {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .offer-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.88;
+    color: var(--cream);
+  }
+  .offer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--coral);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .offer-link:hover {
+    gap: 14px;
+  }
+</style>

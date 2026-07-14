@@ -1,0 +1,28 @@
+---
+/**
+ * Img — optimized responsive image referenced by filename.
+ *
+ * Usage:  <Img name="team-zoe.png" alt="Zoe Anderson" />
+ *
+ * Looks the file up in src/assets/images/, then hands it to Astro's <Image>,
+ * which resizes + compresses + serves modern formats automatically. This is how
+ * we add HD photos painlessly: drop the file in the folder, reference the name.
+ */
+import { Image } from "astro:assets";
+import { getImageByName } from "../lib/images";
+
+interface Props {
+  name: string;
+  alt: string;
+  class?: string;
+  /** Rendered width in px (used to generate the srcset). Defaults to 1200. */
+  width?: number;
+  loading?: "lazy" | "eager";
+  [key: string]: any;
+}
+
+const { name, alt, class: className, width = 1200, loading = "lazy", ...rest } = Astro.props;
+const src = getImageByName(name);
+---
+
+<Image src={src} alt={alt} widths={[width, width * 2]} class={className} loading={loading} {...rest} />

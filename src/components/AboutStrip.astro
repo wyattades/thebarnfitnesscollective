@@ -1,0 +1,58 @@
+---
+/**
+ * AboutStrip — the centered "Who We Are" mission statement below the hero.
+ */
+---
+
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="section-eyebrow about-eyebrow">Who We Are</div>
+    <p class="about-quote">
+      "We are a fitness collective brought together through our love of all
+      things health &amp; wellness — dedicated to aging gracefully and being a
+      better version of ourselves each year."
+    </p>
+    <p class="about-body">
+      High-energy group fitness combining functional training, bodybuilding, and
+      aerobic conditioning — in a safe, inclusive, and flat-out epic
+      environment. All levels welcome. Every movement scalable.
+    </p>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--dark-1);
+    padding: 80px 48px;
+  }
+  .about-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .about-eyebrow {
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .about-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .about-body {
+    margin-top: 28px;
+    font-size: 0.95rem;
+    opacity: 0.6;
+    line-height: 1.8;
+    color: var(--cream);
+  }
+  @media (max-width: 900px) {
+    .about {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+/**
+ * PricingSection — "Find your fit" heading + the grid of PricingCards.
+ * Content comes from src/data/pricing.ts (plans).
+ */
+import PricingCard from "./PricingCard.astro";
+import { plans } from "../data/pricing";
+---
+
+<section id="pricing" class="section-pricing">
+  <div class="section-header fade-up pricing-header">
+    <div class="section-eyebrow">Plans &amp; Pricing</div>
+    <h2 class="section-title">Find your <em>fit.</em></h2>
+    <p class="section-body">
+      Flexible options for wherever you are in your fitness journey. No
+      long-term contracts required on drop-in or class packs.
+    </p>
+  </div>
+  <div class="pricing-grid">
+    {plans.map((plan) => <PricingCard {...plan} />)}
+  </div>
+</section>
+
+<style>
+  .section-pricing {
+    padding: 120px 48px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .section-pricing::before {
+    content: "PRICING";
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: var(--font-stamp);
+    font-size: 10rem;
+    letter-spacing: 0.1em;
+    color: rgba(241, 231, 212, 0.03);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .pricing-header {
+    max-width: var(--content-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 72px;
+    max-width: var(--content-max);
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 900px) {
+    .section-pricing {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 380px;
+    }
+  }
+</style>

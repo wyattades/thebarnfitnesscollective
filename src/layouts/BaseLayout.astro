@@ -1,0 +1,87 @@
+---
+/**
+ * BaseLayout — the shell every page uses.
+ * Provides <head> (fonts, meta, analytics), the global Header + Footer, and the
+ * scroll fade-in behavior. Pages pass `title` and `description`, then their
+ * content via the default <slot />.
+ */
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Analytics from "../components/Analytics.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Set false on the home page so the footer's own <footer id="contact"> is used. */
+  showFooter?: boolean;
+}
+
+const {
+  title = site.name,
+  description = site.tagline,
+  showFooter = true,
+} = Astro.props;
+
+const fullTitle =
+  title === site.name || title === site.shortName
+    ? site.name
+    : `${title} — ${site.shortName}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, site && Astro.site).toString()} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={site.name} />
+
+    <!-- Fonts: Playfair Display (display), DM Sans (body), Bebas Neue (stamp) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <Analytics />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    {showFooter && <Footer />}
+
+    <script>
+      // Reveal .fade-up elements as they scroll into view.
+      const els = document.querySelectorAll<HTMLElement>(".fade-up");
+      if ("IntersectionObserver" in window && els.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+        els.forEach((el) => observer.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add("visible"));
+      }
+    </script>
+  </body>
+</html>

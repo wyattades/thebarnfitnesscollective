@@ -1,0 +1,36 @@
+/* ============================================================================
+   DESIGN TOKENS — The Barn Fitness Collective
+   ----------------------------------------------------------------------------
+   This is the single source of truth for the site's look & feel.
+   Change a value here and it updates EVERYWHERE. This is the safest file to
+   edit for global design changes (brand colors, fonts, spacing rhythm).
+   ========================================================================== */
+
+:root {
+  /* ---- Brand colors ---- */
+  --rust: #98382e; /* deep brick red — strong accents, hovers */
+  --coral: #ff6f64; /* primary accent — buttons, eyebrows, links */
+  --teal: #4096ad; /* secondary accent */
+  --sky: #a6d5ff; /* light-blue accent — credential tags */
+  --cream: #f1e7d4; /* primary light text on dark backgrounds */
+  --dark: #262626; /* primary dark background */
+  --off-white: #faf6ef; /* light surface (cards on light sections) */
+
+  /* Darker background shades used by individual sections */
+  --dark-1: #1e1e1e;
+  --dark-2: #1a1a1a;
+  --dark-3: #161616;
+
+  /* ---- Typography ---- */
+  --font-display: "Playfair Display", serif; /* headlines */
+  --font-body: "DM Sans", sans-serif; /* body copy, nav */
+  --font-stamp: "Bebas Neue", sans-serif; /* condensed labels / "stamps" */
+
+  /* ---- Layout ---- */
+  --section-padding-y: 120px; /* vertical rhythm for major sections */
+  --section-padding-x: 48px;
+  --section-padding-x-mobile: 24px;
+  --content-max: 1280px; /* max content width for centered layouts */
+  --radius: 4px;
+  --radius-sm: 2px;
+}

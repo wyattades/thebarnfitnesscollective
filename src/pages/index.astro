@@ -1,0 +1,37 @@
+---
+/**
+ * HOME PAGE.
+ * Assembled entirely from reusable section components. To reorder the page,
+ * move these lines around. To change content, edit the matching file in
+ * src/data/ (offers, schedule, pricing, team) or the component itself.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import VideoHero from "../components/VideoHero.astro";
+import StoryHero from "../components/StoryHero.astro";
+import AboutStrip from "../components/AboutStrip.astro";
+import OfferSection from "../components/OfferSection.astro";
+import ScheduleSection from "../components/ScheduleSection.astro";
+import PricingSection from "../components/PricingSection.astro";
+import TeamSection from "../components/TeamSection.astro";
+import AppSection from "../components/AppSection.astro";
+import MassageSection from "../components/MassageSection.astro";
+import CommunitySection from "../components/CommunitySection.astro";
+import GiftSection from "../components/GiftSection.astro";
+---
+
+<BaseLayout
+  title="The Barn"
+  description="The Barn Fitness Collective — high-energy functional fitness, community, and coaching in Sebastopol, CA. All levels welcome."
+>
+  <VideoHero />
+  <StoryHero />
+  <AboutStrip />
+  <OfferSection />
+  <ScheduleSection />
+  <PricingSection />
+  <TeamSection />
+  <AppSection />
+  <MassageSection />
+  <CommunitySection />
+  <GiftSection />
+</BaseLayout>

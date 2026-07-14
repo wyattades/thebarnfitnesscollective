@@ -1,0 +1,117 @@
+---
+/**
+ * CommunitySection — "More than a gym, a collective" Instagram teaser grid.
+ * The tiles are decorative gradient placeholders (matching the current site).
+ * The whole grid links out to Instagram.
+ */
+import { site } from "../data/site";
+const tiles = ["i1", "i2", "i3", "i4", "i5", "i6"];
+---
+
+<section class="section-community">
+  <div class="section-header fade-up community-header">
+    <div class="section-eyebrow">The Community</div>
+    <h2 class="section-title">More than a gym,<br /><em>a collective.</em></h2>
+  </div>
+  <div class="insta-grid">
+    {
+      tiles.map((t) => (
+        <a class="insta-item" href={site.instagram.url} target="_blank" rel="noopener" aria-label="View on Instagram">
+          <div class={`insta-item-bg ${t}`} />
+          <div class="insta-overlay"><span class="insta-icon">📸</span></div>
+        </a>
+      ))
+    }
+  </div>
+  <p class="community-follow">Follow us {site.instagram.handle}</p>
+</section>
+
+<style>
+  .section-community {
+    background: var(--dark);
+    padding: 100px 48px;
+  }
+  .community-header {
+    max-width: var(--content-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .insta-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    margin-top: 56px;
+    max-width: var(--content-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .insta-item {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--dark-2);
+    display: block;
+  }
+  .insta-item-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.5s;
+  }
+  .insta-item:hover .insta-item-bg {
+    transform: scale(1.08);
+  }
+  .insta-item-bg.i1 {
+    background: linear-gradient(135deg, #3d1a14, #6b2a22);
+  }
+  .insta-item-bg.i2 {
+    background: linear-gradient(135deg, #1a2e35, #2d4d5e);
+  }
+  .insta-item-bg.i3 {
+    background: linear-gradient(135deg, #2a1f10, #463418);
+  }
+  .insta-item-bg.i4 {
+    background: linear-gradient(135deg, #2a1a28, #46304a);
+  }
+  .insta-item-bg.i5 {
+    background: linear-gradient(135deg, #1a2630, #263845);
+  }
+  .insta-item-bg.i6 {
+    background: linear-gradient(135deg, #3d2215, #5c3520);
+  }
+  .insta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(38, 38, 38, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .insta-item:hover .insta-overlay {
+    opacity: 1;
+  }
+  .insta-icon {
+    font-size: 1.8rem;
+    color: var(--cream);
+  }
+  .community-follow {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.8rem;
+    opacity: 0.4;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  @media (max-width: 900px) {
+    .section-community {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .insta-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

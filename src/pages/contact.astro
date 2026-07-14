@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+
+const phone = "(415) 246-3803";
+const mapsUrl = "https://maps.google.com/?q=6731+Sebastopol+Ave+Suite+110+Sebastopol+CA+95472";
+
+const links = [
+  { icon: "✉️", label: "Email", value: site.email, href: `mailto:${site.email}` },
+  { icon: "📞", label: "Call", value: phone, href: `tel:+14152463803` },
+  { icon: "📸", label: "Instagram", value: site.instagram.handle, href: site.instagram.url },
+  { icon: "📆", label: "Glofox · Schedule", value: "Book a Class →", href: site.bookingUrl },
+  { icon: "🍎", label: "iOS · App Store", value: "Download the Barn App →", href: site.app.ios },
+  { icon: "🤖", label: "Android · Google Play", value: "Download the Barn App →", href: site.app.android },
+  { icon: "💪", label: "Classes", value: "Programming & Pricing →", href: "/programming-and-pricing" },
+  { icon: "⭐", label: "55+ Program", value: "Legends Program →", href: "/legends-program" },
+  { icon: "👋", label: "Coaches", value: "Meet the Team →", href: "/our-team" },
+  { icon: "🎁", label: "Gift Cards", value: "Request a Gift Card →", href: `mailto:${site.email}?subject=Gift Card Request` },
+];
+const isExternal = (h: string) => /^https?:\/\//.test(h);
+---
+
+<BaseLayout title="Contact" description="Get in touch with The Barn Fitness Collective in Sebastopol, CA.">
+  <PageHero
+    eyebrow="Contact"
+    title="Let's <em>connect.</em>"
+    intro="We'd love to hear from you. Whether you have a question about classes, membership, or just want to say hey — reach out anytime."
+  />
+
+  <section class="section contact-links">
+    <div class="contact-inner">
+      <div class="contact-grid">
+        {links.map((l) => (
+          <a class="contact-card" href={l.href} {...(isExternal(l.href) ? { target: "_blank", rel: "noopener" } : {})}>
+            <span class="contact-icon">{l.icon}</span>
+            <span class="contact-label">{l.label}</span>
+            <span class="contact-value">{l.value}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="contact-address-block">
+        <div class="section-eyebrow">Visit</div>
+        <address class="contact-address">
+          {site.address.line1}<br />{site.address.line2}
+        </address>
+        <a class="btn-primary" href={mapsUrl} target="_blank" rel="noopener" style="margin-top:20px;">Get Directions →</a>
+      </div>
+
+      <div class="contact-coaches">
+        <div class="section-eyebrow">Coach Contacts</div>
+        <ul class="coach-contact-list">
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={`mailto:${site.coachChrisEmail}`}>{site.coachChrisEmail}</a></li>
+          <li><a href={site.bookingUrl} target="_blank" rel="noopener">Book via Glofox →</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-links { background: var(--dark); }
+  .contact-inner { max-width: var(--content-max); margin: 0 auto; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1.5px solid rgba(241, 231, 212, 0.12);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.02);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .contact-card:hover { border-color: var(--coral); transform: translateY(-4px); }
+  .contact-icon { font-size: 1.5rem; }
+  .contact-label {
+    font-family: var(--font-stamp);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--coral);
+  }
+  .contact-value { font-size: 0.95rem; color: var(--cream); opacity: 0.85; }
+
+  .contact-address-block, .contact-coaches { margin-top: 56px; }
+  .contact-address {
+    font-style: normal;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+  .coach-contact-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .coach-contact-list a { color: var(--coral); text-decoration: none; font-size: 1rem; }
+  .coach-contact-list a:hover { text-decoration: underline; }
+</style>

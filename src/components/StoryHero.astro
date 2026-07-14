@@ -1,0 +1,118 @@
+---
+/**
+ * StoryHero — the "Where strength comes to life" headline hero that follows the
+ * video banner. Dark background with a faint decorative grid.
+ */
+import { site } from "../data/site";
+---
+
+<section class="hero" id="story">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Sebastopol, CA · Est. 2023</div>
+    <h1 class="hero-headline">
+      Where <em>strength</em><br />
+      <span class="alt-line">comes to life.</span>
+    </h1>
+    <p class="hero-sub">Functional Fitness · Community · Sebastopol</p>
+    <div class="hero-actions">
+      <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">Book Your First Class</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 60px;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--dark);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(241, 231, 212, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241, 231, 212, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 48px;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-stamp);
+    font-size: 0.9rem;
+    letter-spacing: 0.35em;
+    color: var(--coral);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: var(--coral);
+  }
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    font-weight: 900;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .hero-headline .alt-line {
+    color: var(--sky);
+    font-style: italic;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.7;
+    margin-bottom: 48px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 900px) {
+    .hero-content {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+  @media (max-width: 600px) {
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+</style>
