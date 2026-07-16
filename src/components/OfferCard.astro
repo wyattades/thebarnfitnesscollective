@@ -3,12 +3,21 @@
  * OfferCard — one class/offering tile in the "What We Offer" grid.
  */
 import type { Offer } from "../data/classes";
-const { tag, name, description, icon, accent, link, linkLabel } = Astro.props as Offer;
+import Img from "./Img.astro";
+const { tag, name, description, icon, accent, link, linkLabel, image } = Astro.props as Offer;
 const isExternal = /^https?:\/\//.test(link) || link.startsWith("mailto:");
 ---
 
 <div class="offer-card fade-up">
-  <div class={`offer-card-bg ${accent}`}></div>
+  {
+    image ? (
+      <div class="offer-card-bg offer-card-photo">
+        <Img name={image} alt="" class="offer-card-photo-img" width={700} />
+      </div>
+    ) : (
+      <div class={`offer-card-bg ${accent}`} />
+    )
+  }
   <div class="offer-card-icon">{icon}</div>
   <div class="offer-card-content">
     <span class="offer-tag">{tag}</span>
@@ -37,6 +46,20 @@ const isExternal = /^https?:\/\//.test(link) || link.startsWith("mailto:");
   }
   .offer-card:hover .offer-card-bg {
     transform: scale(1.06);
+  }
+  .offer-card-bg.offer-card-photo :global(.offer-card-photo-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .offer-card-bg.offer-card-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(20, 16, 15, 0.55) 0%, rgba(20, 16, 15, 0.25) 100%);
   }
   .offer-card-bg.c1 {
     background: linear-gradient(160deg, #1e1a18 0%, #2a2420 100%);

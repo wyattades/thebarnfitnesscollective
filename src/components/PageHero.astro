@@ -2,8 +2,10 @@
 /**
  * PageHero — the standard top-of-page banner for interior pages.
  * Dark background, eyebrow + big title + optional intro + optional CTA button.
+ * Pass `image` to switch to a two-column layout (copy left, photo right).
  */
 import { site } from "../data/site";
+import Img from "./Img.astro";
 
 interface Props {
   eyebrow?: string;
@@ -11,26 +13,37 @@ interface Props {
   intro?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  image?: string; // filename in src/assets/images/ — adds a photo on the right
+  imageAlt?: string;
 }
-const { eyebrow, title, intro, ctaLabel, ctaHref } = Astro.props;
+const { eyebrow, title, intro, ctaLabel, ctaHref, image, imageAlt } = Astro.props;
 const external = ctaHref && (/^https?:\/\//.test(ctaHref) || ctaHref.startsWith("mailto:"));
 ---
 
-<section class="page-hero">
+<section class:list={["page-hero", { "has-image": image }]}>
   <div class="page-hero-grid"></div>
   <div class="page-hero-inner">
-    {eyebrow && <div class="section-eyebrow">{eyebrow}</div>}
-    <h1 class="page-hero-title" set:html={title}></h1>
-    {intro && <p class="page-hero-intro">{intro}</p>}
+    <div class="page-hero-copy">
+      {eyebrow && <div class="section-eyebrow">{eyebrow}</div>}
+      <h1 class="page-hero-title" set:html={title}></h1>
+      {intro && <p class="page-hero-intro">{intro}</p>}
+      {
+        ctaLabel && ctaHref && (
+          <a
+            href={ctaHref}
+            class="btn-primary page-hero-cta"
+            {...(external ? { target: "_blank", rel: "noopener" } : {})}
+          >
+            {ctaLabel}
+          </a>
+        )
+      }
+    </div>
     {
-      ctaLabel && ctaHref && (
-        <a
-          href={ctaHref}
-          class="btn-primary page-hero-cta"
-          {...(external ? { target: "_blank", rel: "noopener" } : {})}
-        >
-          {ctaLabel}
-        </a>
+      image && (
+        <div class="page-hero-photo">
+          <Img name={image} alt={imageAlt || ""} class="page-hero-photo-img" width={900} />
+        </div>
       )
     }
   </div>
@@ -69,6 +82,37 @@ const external = ctaHref && (/^https?:\/\//.test(ctaHref) || ctaHref.startsWith(
     max-width: var(--content-max);
     margin: 0 auto;
   }
+  .has-image .page-hero-inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .page-hero-copy {
+    min-width: 0;
+  }
+  .page-hero-photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .page-hero-photo :global(.page-hero-photo-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .page-hero-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(241, 231, 212, 0.15);
+    border-radius: var(--radius);
+    pointer-events: none;
+  }
   .page-hero-title {
     font-family: var(--font-display);
     font-size: clamp(2.7rem, 6.4vw, 5.2rem);
@@ -96,6 +140,14 @@ const external = ctaHref && (/^https?:\/\//.test(ctaHref) || ctaHref.startsWith(
   @media (max-width: 900px) {
     .page-hero {
       padding: 150px 24px 64px;
+    }
+    .has-image .page-hero-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .page-hero-photo {
+      aspect-ratio: 16 / 11;
+      max-height: 50vh;
     }
   }
 </style>

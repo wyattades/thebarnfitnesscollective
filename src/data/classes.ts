@@ -14,6 +14,7 @@ export interface Offer {
   accent: "c1" | "c2" | "c3" | "c4";
   link: string;
   linkLabel: string;
+  image?: string; // optional filename in src/assets/images/ — shown as the card background
 }
 
 export const offers: Offer[] = [
@@ -68,13 +69,34 @@ export const offers: Offer[] = [
     linkLabel: "Book Now →",
   },
   {
-    tag: "Legends Class",
+    tag: "Tue · Thu",
+    name: "Buttery Bod",
+    description:
+      "Come stretch, roll, and open up tight joints and soft tissue in this mobility focused class.",
+    icon: "BB",
+    accent: "c3",
+    link: site.bookingUrl,
+    linkLabel: "Book Now →",
+  },
+  {
+    tag: "Fri",
+    name: "Yumana Body Rolling",
+    description:
+      "Specially sized balls apply targeted pressure to muscles and fascia — improving alignment, range of motion, and releasing tightness from heavy training.",
+    icon: "YBR",
+    accent: "c1",
+    link: site.bookingUrl,
+    linkLabel: "Book Now →",
+  },
+  {
+    tag: "Mon · Wed · Fri",
     name: "Legends Program",
     description: "Purpose-built programming for members 55+. Strong at any age.",
     icon: "55+",
     accent: "c4",
     link: "/legends-program",
     linkLabel: "Learn More →",
+    image: "legends-duo.jpg",
   },
   {
     tag: "1-on-1",
