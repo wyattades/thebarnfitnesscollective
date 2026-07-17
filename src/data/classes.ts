@@ -114,56 +114,8 @@ export const offers: Offer[] = [
       "Deep tissue bodywork by J. Dunivan, RN. 20, 40, or 60-min sessions.",
     icon: "MW",
     accent: "c1",
+    image: "massage-hands.jpg",
     link: site.bookingUrl,
     linkLabel: "Book Now →",
-  },
-];
-
-/**
- * WEEKLY SCHEDULE strip. `accent` sets the top border color.
- */
-export interface ScheduleDay {
-  day: string;
-  className: string;
-  meta: string; // supports a "·"-separated summary; use \n for two lines
-  accent: "rust" | "teal" | "coral";
-}
-
-export const schedule: ScheduleDay[] = [
-  {
-    day: "Monday",
-    className: "Body Armor",
-    meta: "Strength · Bodybuilding · Mobility\nMultiple time slots",
-    accent: "rust",
-  },
-  {
-    day: "Tuesday",
-    className: "Build + Blast",
-    meta: "Compound Lifts · HIIT\nMultiple time slots",
-    accent: "teal",
-  },
-  {
-    day: "Wednesday",
-    className: "Body Armor",
-    meta: "Strength · Bodybuilding · Mobility\nMultiple time slots",
-    accent: "rust",
-  },
-  {
-    day: "Thursday",
-    className: "Build + Endurance",
-    meta: "Compound Lifts · Conditioning\nMultiple time slots",
-    accent: "teal",
-  },
-  {
-    day: "Friday",
-    className: "Pump Party",
-    meta: "Strength · Muscle Building\nMultiple time slots",
-    accent: "coral",
-  },
-  {
-    day: "Saturday",
-    className: "Hybrid Hustle",
-    meta: "Mixed Modalities\nMorning sessions",
-    accent: "rust",
   },
 ];

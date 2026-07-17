@@ -5,19 +5,25 @@
  */
 import OfferCard from "./OfferCard.astro";
 import { offers } from "../data/classes";
+import { site } from "../data/site";
 ---
 
 <section id="classes" class="section-offer">
   <div class="section-header fade-up">
     <div class="section-eyebrow">What We Offer</div>
     <h2 class="section-title">Train <em>smarter.</em><br />Move better.</h2>
-    <p class="section-body">
-      Purposeful programming, expert coaching, and a community that shows up for
-      each other.
+    <p class="section-body offer-intro">
+      Well-rounded, purposeful programming, expert coaching, and a community
+      that shows up for each other — every class marked with the days it runs.
     </p>
   </div>
   <div class="offer-grid">
     {offers.map((offer) => <OfferCard {...offer} />)}
+  </div>
+  <div class="offer-cta">
+    <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">
+      View Full Schedule &amp; Book
+    </a>
   </div>
 </section>
 
@@ -25,6 +31,9 @@ import { offers } from "../data/classes";
   .section-offer {
     padding: 120px 48px;
     background: var(--dark);
+  }
+  .offer-intro {
+    font-size: 1.3rem;
   }
   .offer-grid {
     display: grid;
@@ -48,5 +57,10 @@ import { offers } from "../data/classes";
       padding-left: 24px;
       padding-right: 24px;
     }
+  }
+  .offer-cta {
+    max-width: var(--content-max);
+    margin: 40px auto 0;
+    text-align: center;
   }
 </style>
