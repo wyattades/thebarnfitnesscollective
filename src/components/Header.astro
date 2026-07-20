@@ -24,7 +24,7 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
     <ul class="nav-links">
       {
         mainNav.map((item) => (
-          <li>
+          <li class:list={{ "has-dropdown": item.children }}>
             <a
               href={item.href}
               class:list={{ active: isActive(item.href) }}
@@ -33,6 +33,17 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
             >
               {item.label}
             </a>
+            {item.children && (
+              <ul class="nav-dropdown">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.href} class:list={{ active: isActive(child.href) }}>
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))
       }
@@ -50,16 +61,25 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
   <ul>
     {
       mainNav.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class:list={{ active: isActive(item.href) }}
-            aria-current={isActive(item.href) ? "page" : undefined}
-            {...(isExternal(item.href) ? { target: "_blank", rel: "noopener" } : {})}
-          >
-            {item.label}
-          </a>
-        </li>
+        <>
+          <li>
+            <a
+              href={item.href}
+              class:list={{ active: isActive(item.href) }}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              {...(isExternal(item.href) ? { target: "_blank", rel: "noopener" } : {})}
+            >
+              {item.label}
+            </a>
+          </li>
+          {item.children?.map((child) => (
+            <li class="mobile-submenu-item">
+              <a href={child.href} class:list={{ active: isActive(child.href) }}>
+                {child.label}
+              </a>
+            </li>
+          ))}
+        </>
       ))
     }
   </ul>
@@ -120,9 +140,9 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
   }
   .nav-links a:hover {
     opacity: 1;
-    color: var(--cream);
-    border-color: rgba(241, 231, 212, 0.28);
-    background: rgba(241, 231, 212, 0.06);
+    color: #2a1210;
+    background: var(--coral);
+    border-color: var(--coral);
   }
   /* Current page: filled coral pill. */
   .nav-links a.active {
@@ -130,6 +150,42 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
     color: #2a1210;
     background: var(--coral);
     border-color: var(--coral);
+  }
+
+  /* Dropdown (e.g. Programming & Pricing → Our Menu). */
+  .nav-links li.has-dropdown {
+    position: relative;
+  }
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    min-width: 160px;
+    list-style: none;
+    background: rgba(23, 18, 19, 0.98);
+    border: 1px solid rgba(241, 231, 212, 0.14);
+    border-radius: var(--radius);
+    padding: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  }
+  .nav-links li.has-dropdown:hover .nav-dropdown,
+  .nav-links li.has-dropdown:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown a {
+    display: block;
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
   }
 
   /* Hamburger */
@@ -188,6 +244,11 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
   .mobile-menu a:hover,
   .mobile-menu a.active {
     color: var(--coral);
+  }
+  .mobile-submenu-item a {
+    padding-left: 22px;
+    font-size: 0.78rem;
+    opacity: 0.8;
   }
 
   /* Tighten spacing on mid widths before collapsing to the mobile menu. */

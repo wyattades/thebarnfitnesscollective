@@ -66,17 +66,28 @@ export const site = {
 /**
  * MAIN NAVIGATION (site header).
  * `href` values starting with "/" are internal pages; full URLs open externally.
+ * `children` (optional) adds a dropdown of sub-links under that nav item.
  */
-export const mainNav = [
+export interface NavItem {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+}
+
+export const mainNav: NavItem[] = [
   { label: "Schedule & Book", href: site.scheduleUrl },
-  { label: "Programming & Pricing", href: "/programming-and-pricing" },
+  {
+    label: "Programming & Pricing",
+    href: "/programming-and-pricing",
+    children: [{ label: "Our Menu", href: "/menu" }],
+  },
   { label: "Recovery Room", href: "/recovery-room" },
   { label: "Legends Program", href: "/legends-program" },
   { label: "Our Team", href: "/our-team" },
   { label: "Contact", href: "/contact" },
   { label: "Mobile App", href: "/mobile-app" },
   { label: "FAQ", href: "/faq" },
-] as const;
+];
 
 /** FOOTER link columns. */
 export const footerNav = {

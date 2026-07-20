@@ -67,11 +67,13 @@ const services = [
 <BaseLayout title="Programming & Pricing" description="Our classes, services, and membership options at The Barn Fitness Collective.">
   <PageHero
     eyebrow="Programming & Pricing"
-    title="Our Programming <em>& Pricing</em>"
+    title="Pricing <em>and Programming</em>"
     intro="M · W · F is strength focused. T · TH · Sat is strength + conditioning. All levels welcome — every movement is scalable."
     ctaLabel="Book Your First Class →"
     ctaHref={site.bookingUrl}
   />
+
+  <PricingSection />
 
   <section class="pp-classes section">
     <div class="pp-inner">
@@ -111,8 +113,6 @@ const services = [
       </div>
     </div>
   </section>
-
-  <PricingSection />
 </BaseLayout>
 
 <style>

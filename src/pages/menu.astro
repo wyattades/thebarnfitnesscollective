@@ -1,0 +1,303 @@
+---
+/**
+ * MENU — a playful "menu of offerings" page, restaurant-menu style.
+ * Groups everything from src/data/classes.ts (offers) into a few categories
+ * for browsing, plus a couple of menu-only items that don't have their own
+ * offer card yet. Purely a showcase page — edit `categories` below to
+ * regroup, or edit the underlying offer text in src/data/classes.ts.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { offers } from "../data/classes";
+import { site } from "../data/site";
+
+const pick = (name: string) => {
+  const o = offers.find((offer) => offer.name === name)!;
+  return { name: o.name, tag: o.tag, description: o.description };
+};
+
+const categories = [
+  {
+    label: "Strength & Conditioning",
+    color: "coral",
+    items: ["Body Armor", "Build + Blast", "Build + Endurance", "Pump Party", "Hybrid Hustle"].map(pick),
+  },
+  {
+    label: "Recovery & Mobility",
+    color: "teal",
+    items: ["Buttery Bod", "Yumana Body Rolling", "Massage Therapy"].map(pick),
+  },
+  {
+    label: "Specialty Programs",
+    color: "rust",
+    items: [
+      pick("Legends Program"),
+      pick("Personal Training"),
+      {
+        name: "Individual Design Programming",
+        tag: "Custom",
+        description:
+          "Workouts written specifically for your goals, lifestyle, schedule, and equipment availability.",
+      },
+      {
+        name: "Nutrition Coaching",
+        tag: "1-on-1",
+        description:
+          "Personalized guidance to help you eat smarter, fuel your training, and build habits that stick.",
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="The Menu"
+  description="The Barn's full menu of classes, recovery, and specialty programs — everything we offer, at a glance."
+>
+  <PageHero
+    eyebrow="Our Full Menu"
+    title="Everything <em>we offer.</em>"
+    intro="One menu, every class, program, and recovery service at The Barn — pick your days and dig in."
+    ctaLabel="Book Now →"
+    ctaHref={site.bookingUrl}
+  />
+
+  <section class="menu-section">
+    <div class="menu-inner">
+      {
+        categories.map((cat, i) => (
+          <div class="menu-category fade-up">
+            <div class="menu-category-banner" style={`--cat: var(--${cat.color})`}>
+              <h2 class="menu-category-title">{cat.label}</h2>
+            </div>
+            <div class="menu-items">
+              {cat.items.map((item) => (
+                <div class="menu-item">
+                  <div class="menu-item-row">
+                    <h3 class="menu-item-name">{item.name}</h3>
+                    <span class="menu-item-dots" aria-hidden="true" />
+                    <span class="menu-item-tag" style={`--cat: var(--${cat.color})`}>
+                      {item.tag}
+                    </span>
+                  </div>
+                  <p class="menu-item-desc">{item.description}</p>
+                </div>
+              ))}
+            </div>
+            {i < categories.length - 1 && <div class="menu-divider" />}
+          </div>
+        ))
+      }
+
+      <div class="menu-cta">
+        <p class="menu-cta-line">Ready to dig in?</p>
+        <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">
+          Book Your First Class →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    WYLDE PROVISIONS CO. — a partner business, not a Barn offering, so it gets
+    its own visual identity (their actual brand colors, hardcoded on purpose)
+    instead of The Barn's design tokens. This is intentional cross-branding.
+  -->
+  <section class="wylde-section fade-up">
+    <div class="wylde-inner">
+      <div class="wylde-eyebrow">Also At The Barn</div>
+      <h2 class="wylde-title">Wylde Provisions Co.</h2>
+      <p class="wylde-tagline">Fuel up. Live Wylde.</p>
+      <p class="wylde-body">
+        Grab a high-protein, chef-crafted bowl right here at the gym — Wylde
+        Provisions Co. stocks fresh bowls at The Barn <strong>Monday through
+        Saturday.</strong> Prefer to sit and stay a while? Head to their own
+        spot, <strong>Wylde Playground &amp; Cafe</strong>, for the full bowl
+        menu plus cafe service.
+      </p>
+      <a href="https://www.wyldeprovisions.com/" class="wylde-cta" target="_blank" rel="noopener">
+        Visit Wylde Provisions →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .menu-section {
+    background: var(--paper);
+    color: var(--dark);
+    padding: 100px 48px 130px;
+  }
+  .menu-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .menu-category-banner {
+    --cat: var(--rust);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto 52px;
+    padding: 9px 22px 7px;
+    border: 1.5px solid color-mix(in srgb, var(--cat) 45%, transparent);
+    border-radius: var(--radius-pill);
+  }
+  .menu-category-banner::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cat);
+    flex-shrink: 0;
+  }
+  .menu-category-title {
+    font-family: var(--font-stamp);
+    font-size: 1rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cat);
+    white-space: nowrap;
+  }
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+  .menu-item-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .menu-item-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .menu-item-dots {
+    flex: 1;
+    min-width: 24px;
+    border-bottom: 3px dotted color-mix(in srgb, var(--dark) 30%, transparent);
+    transform: translateY(-10px);
+  }
+  .menu-item-tag {
+    --cat: var(--rust);
+    font-family: var(--font-stamp);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    white-space: nowrap;
+    background: var(--cat);
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+  }
+  .menu-item-desc {
+    margin-top: 12px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--dark);
+    opacity: 0.75;
+    max-width: 65ch;
+  }
+  .menu-divider {
+    margin: 64px 0;
+    text-align: center;
+    border: none;
+    height: 2px;
+    background: color-mix(in srgb, var(--rust) 30%, transparent);
+  }
+  .menu-cta {
+    margin-top: 80px;
+    text-align: center;
+  }
+  .menu-cta-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.7rem;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+  @media (max-width: 600px) {
+    .menu-section {
+      padding: 72px 24px 90px;
+    }
+    .menu-category-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+    }
+    .menu-item-dots {
+      display: none;
+    }
+  }
+
+  /* ==================== WYLDE PROVISIONS CO. (partner brand) ==================== */
+  .wylde-section {
+    /* Wylde's own brand colors, sampled from wyldeprovisions.com — deliberately
+       not The Barn's tokens, so this reads as a distinct partner business. */
+    background: #004d3d;
+    padding: 90px 48px;
+  }
+  .wylde-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .wylde-eyebrow {
+    font-family: var(--font-stamp);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #f14e13;
+    margin-bottom: 18px;
+  }
+  .wylde-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: #e9f2de;
+  }
+  .wylde-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #f14e13;
+    margin-top: 10px;
+  }
+  .wylde-body {
+    margin-top: 28px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #e9f2de;
+    opacity: 0.85;
+  }
+  .wylde-body strong {
+    opacity: 1;
+    font-weight: 700;
+  }
+  .wylde-cta {
+    display: inline-block;
+    margin-top: 36px;
+    background: #f14e13;
+    color: #002a1d;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 17px 38px;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.25s;
+  }
+  .wylde-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -8px rgba(241, 78, 19, 0.5);
+  }
+  @media (max-width: 600px) {
+    .wylde-section {
+      padding: 64px 24px;
+    }
+  }
+</style>

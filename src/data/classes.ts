@@ -62,7 +62,7 @@ export const offers: Offer[] = [
     tag: "Sat",
     name: "Hybrid Hustle",
     description:
-      "The weekend warrior workout. Mix of everything that makes The Barn great.",
+      "Often a partner workout. Come for a big sweat and a good time. Great for Hyrox athletes.",
     icon: "HH",
     accent: "c2",
     link: site.bookingUrl,
