@@ -1,0 +1,565 @@
+---
+/**
+ * HYROX — preview page announcing The Barn as an official HYROX affiliate.
+ * Structure: hero → what is HYROX (+ race-format graphic + workout lineup) →
+ * what to expect over 12 weeks → who it's for → CTA → teaser card linking to
+ * the 12-week program (src/pages/hyrox-program.astro). All copy in this file
+ * is Zoe's real content. A self-contained page (own scoped styles), safe to
+ * tweak in isolation.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Img from "../components/Img.astro";
+import { site } from "../data/site";
+
+/** Paraphrased explanation of the race, provided by Zoe. */
+const whatIsHyrox = [
+  "HYROX is the world's biggest indoor fitness race, designed for everyday gym-goers and athletes alike. It is a powerful test of both endurance and functional strength.",
+  "The race format is always exactly the same worldwide: 8 kilometers of running split up by 8 functional workout stations.",
+  "Every class at The Barn already includes elements of the race — some days lean into longer endurance work, others focus on strength and power, but race-day movements are woven into our everyday programming.",
+];
+
+const workoutLineup = [
+  "1 km Run + 1,000m SkiErg",
+  "1 km Run + 50m Sled Push",
+  "1 km Run + 50m Sled Pull",
+  "1 km Run + 80m Burpee Broad Jumps",
+  "1 km Run + 1,000m Rowing",
+  "1 km Run + 200m Farmer's Carry",
+  "1 km Run + 100m Sandbag Lunges",
+  "1 km Run + 100 Wall Balls",
+];
+
+const whatToExpect = [
+  {
+    title: "Engine Building",
+    desc: "We will gradually increase your running stamina and aerobic capacity so the 8km feels manageable.",
+  },
+  {
+    title: "Movement Mastery",
+    desc: "Learn the exact techniques for the sled push, wall balls, and rowing to save energy and move efficiently.",
+  },
+  {
+    title: "Strength Endurance",
+    desc: "Build the muscular stamina needed to transition smoothly from heavy lifting straight into running.",
+  },
+  {
+    title: "Community & Accountability",
+    desc: "Train alongside a motivated group of peers who will sweat, struggle, and celebrate with you every week.",
+  },
+  {
+    title: "Race-Day Strategy",
+    desc: "Learn how to pace yourself, manage your heart rate, and master the transition zones.",
+  },
+];
+
+const whoFor = [
+  {
+    title: "First-Timers",
+    desc: "Anyone looking for a clear, structured goal to get into the best shape of their life.",
+  },
+  {
+    title: "Hybrid Athletes",
+    desc: "Fitness lovers who want a perfect balance of strength and cardio without choosing one over the other.",
+  },
+  {
+    title: "Team Players",
+    desc: "Anyone interested in racing with a partner (Doubles) or a team of four (Relay).",
+  },
+];
+---
+
+<BaseLayout
+  title="HYROX"
+  description="The Barn Fitness Collective is an official HYROX affiliate in Sebastopol — race-ready training for every fitness level."
+>
+  <section class="hx-hero">
+    <Img
+      name="hyrox-finish-celebration.jpg"
+      alt="Athletes celebrating at the HYROX Anaheim finish line"
+      class="hx-hero-img"
+      width={1800}
+      loading="eager"
+    />
+    <div class="hx-hero-scrim"></div>
+    <div class="hx-hero-inner">
+      <div class="section-eyebrow hx-hero-eyebrow">Official HYROX Affiliate</div>
+      <h1 class="hx-hero-title">HYROX <em>at The Barn.</em></h1>
+      <p class="hx-hero-sub">
+        Race-ready training built by HYROX athletes. Learn how to move well,
+        work hard, and train like an athlete.
+      </p>
+      <div class="hx-hero-cta">
+        <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">
+          Book Now
+        </a>
+        <a href="#what-is-hyrox" class="btn-ghost">See What's Included ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hx-what" id="what-is-hyrox">
+    <div class="section-inner hx-inner">
+      <h2 class="section-title">What Is HYROX</h2>
+      <div class="hx-intro-group">
+        {whatIsHyrox.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+
+    <div class="section-inner hx-banner-wrap fade-up">
+      <Img
+        name="hyrox-race-format.png"
+        alt="HYROX The Race — the official format: 8 x 1km runs alternating with 1000m SkiErg, 50m sled push, 50m sled pull, 80m burpee broad jumps, 1000m rowing, 200m farmers carry, 100m sandbag lunges, and 100 wall balls"
+        class="hx-banner-img"
+        width={1400}
+      />
+    </div>
+
+    <div class="section-inner hx-inner">
+      <p class="hx-list-lead">Here is the exact workout lineup:</p>
+      <div class="hx-lineup-grid">
+        <ul class="hx-list hx-lineup">
+          {workoutLineup.slice(0, 4).map((item) => (
+            <li class="hx-list-item fade-up">{item}</li>
+          ))}
+        </ul>
+        <ul class="hx-list hx-lineup">
+          {workoutLineup.slice(4, 8).map((item) => (
+            <li class="hx-list-item fade-up">{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hx-program-teaser">
+    <div class="section-inner hx-program-inner">
+      <a href="/hyrox-program" class="hx-program-card fade-up">
+        <div class="hx-program-card-bg">
+          <Img
+            name="hyrox-finish-celebration.jpg"
+            alt="Athletes celebrating at the HYROX Anaheim finish line"
+            class="hx-program-card-img"
+            width={1400}
+          />
+        </div>
+        <div class="hx-program-card-content">
+          <span class="hx-program-tag">New · 12 Weeks</span>
+          <div class="hx-program-name">HYROX Training Program</div>
+          <p class="hx-program-desc">
+            A 12-week training program to get you ready for HYROX Anaheim!
+          </p>
+          <span class="hx-program-link">See the Program →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section hx-expect">
+    <div class="section-inner hx-inner">
+      <div class="section-eyebrow">Next 12 Weeks</div>
+      <h2 class="section-title">What to <em>Expect.</em></h2>
+      <p class="section-body hx-expect-intro">
+        You do not need to be an elite athlete to start. Our program is
+        designed to build your baseline and scale to your individual fitness
+        level. Here is what you will experience in our gym:
+      </p>
+      <div class="hx-expect-grid">
+        {whatToExpect.map((e) => (
+          <div class="hx-expect-card fade-up">
+            <h3 class="hx-expect-title">{e.title}</h3>
+            <p class="hx-expect-desc">{e.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hx-who">
+    <div class="section-inner hx-inner">
+      <h2 class="section-title">Who Is HYROX For?</h2>
+      <div class="hx-who-grid">
+        {whoFor.map((w) => (
+          <div class="hx-who-card fade-up">
+            <h3 class="hx-who-title">{w.title}</h3>
+            <p class="hx-who-desc">{w.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hx-cta">
+    <div class="section-inner hx-cta-inner">
+      <h2 class="hx-cta-title">Ready to <em>Train HYROX?</em></h2>
+      <p class="hx-cta-body">
+        Come see what all 8 stations feel like. We'll walk you through every
+        movement and pace you through your first taste of race-day training.
+      </p>
+      <a href={site.bookingUrl} class="btn-primary" target="_blank" rel="noopener">
+        Book Now
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .hx-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: calc(var(--header-height) + 80px) 48px 80px;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hx-hero :global(.hx-hero-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center 20%;
+  }
+  .hx-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(22, 22, 22, 0.92) 0%,
+      rgba(22, 22, 22, 0.55) 40%,
+      rgba(22, 22, 22, 0.2) 75%,
+      rgba(22, 22, 22, 0.4) 100%
+    );
+  }
+  .hx-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hx-hero-eyebrow {
+    font-size: 1.8rem;
+    padding: 14px 28px 10px;
+    gap: 20px;
+  }
+  .hx-hero-eyebrow::before {
+    width: 12px;
+    height: 12px;
+  }
+  .hx-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.02;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    margin-top: 8px;
+  }
+  .hx-hero-title em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .hx-hero-sub {
+    max-width: 620px;
+    margin-top: 22px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.88;
+  }
+  .hx-hero-cta {
+    margin-top: 38px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== WHAT IS HYROX ==================== */
+  .hx-what {
+    background: var(--dark);
+  }
+  .hx-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .hx-intro-group {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .hx-intro-group p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.8;
+  }
+  .hx-banner-wrap {
+    margin: 56px auto;
+  }
+  .hx-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid rgba(241, 231, 212, 0.15);
+  }
+  .hx-list-lead {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--coral);
+    letter-spacing: 0.01em;
+  }
+  .hx-lineup-grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 40px;
+  }
+  .hx-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+  }
+  .hx-list-item {
+    position: relative;
+    padding-left: 30px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0.85;
+  }
+  .hx-list-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+  .hx-lineup .hx-list-item {
+    padding-left: 0;
+    font-size: 1.1rem;
+  }
+  .hx-lineup .hx-list-item::before {
+    display: none;
+  }
+
+  /* ==================== WHAT TO EXPECT ==================== */
+  .hx-expect {
+    background: var(--dark-2);
+  }
+  .hx-expect-intro {
+    max-width: none;
+  }
+  .hx-expect-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .hx-expect-card {
+    padding: 32px 28px;
+    border-radius: var(--radius);
+    background: var(--dark-1);
+    border-top: 4px solid var(--coral);
+  }
+  .hx-expect-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .hx-expect-desc {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--cream);
+    opacity: 0.72;
+  }
+
+  /* ==================== WHO IT'S FOR ==================== */
+  .hx-who {
+    background: var(--dark);
+  }
+  .hx-who-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .hx-who-card {
+    padding: 32px 28px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(241, 231, 212, 0.12);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .hx-who-card:hover {
+    border-color: var(--coral);
+    transform: translateY(-4px);
+  }
+  .hx-who-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .hx-who-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--cream);
+    opacity: 0.72;
+  }
+
+  /* ==================== CTA ==================== */
+  .hx-cta {
+    background: var(--rust);
+    text-align: center;
+  }
+  .hx-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hx-cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .hx-cta-title em {
+    font-style: italic;
+    color: var(--sky);
+  }
+  .hx-cta-body {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.9;
+  }
+  .hx-cta .btn-primary {
+    margin-top: 32px;
+  }
+
+  /* ==================== PROGRAM TEASER (matches OfferCard on the home page) ==================== */
+  .hx-program-teaser {
+    background: var(--dark);
+  }
+  .hx-program-inner {
+    max-width: 760px;
+  }
+  .hx-program-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--sky);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .hx-program-card-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .hx-program-card:hover .hx-program-card-bg {
+    transform: scale(1.06);
+  }
+  .hx-program-card-bg :global(.hx-program-card-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hx-program-card-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(20, 16, 15, 0.6) 0%, rgba(20, 16, 15, 0.3) 100%);
+  }
+  .hx-program-card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 48px;
+    background: linear-gradient(to bottom, rgba(19, 15, 16, 0.96) 0%, rgba(19, 15, 16, 0.6) 55%, transparent 100%);
+  }
+  .hx-program-tag {
+    display: inline-block;
+    font-family: var(--font-stamp);
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--coral);
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 20px;
+  }
+  .hx-program-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .hx-program-desc {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0.92;
+    max-width: 560px;
+  }
+  .hx-program-link {
+    display: inline-flex;
+    margin-top: 22px;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--coral);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 900px) {
+    .hx-hero {
+      padding-left: 24px;
+      padding-right: 24px;
+      min-height: 80vh;
+    }
+    .hx-who-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .hx-lineup-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .section.hx-what,
+    .section.hx-expect,
+    .section.hx-who,
+    .section.hx-cta,
+    .section.hx-program-teaser {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .hx-program-card {
+      aspect-ratio: 4 / 5;
+    }
+  }
+</style>

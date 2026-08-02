@@ -79,7 +79,10 @@ export const mainNav: NavItem[] = [
   {
     label: "Programming & Pricing",
     href: "/programming-and-pricing",
-    children: [{ label: "Our Menu", href: "/menu" }],
+    children: [
+      { label: "Our Menu", href: "/menu" },
+      { label: "HYROX", href: "/hyrox" },
+    ],
   },
   { label: "Recovery Room", href: "/recovery-room" },
   { label: "Legends Program", href: "/legends-program" },

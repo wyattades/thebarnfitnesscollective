@@ -1,0 +1,399 @@
+---
+/**
+ * HYROX 12-WEEK TRAINING PROGRAM — marketing landing page for the program
+ * launching Monday, September 7th, built toward HYROX Anaheim this December
+ * (12 weeks out from the Sept 7 launch). Built from Zoe's meeting notes.
+ *
+ * STILL PLACEHOLDER / TODO for Zoe:
+ * - Testimonials section is removed for now until Brie + Fiona's written
+ *   testimonials (and Cali's video testimonial) are ready — re-add then.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Img from "../components/Img.astro";
+import { site } from "../data/site";
+
+/** Direct Glofox signup link for the HYROX 12-Week Training Program class. */
+const signupUrl =
+  "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes-week-view/6a6be1cd5d6770311a001280/book?book_from=1788764400";
+
+const schedule = [
+  {
+    day: "Saturday",
+    name: "Hybrid Hustle",
+    meta: "75 minutes · HYROX-focused",
+    desc: "Our Saturday class, built around HYROX movement patterns and pacing.",
+  },
+  {
+    day: "Tuesday",
+    name: "Sweat Fest",
+    meta: "2–5 PM · Open gym, programmed workout",
+    desc: "Drop in any time in the window and run the day's programmed HYROX work.",
+  },
+  {
+    day: "Weekly",
+    name: "Long Run",
+    meta: "Flexible scheduling",
+    desc: "One long run a week, on your own schedule, to build your engine.",
+  },
+];
+
+const pricing = [
+  {
+    label: "Early Bird",
+    price: "225",
+    freq: "total — $75/mo × 3 months",
+    note: "Available for a limited window after launch.",
+    featured: true,
+  },
+  {
+    label: "Standard",
+    price: "255",
+    freq: "total — $85/mo × 3 months",
+    note: "Kicks in once the early-bird window closes.",
+  },
+];
+
+---
+
+<BaseLayout
+  title="HYROX 12-Week Training Program"
+  description="A 12-week HYROX training program at The Barn Fitness Collective, built to get you race-ready for HYROX Anaheim."
+>
+  <section class="hp-hero">
+    <Img
+      name="hyrox-finish-celebration.jpg"
+      alt="Athletes celebrating at the HYROX Anaheim finish line"
+      class="hp-hero-img"
+      width={1800}
+      loading="eager"
+    />
+    <div class="hp-hero-scrim"></div>
+    <div class="hp-hero-inner">
+      <div class="section-eyebrow hp-hero-eyebrow">Now Enrolling</div>
+      <h1 class="hp-hero-title">HYROX 12-Week <em>Training Program.</em></h1>
+      <p class="hp-hero-sub">
+        A 12-week program built to get you race-ready for HYROX Anaheim this
+        December. One master program. Two classes a week, plus a long run.
+        Launches Monday, September 7th — spots are limited to 20.
+      </p>
+      <div class="hp-hero-cta">
+        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">
+          Reserve Your Spot
+        </a>
+        <a href="#pricing" class="btn-ghost">See Pricing ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hp-schedule">
+    <div class="section-inner hp-inner">
+      <div class="section-eyebrow">The Program</div>
+      <h2 class="section-title">How it <em>works.</em></h2>
+      <p class="section-body hp-intro">
+        A program based on your individual data so you and your coach can
+        track your results. Do it alongside other training partners that will
+        push you to become a better version of yourself in 12 weeks. Let's go!
+      </p>
+      <div class="hp-schedule-grid">
+        {schedule.map((s) => (
+          <div class="hp-schedule-card fade-up">
+            <div class="hp-schedule-day">{s.day}</div>
+            <h3 class="hp-schedule-name">{s.name}</h3>
+            <div class="hp-schedule-meta">{s.meta}</div>
+            <p class="hp-schedule-desc">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+      <p class="hp-note">
+        Not a Barn member? You're still welcome — the program includes your
+        Tuesday and Saturday classes.
+      </p>
+    </div>
+  </section>
+
+  <section class="section hp-pricing" id="pricing">
+    <div class="section-inner hp-inner">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Lock in the <em>early rate.</em></h2>
+      <div class="hp-pricing-grid">
+        {pricing.map((p) => (
+          <div class:list={["hp-price-card", { featured: p.featured }]}>
+            {p.featured && <div class="hp-price-badge">Limited Window</div>}
+            <div class="hp-price-label">{p.label}</div>
+            <div class="hp-price-amt"><span>$</span>{p.price}</div>
+            <div class="hp-price-freq">{p.freq}</div>
+            <p class="hp-price-note">{p.note}</p>
+          </div>
+        ))}
+      </div>
+      <div class="hp-pricing-cta">
+        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">
+          Reserve Your Spot
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hp-cta">
+    <div class="section-inner hp-cta-inner">
+      <h2 class="hp-cta-title">20 spots. <em>12 weeks.</em> One goal.</h2>
+      <p class="hp-cta-body">
+        Reserve your spot now and lock in the early-bird rate before it
+        closes.
+      </p>
+      <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">
+        Reserve Your Spot
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .hp-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: calc(var(--header-height) + 80px) 48px 80px;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hp-hero :global(.hp-hero-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center 20%;
+  }
+  .hp-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(22, 22, 22, 0.94) 0%,
+      rgba(22, 22, 22, 0.6) 40%,
+      rgba(22, 22, 22, 0.25) 75%,
+      rgba(22, 22, 22, 0.42) 100%
+    );
+  }
+  .hp-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hp-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6.5vw, 5rem);
+    line-height: 1.04;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.01em;
+    margin-top: 8px;
+  }
+  .hp-hero-title em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .hp-hero-sub {
+    max-width: 640px;
+    margin-top: 22px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.88;
+  }
+  .hp-hero-cta {
+    margin-top: 38px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== SHARED ==================== */
+  .hp-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hp-intro {
+    max-width: none;
+  }
+  .hp-note {
+    margin-top: 32px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0.65;
+    font-style: italic;
+  }
+
+  /* ==================== PROGRAM / SCHEDULE ==================== */
+  .hp-schedule {
+    background: var(--dark);
+  }
+  .hp-schedule-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .hp-schedule-card {
+    padding: 32px 28px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(241, 231, 212, 0.12);
+  }
+  .hp-schedule-day {
+    font-family: var(--font-stamp);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 10px;
+  }
+  .hp-schedule-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .hp-schedule-meta {
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    color: var(--sky);
+    margin-bottom: 14px;
+  }
+  .hp-schedule-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--cream);
+    opacity: 0.72;
+  }
+
+  /* ==================== PRICING ==================== */
+  .hp-pricing {
+    background: var(--dark-2);
+  }
+  .hp-pricing-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .hp-price-card {
+    position: relative;
+    padding: 40px 32px;
+    border-radius: var(--radius);
+    background: var(--dark-1);
+    border: 1.5px solid rgba(241, 231, 212, 0.12);
+    text-align: center;
+  }
+  .hp-price-card.featured {
+    border-color: var(--coral);
+    background: rgba(255, 111, 100, 0.06);
+  }
+  .hp-price-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--coral);
+    color: #2a1210;
+    font-family: var(--font-stamp);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+  }
+  .hp-price-label {
+    font-family: var(--font-stamp);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 16px;
+  }
+  .hp-price-amt {
+    font-family: var(--font-stamp);
+    font-size: 3rem;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .hp-price-amt span {
+    font-size: 1.2rem;
+    vertical-align: super;
+  }
+  .hp-price-freq {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--cream);
+    opacity: 0.7;
+  }
+  .hp-price-note {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--cream);
+    opacity: 0.65;
+  }
+  .hp-pricing-cta {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+
+  /* ==================== CTA ==================== */
+  .hp-cta {
+    background: var(--rust);
+    text-align: center;
+  }
+  .hp-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hp-cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 4.5vw, 3rem);
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .hp-cta-title em {
+    font-style: italic;
+    color: var(--sky);
+  }
+  .hp-cta-body {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.9;
+  }
+  .hp-cta .btn-primary {
+    margin-top: 32px;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 900px) {
+    .hp-hero {
+      padding-left: 24px;
+      padding-right: 24px;
+      min-height: 76vh;
+    }
+    .hp-schedule-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .section.hp-schedule,
+    .section.hp-pricing,
+    .section.hp-cta {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+</style>
