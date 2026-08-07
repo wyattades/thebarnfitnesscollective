@@ -39,17 +39,17 @@ const schedule = [
 
 const pricing = [
   {
-    label: "Early Bird",
-    price: "225",
-    freq: "total — $75/mo × 3 months",
-    note: "Available for a limited window after launch.",
+    label: "Barn Member",
+    price: "75",
+    freq: "per month",
+    note: "For current Barn members.",
     featured: true,
   },
   {
-    label: "Standard",
-    price: "255",
-    freq: "total — $85/mo × 3 months",
-    note: "Kicks in once the early-bird window closes.",
+    label: "Non-Member",
+    price: "100",
+    freq: "per month",
+    note: "Includes your Tuesday and Saturday classes.",
   },
 ];
 
@@ -115,11 +115,11 @@ const pricing = [
   <section class="section hp-pricing" id="pricing">
     <div class="section-inner hp-inner">
       <div class="section-eyebrow">Pricing</div>
-      <h2 class="section-title">Lock in the <em>early rate.</em></h2>
+      <h2 class="section-title">Simple <em>monthly pricing.</em></h2>
       <div class="hp-pricing-grid">
         {pricing.map((p) => (
           <div class:list={["hp-price-card", { featured: p.featured }]}>
-            {p.featured && <div class="hp-price-badge">Limited Window</div>}
+            {p.featured && <div class="hp-price-badge">Best Value</div>}
             <div class="hp-price-label">{p.label}</div>
             <div class="hp-price-amt"><span>$</span>{p.price}</div>
             <div class="hp-price-freq">{p.freq}</div>
@@ -139,8 +139,7 @@ const pricing = [
     <div class="section-inner hp-cta-inner">
       <h2 class="hp-cta-title">20 spots. <em>12 weeks.</em> One goal.</h2>
       <p class="hp-cta-body">
-        Reserve your spot now and lock in the early-bird rate before it
-        closes.
+        Spots are limited — reserve yours today.
       </p>
       <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">
         Reserve Your Spot
