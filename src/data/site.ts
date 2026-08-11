@@ -84,6 +84,7 @@ export const mainNav: NavItem[] = [
       { label: "HYROX", href: "/hyrox" },
     ],
   },
+  { label: "Eat", href: "/eat" },
   { label: "Recovery Room", href: "/recovery-room" },
   { label: "Legends Program", href: "/legends-program" },
   { label: "Our Team", href: "/our-team" },
@@ -97,6 +98,7 @@ export const footerNav = {
   explore: [
     { label: "Programming & Pricing", href: "/programming-and-pricing" },
     { label: "Schedule & Book", href: site.scheduleUrl },
+    { label: "Eat", href: "/eat" },
     { label: "Recovery Room", href: "/recovery-room" },
     { label: "Legends Program", href: "/legends-program" },
     { label: "Our Team", href: "/our-team" },

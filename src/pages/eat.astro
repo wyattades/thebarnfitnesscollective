@@ -1,0 +1,242 @@
+---
+/**
+ * EAT — dedicated page for Wylde Provisions Co., the partner cafe whose
+ * bowls are sold on-site at The Barn. Uses Wylde's own brand colors
+ * throughout (not The Barn's tokens) so it reads as a distinct partner
+ * business, matching the cross-promo section on the homepage.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Img from "../components/Img.astro";
+---
+
+<BaseLayout
+  title="Eat"
+  description="Wylde Provisions Co. bowls, sold fresh at The Barn Fitness Collective — plus their own spot, Wylde Playground & Cafe."
+>
+  <section class="eat-hero">
+    <div class="eat-hero-inner">
+      <div class="eat-eyebrow">Also At The Barn</div>
+      <h1 class="eat-title">Wylde Provisions Co.</h1>
+      <p class="eat-tagline">Fuel up. Live Wylde.</p>
+      <p class="eat-body">
+        Grab a high-protein, chef-crafted bowl right here at the gym — Wylde
+        Provisions Co. stocks fresh bowls at The Barn <strong>Monday through
+        Saturday.</strong> Prefer to sit and stay a while? Head to their own
+        spot, <strong>Wylde Playground &amp; Cafe</strong>, for the full bowl
+        menu plus cafe service.
+      </p>
+      <a href="https://www.wyldeprovisions.com/" class="eat-cta" target="_blank" rel="noopener">
+        Visit Wylde Provisions →
+      </a>
+    </div>
+    <div class="eat-hero-visual">
+      <Img
+        name="wylde-bowl-monster.png"
+        alt="Wylde Provisions Co. bowl monster illustration"
+        class="eat-hero-visual-img"
+        width={900}
+      />
+    </div>
+  </section>
+
+  <section class="eat-gallery">
+    <div class="eat-gallery-inner">
+      <div class="eat-gallery-eyebrow">The Bowls</div>
+      <h2 class="eat-gallery-title">40 Grams of Organic Protein in Every Bowl</h2>
+      <p class="eat-gallery-note">*Tofu bowls are less than 40 grams.</p>
+      <div class="eat-gallery-grid">
+        <div class="eat-gallery-item fade-up">
+          <Img
+            name="wylde-bowl-arugula.jpg"
+            alt="Wylde Provisions bowl with arugula, marinated onion, edamame, and jammy egg"
+            class="eat-gallery-img"
+            width={800}
+          />
+        </div>
+        <div class="eat-gallery-item fade-up">
+          <Img
+            name="wylde-bowl-carrot.jpg"
+            alt="Wylde Provisions bowl with shredded carrot, spiced chicken, peanuts, and edamame"
+            class="eat-gallery-img"
+            width={800}
+          />
+        </div>
+      </div>
+      <a href="https://www.wyldeprovisions.com/" class="eat-gallery-cta" target="_blank" rel="noopener">
+        Visit Wylde Provisions Co. →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Wylde's own brand colors, sampled from wyldeprovisions.com — deliberately
+     not The Barn's tokens, so this page reads as a distinct partner business. */
+  .eat-hero {
+    background: #004d3d;
+    padding: calc(var(--header-height) + 80px) 48px 100px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .eat-hero-inner {
+    max-width: 560px;
+  }
+  .eat-eyebrow {
+    font-family: var(--font-stamp);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #f14e13;
+    margin-bottom: 18px;
+  }
+  .eat-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: #e9f2de;
+  }
+  .eat-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #f14e13;
+    margin-top: 12px;
+  }
+  .eat-body {
+    margin-top: 28px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #e9f2de;
+    opacity: 0.85;
+  }
+  .eat-body strong {
+    opacity: 1;
+    font-weight: 700;
+  }
+  .eat-cta {
+    display: inline-block;
+    margin-top: 36px;
+    background: #f14e13;
+    color: #002a1d;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 17px 38px;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.25s;
+  }
+  .eat-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -8px rgba(241, 78, 19, 0.5);
+  }
+  .eat-hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .eat-hero-visual :global(.eat-hero-visual-img) {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+  }
+
+  /* ==================== GALLERY ==================== */
+  .eat-gallery {
+    background: #e9f2de;
+    padding: 100px 48px;
+  }
+  .eat-gallery-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .eat-gallery-eyebrow {
+    font-family: var(--font-stamp);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #f14e13;
+    margin-bottom: 14px;
+  }
+  .eat-gallery-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #002a1d;
+  }
+  .eat-gallery-note {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: #002a1d;
+    opacity: 0.6;
+  }
+  .eat-gallery-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .eat-gallery-item {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .eat-gallery-item :global(.eat-gallery-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .eat-gallery-cta {
+    display: inline-block;
+    margin-top: 48px;
+    background: #004d3d;
+    color: #e9f2de;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 17px 38px;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.25s;
+  }
+  .eat-gallery-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -8px rgba(0, 77, 61, 0.4);
+  }
+
+  @media (max-width: 900px) {
+    .eat-hero {
+      grid-template-columns: 1fr;
+      padding: 150px 24px 64px;
+      gap: 40px;
+      text-align: center;
+    }
+    .eat-hero-inner {
+      max-width: none;
+      margin: 0 auto;
+    }
+    .eat-hero-visual :global(.eat-hero-visual-img) {
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .eat-gallery {
+      padding: 72px 24px 90px;
+    }
+    .eat-gallery-grid {
+      grid-template-columns: 1fr;
+      max-width: 380px;
+    }
+  }
+</style>

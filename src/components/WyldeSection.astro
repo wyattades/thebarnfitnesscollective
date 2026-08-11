@@ -1,0 +1,128 @@
+---
+/**
+ * WyldeSection — cross-promo for Wylde Provisions Co., the partner cafe
+ * whose bowls are sold on-site at The Barn. Uses Wylde's own brand colors
+ * (deliberately not The Barn's tokens) so it reads as a distinct partner
+ * business, same as the section on /menu.
+ */
+import Img from "./Img.astro";
+---
+
+<section class="section-wylde">
+  <div class="wylde-visual">
+    <Img
+      name="wylde-bowl-monster.png"
+      alt="Wylde Provisions Co. bowl monster illustration"
+      class="wylde-visual-img"
+      width={900}
+    />
+  </div>
+  <div class="wylde-content">
+    <div class="wylde-eyebrow">Also At The Barn</div>
+    <h2 class="wylde-title">Wylde Provisions Co.</h2>
+    <p class="wylde-tagline">Fuel up. Live Wylde.</p>
+    <p class="wylde-body">
+      Grab a high-protein, chef-crafted bowl right here at the gym — Wylde
+      Provisions Co. stocks fresh bowls at The Barn <strong>Monday through
+      Saturday.</strong> Prefer to sit and stay a while? Head to their own
+      spot, <strong>Wylde Playground &amp; Cafe</strong>, for the full bowl
+      menu plus cafe service.
+    </p>
+    <a href="https://www.wyldeprovisions.com/" class="wylde-cta" target="_blank" rel="noopener">
+      Visit Wylde Provisions →
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Wylde's own brand colors, sampled from wyldeprovisions.com — deliberately
+     not The Barn's tokens, so this reads as a distinct partner business. */
+  .section-wylde {
+    background: #004d3d;
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .wylde-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wylde-visual :global(.wylde-visual-img) {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+  .wylde-content {
+    max-width: 520px;
+  }
+  .wylde-eyebrow {
+    font-family: var(--font-stamp);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #f14e13;
+    margin-bottom: 18px;
+  }
+  .wylde-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: #e9f2de;
+  }
+  .wylde-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #f14e13;
+    margin-top: 10px;
+  }
+  .wylde-body {
+    margin-top: 28px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #e9f2de;
+    opacity: 0.85;
+  }
+  .wylde-body strong {
+    opacity: 1;
+    font-weight: 700;
+  }
+  .wylde-cta {
+    display: inline-block;
+    margin-top: 36px;
+    background: #f14e13;
+    color: #002a1d;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 17px 38px;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.25s;
+  }
+  .wylde-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -8px rgba(241, 78, 19, 0.5);
+  }
+  @media (max-width: 900px) {
+    .section-wylde {
+      grid-template-columns: 1fr;
+      padding: 72px 24px 90px;
+      gap: 48px;
+      text-align: center;
+    }
+    .wylde-visual :global(.wylde-visual-img) {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .wylde-content {
+      max-width: none;
+      margin: 0 auto;
+    }
+  }
+</style>
