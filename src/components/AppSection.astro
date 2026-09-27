@@ -1,7 +1,9 @@
 ---
 /**
  * AppSection — "Download the app" with store buttons + phone mockups.
- * The Barn app is powered by ZenPlanner. Store links come from src/data/site.ts.
+ * The Barn app is a Glofox white-label app (shown to clients only as "Barn
+ * Fitness Co." — never surface the Glofox name in user-facing copy). Store
+ * links come from src/data/site.ts.
  */
 import { site } from "../data/site";
 ---
@@ -13,8 +15,7 @@ import { site } from "../data/site";
       <h2 class="app-title">Download <em>the app.</em></h2>
       <p class="app-body">
         Book classes, manage your membership, track your progress — all from your
-        pocket. The Barn app powered by ZenPlanner is available on iOS and
-        Android.
+        pocket. The Barn Fitness Co. app is available on iOS and Android.
       </p>
       <div class="app-buttons">
         <a href={site.app.ios} class="app-store-btn" target="_blank" rel="noopener">

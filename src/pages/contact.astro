@@ -10,7 +10,7 @@ const links = [
   { icon: "📞", label: "Call", value: site.phone, href: `tel:${site.phoneE164}` },
   { icon: "💬", label: "Text", value: site.phone, href: `sms:${site.phoneE164}` },
   { icon: "📸", label: "Instagram", value: site.instagram.handle, href: site.instagram.url },
-  { icon: "📆", label: "Glofox · Schedule", value: "Book a Class →", href: site.bookingUrl },
+  { icon: "📆", label: "Schedule", value: "Book a Class →", href: site.bookingUrl },
   { icon: "🍎", label: "iOS · App Store", value: "Download the Barn App →", href: site.app.ios },
   { icon: "🤖", label: "Android · Google Play", value: "Download the Barn App →", href: site.app.android },
   { icon: "💪", label: "Classes", value: "Programming & Pricing →", href: "/programming-and-pricing" },
@@ -53,7 +53,7 @@ const isExternal = (h: string) => /^https?:\/\//.test(h);
         <ul class="coach-contact-list">
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li><a href={`mailto:${site.coachChrisEmail}`}>{site.coachChrisEmail}</a></li>
-          <li><a href={site.bookingUrl} target="_blank" rel="noopener">Book via Glofox →</a></li>
+          <li><a href={site.bookingUrl} target="_blank" rel="noopener">Book a Class →</a></li>
         </ul>
       </div>
     </div>

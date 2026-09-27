@@ -143,8 +143,9 @@ benefits and nothing drifts.
 ## Integrations to preserve (do not rebuild these)
 
 - **Booking / schedule**: external Glofox portal (`site.bookingUrl`).
-- **Mobile app**: ZenPlanner-powered, in the App Store / Google Play
-  (`site.app`).
+- **Mobile app**: Glofox-powered white-label app, shown to clients only as
+  "Barn Fitness Co." (never surface the Glofox name in user-facing copy), in
+  the App Store / Google Play (`site.app`).
 - **Analytics**: Google Analytics 4, loaded only when `PUBLIC_GA_MEASUREMENT_ID`
   is set (see `.env.example`).
 
