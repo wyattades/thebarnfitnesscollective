@@ -20,9 +20,10 @@ export const site = {
   email: "zoe@thebarnfitnesscollective.com",
   coachChrisEmail: "chris@thebarnfitnesscollective.com",
 
-  /** Display phone + the E.164 form used for tel: links and structured data. */
-  phone: "(415) 246-3803",
-  phoneE164: "+14152463803",
+  /** Display phone + the E.164 form used for tel:/sms: links and structured
+   *  data. Clients can call or text this number. */
+  phone: "(707) 242-1961",
+  phoneE164: "+17072421961",
 
   /**
    * SEO / structured-data facts about the business. These power the LocalBusiness

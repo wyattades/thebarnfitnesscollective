@@ -3,12 +3,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../data/site";
 
-const phone = "(415) 246-3803";
 const mapsUrl = "https://maps.google.com/?q=6731+Sebastopol+Ave+Suite+110+Sebastopol+CA+95472";
 
 const links = [
   { icon: "✉️", label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { icon: "📞", label: "Call", value: phone, href: `tel:+14152463803` },
+  { icon: "📞", label: "Call", value: site.phone, href: `tel:${site.phoneE164}` },
+  { icon: "💬", label: "Text", value: site.phone, href: `sms:${site.phoneE164}` },
   { icon: "📸", label: "Instagram", value: site.instagram.handle, href: site.instagram.url },
   { icon: "📆", label: "Glofox · Schedule", value: "Book a Class →", href: site.bookingUrl },
   { icon: "🍎", label: "iOS · App Store", value: "Download the Barn App →", href: site.app.ios },
