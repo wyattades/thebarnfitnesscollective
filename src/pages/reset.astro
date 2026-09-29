@@ -1,0 +1,507 @@
+---
+/**
+ * RESET — Goal-Setting Workshop landing page. Content sourced from a
+ * marketing artifact built by Meghan; rebuilt here with the site's own
+ * design tokens/components instead of her raw HTML so it matches the rest
+ * of the site. Real Glofox class link, validated to point to Sun Oct 18
+ * 2026, the actual workshop date.
+ *
+ * TODO for Zoe: no photo of coach Sandra Possing exists in
+ * src/assets/images/ yet, so the "Your Coach" section currently runs
+ * text-only. Send a portrait photo and it can be dropped in.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+
+const signupUrl =
+  "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes-week-view/6abbec321cf61c1425066565/book?book_from=1792306800";
+
+const howItWorks = [
+  {
+    meta: "Sunday, October 18",
+    title: "The Workshop",
+    desc: "Two and a half hours in person at The Barn. An honest audit of where you are, the goals worth committing to, and the first steps to take. Bring a journal and something to write with.",
+  },
+  {
+    meta: "Tuesdays at Noon",
+    title: "Weekly Coaching Calls",
+    desc: "Six 45-minute group calls on Zoom, starting October 20. Sandra coaches, the group keeps you honest. Short enough to fit a lunch break.",
+  },
+  {
+    meta: "Every Day In Between",
+    title: "The Group Chat",
+    desc: "A WhatsApp group for the stretch between calls, where you can report a win, ask for a push, or admit the week got away from you.",
+  },
+];
+
+const walkaway = [
+  "A clear read on where you actually stand right now",
+  "A few goals worth committing to, in your own words",
+  "An action plan with steps you can start this week",
+  "Six weeks of coaching if you want the follow-through",
+  "A group of other goal getters who know what you're working on",
+];
+
+const pricing = [
+  {
+    label: "Workshop Only",
+    title: "Reset Workshop",
+    price: "50",
+    note: "Sunday, October 18, 12:00–2:30pm at The Barn. Open to members and non-members.",
+  },
+  {
+    label: "Workshop + Follow-Through",
+    title: "Workshop & 6-Week Program",
+    price: "250",
+    note: "Everything above, plus six weekly coaching calls on Zoom and the WhatsApp group. The program alone is $200 if you add it after the workshop.",
+    featured: true,
+  },
+];
+
+const details = [
+  { term: "Date", desc: "Sunday, October 18, 12:00–2:30pm" },
+  { term: "Where", desc: `${site.address.line1}, ${site.address.line2}` },
+  { term: "Weekly Calls", desc: "Tuesdays at 12:00pm on Zoom, 45 minutes, October 20 through November 24" },
+  { term: "Bring", desc: "A journal and something to write with. Water and a snack, or grab a bowl while you're here." },
+  { term: "Before You Come", desc: "Optional: brainstorm a few goals ahead of time. A blank page is fine too." },
+  { term: "Who It's For", desc: "Barn members and non-members who want to set goals in any area of life, work toward them, and support other people doing the same." },
+];
+---
+
+<BaseLayout
+  title="Reset — Goal-Setting Workshop"
+  description="Reset: a goal-setting workshop at The Barn Fitness Collective with life coach Sandra Possing. One afternoon, plus six weeks of group coaching."
+>
+  <section class="rs-hero">
+    <div class="rs-hero-inner">
+      <div class="section-eyebrow">Now Enrolling</div>
+      <h1 class="rs-hero-title">RESET</h1>
+      <p class="rs-hero-sub">A Goal-Setting Workshop</p>
+      <p class="rs-hero-lede">
+        2.5 hours with life coach Sandra Possing to take an honest look at where you are,
+        decide where you're going, and leave with a plan you will actually start on.
+      </p>
+      <p class="rs-hero-when">Sunday, October 18 &middot; 12:00&ndash;2:30pm &middot; At The Barn</p>
+      <div class="rs-hero-cta">
+        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
+        <a href="#how" class="btn-ghost">How It Works ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rs-how" id="how">
+    <div class="section-inner">
+      <h2 class="section-title">How It <em>Works.</em></h2>
+      <p class="section-body">
+        One afternoon to get clear on what you want, then six weeks of group coaching to
+        keep you moving on it.
+      </p>
+      <div class="rs-how-grid">
+        {howItWorks.map((h) => (
+          <div class="rs-how-block fade-up">
+            <p class="rs-how-meta">{h.meta}</p>
+            <h3 class="rs-how-title">{h.title}</h3>
+            <p class="rs-how-desc">{h.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section rs-coach">
+    <div class="section-inner rs-coach-inner">
+      <div class="rs-coach-media">
+        <video
+          class="rs-coach-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="/video/sandra-coach-poster.jpg"
+        >
+          <source src="/video/sandra-coach.mp4" type="video/mp4" />
+        </video>
+        <button type="button" class="rs-coach-sound" aria-label="Unmute video" aria-pressed="false">
+          🔇
+        </button>
+      </div>
+      <div class="rs-coach-copy">
+        <div class="section-eyebrow">Your Coach</div>
+        <h2 class="section-title">Sandra <em>Possing.</em></h2>
+        <p class="rs-coach-body">
+          Sandra is a PCC (Professional Certified Coach) and has spent the last 15 years
+          helping ambitious, high-achieving people create extraordinary lives they love. She
+          combines practical strategy with deep personal development to help people get clear
+          on what they really want, and actually make it happen.
+        </p>
+        <p class="rs-coach-body">
+          She is also an OG member of The Barn, married to coach Chris, and mama to Rio. If
+          you've been around the gym for any length of time, you've probably been hugged by her.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Respect reduced-motion preferences, same as the homepage hero video.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll<HTMLVideoElement>(".rs-coach-video").forEach((v) => {
+        v.removeAttribute("autoplay");
+        v.pause();
+      });
+    }
+
+    // Video starts muted so autoplay is allowed by the browser; this button
+    // lets visitors turn her voice on with one click.
+    const coachVideo = document.querySelector<HTMLVideoElement>(".rs-coach-video");
+    const soundBtn = document.querySelector<HTMLButtonElement>(".rs-coach-sound");
+    soundBtn?.addEventListener("click", () => {
+      if (!coachVideo) return;
+      coachVideo.muted = !coachVideo.muted;
+      soundBtn.textContent = coachVideo.muted ? "🔇" : "🔊";
+      soundBtn.setAttribute("aria-pressed", String(!coachVideo.muted));
+      soundBtn.setAttribute("aria-label", coachVideo.muted ? "Unmute video" : "Mute video");
+    });
+  </script>
+
+  <section class="section rs-walkaway">
+    <div class="section-inner">
+      <h2 class="section-title">What You Walk <em>Away With.</em></h2>
+      <p class="section-body">
+        Goals can be about anything in your life. This is not a fitness workshop, and it's
+        open to members and non-members alike.
+      </p>
+      <ul class="rs-walkaway-list">
+        {walkaway.map((w) => (
+          <li class="fade-up">{w}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section rs-pricing" id="pricing">
+    <div class="section-inner">
+      <h2 class="section-title">Simple <em>Pricing.</em></h2>
+      <p class="section-body">
+        Start with the workshop. Add the six weeks when you sign up, or decide after October 18.
+      </p>
+      <div class="rs-price-grid">
+        {pricing.map((p) => (
+          <div class:list={["rs-price-card", { featured: p.featured }]}>
+            <span class="rs-price-tag">{p.label}</span>
+            <h3 class="rs-price-title">{p.title}</h3>
+            <div class="rs-price-amt"><span>$</span>{p.price}</div>
+            <p class="rs-price-note">{p.note}</p>
+          </div>
+        ))}
+      </div>
+      <div class="rs-pricing-cta">
+        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rs-closer">
+    <div class="section-inner rs-closer-inner">
+      <h2 class="rs-closer-title">20 spots. <em>One Sunday.</em> Six weeks of follow-through.</h2>
+      <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
+    </div>
+  </section>
+
+  <section class="section rs-details">
+    <div class="section-inner">
+      <h2 class="section-title">The <em>Details.</em></h2>
+      <dl class="rs-details-list">
+        {details.map((d) => (
+          <>
+            <dt>{d.term}</dt>
+            <dd>{d.desc}</dd>
+          </>
+        ))}
+      </dl>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .rs-hero {
+    position: relative;
+    background: var(--dark);
+    padding: calc(var(--header-height) + 90px) 48px 90px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .rs-hero::before {
+    content: "";
+    position: absolute;
+    top: -26%;
+    right: -12%;
+    width: min(760px, 88vw);
+    aspect-ratio: 1;
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--coral) 34%, transparent), color-mix(in srgb, var(--coral) 10%, transparent) 42%, transparent 70%);
+    pointer-events: none;
+  }
+  .rs-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .rs-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(4.2rem, 14vw, 9rem);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 0.95;
+    color: var(--cream);
+    margin: 18px 0 8px;
+  }
+  .rs-hero-sub {
+    font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--cream);
+    margin: 0 0 24px;
+  }
+  .rs-hero-lede {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.75;
+    max-width: 32em;
+    margin: 0 auto 18px;
+  }
+  .rs-hero-when {
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--coral);
+    margin: 0 0 34px;
+  }
+  .rs-hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== HOW IT WORKS ==================== */
+  .rs-how { background: var(--dark); }
+  .rs-how-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+  }
+  .rs-how-block { border-top: 2px solid var(--coral); padding-top: 18px; }
+  .rs-how-meta {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--coral);
+    margin: 0 0 8px;
+  }
+  .rs-how-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .rs-how-desc { margin: 0; color: var(--cream); opacity: 0.72; font-size: 0.98rem; line-height: 1.7; }
+
+  /* ==================== COACH ==================== */
+  .rs-coach { background: var(--dark-2); }
+  .rs-coach-inner {
+    max-width: 1040px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 48px;
+    align-items: center;
+  }
+  .rs-coach-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(241, 231, 212, 0.15);
+    background: var(--plum);
+  }
+  .rs-coach-media :global(.rs-coach-video) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    /* Zoomed in 20% on her face, anchored to the same point as the crop. */
+    transform: scale(1.2);
+    transform-origin: center 18%;
+  }
+  .rs-coach-sound {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+    background: rgba(23, 18, 19, 0.75);
+    border: 1px solid rgba(241, 231, 212, 0.3);
+    border-radius: 50%;
+    color: var(--cream);
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .rs-coach-sound:hover {
+    background: rgba(23, 18, 19, 0.92);
+    border-color: var(--coral);
+    transform: scale(1.06);
+  }
+  .rs-coach-body {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--cream);
+    opacity: 0.8;
+  }
+
+  /* ==================== WALKAWAY ==================== */
+  .rs-walkaway { background: var(--dark); }
+  .rs-walkaway-list {
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px 36px;
+  }
+  .rs-walkaway-list li {
+    position: relative;
+    padding-left: 26px;
+    color: var(--cream);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .rs-walkaway-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 12px;
+    height: 2px;
+    background: var(--coral);
+  }
+
+  /* ==================== PRICING ==================== */
+  .rs-pricing { background: var(--dark-2); }
+  .rs-price-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+  }
+  .rs-price-card {
+    background: var(--plum);
+    border: 1px solid rgba(241, 231, 212, 0.14);
+    border-radius: var(--radius);
+    padding: 32px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .rs-price-card.featured { border-color: var(--coral); }
+  .rs-price-tag {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--coral);
+  }
+  .rs-price-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin: 0;
+  }
+  .rs-price-amt {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--cream);
+    font-variant-numeric: tabular-nums;
+  }
+  .rs-price-amt span { font-size: 1.4rem; opacity: 0.7; margin-right: 2px; }
+  .rs-price-note { margin: 0; font-size: 0.95rem; color: var(--cream); opacity: 0.7; line-height: 1.6; }
+  .rs-pricing-cta { margin-top: 40px; }
+
+  /* ==================== CLOSER ==================== */
+  .rs-closer { background: var(--rust); text-align: center; }
+  .rs-closer-inner { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 32px; }
+  .rs-closer-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 500;
+    color: var(--cream);
+    margin: 0;
+  }
+  .rs-closer-title em { font-style: italic; color: var(--sky); }
+
+  /* ==================== DETAILS ==================== */
+  .rs-details { background: var(--dark); }
+  .rs-details-list {
+    margin: 40px 0 0;
+    display: grid;
+    grid-template-columns: minmax(170px, 260px) minmax(0, 1fr);
+  }
+  .rs-details-list dt,
+  .rs-details-list dd {
+    padding: 18px 0;
+    border-top: 1px solid rgba(241, 231, 212, 0.14);
+    margin: 0;
+  }
+  .rs-details-list dt {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--coral);
+    padding-right: 20px;
+  }
+  .rs-details-list dd { color: var(--cream); opacity: 0.75; font-size: 1rem; line-height: 1.6; }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 900px) {
+    .rs-hero { padding: 150px 24px 64px; }
+    .rs-coach-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .rs-coach-media { max-width: 340px; margin: 0 auto; }
+  }
+  @media (max-width: 600px) {
+    .section.rs-how,
+    .section.rs-coach,
+    .section.rs-walkaway,
+    .section.rs-pricing,
+    .section.rs-closer,
+    .section.rs-details {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .rs-details-list { grid-template-columns: 1fr; }
+    .rs-details-list dd { border-top: 0; padding-top: 0; }
+  }
+</style>
