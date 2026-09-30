@@ -44,17 +44,18 @@ const walkaway = [
 
 const pricing = [
   {
-    label: "Workshop Only",
+    label: "Reserve Now",
     title: "Reset Workshop",
     price: "50",
     note: "Sunday, October 18, 12:00–2:30pm at The Barn. Open to members and non-members.",
+    cta: true,
+    featured: true,
   },
   {
-    label: "Workshop + Follow-Through",
-    title: "Workshop & 6-Week Program",
-    price: "250",
-    note: "Everything above, plus six weekly coaching calls on Zoom and the WhatsApp group. The program alone is $200 if you add it after the workshop.",
-    featured: true,
+    label: "Added Day-Of",
+    title: "6-Week Accountability Program",
+    price: "200",
+    note: "Six weekly coaching calls on Zoom plus the WhatsApp group. This is separate from the workshop and can only be added in person on October 18 — there's no advance purchase link for it.",
   },
 ];
 
@@ -184,7 +185,8 @@ const details = [
     <div class="section-inner">
       <h2 class="section-title">Simple <em>Pricing.</em></h2>
       <p class="section-body">
-        Start with the workshop. Add the six weeks when you sign up, or decide after October 18.
+        The workshop is $50 — reserve your spot below. The 6-week accountability program is a
+        separate $200 and can only be added in person on the day of the workshop.
       </p>
       <div class="rs-price-grid">
         {pricing.map((p) => (
@@ -193,11 +195,13 @@ const details = [
             <h3 class="rs-price-title">{p.title}</h3>
             <div class="rs-price-amt"><span>$</span>{p.price}</div>
             <p class="rs-price-note">{p.note}</p>
+            {p.cta && (
+              <a href={signupUrl} class="btn-primary rs-price-cta" target="_blank" rel="noopener">
+                Reserve Your Spot
+              </a>
+            )}
           </div>
         ))}
-      </div>
-      <div class="rs-pricing-cta">
-        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
       </div>
     </div>
   </section>
@@ -445,7 +449,7 @@ const details = [
   }
   .rs-price-amt span { font-size: 1.4rem; opacity: 0.7; margin-right: 2px; }
   .rs-price-note { margin: 0; font-size: 0.95rem; color: var(--cream); opacity: 0.7; line-height: 1.6; }
-  .rs-pricing-cta { margin-top: 40px; }
+  .rs-price-cta { margin-top: 12px; align-self: flex-start; }
 
   /* ==================== CLOSER ==================== */
   .rs-closer { background: var(--rust); text-align: center; }
