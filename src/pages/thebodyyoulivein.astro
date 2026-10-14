@@ -1,0 +1,481 @@
+---
+/**
+ * THE BODY YOU LIVE IN — body image workshop landing page (Sat Nov 14, 2026).
+ * Content sourced from a marketing artifact and rebuilt with the site's own
+ * design tokens, same approach as /reset. Real Glofox class link, validated
+ * to point to Nov 14 2026.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Img from "../components/Img.astro";
+import { site } from "../data/site";
+
+const signupUrl =
+  "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes-week-view/6acd5b51c73dd6fa74023fe6/book?book_from=1794643200";
+
+const whatWeDo = [
+  {
+    meta: "Where It Comes From",
+    title: "Trace the Commentary",
+    desc: "We look at where this inner commentary comes from and what it has been trying to do, so it stops feeling like simple fact about you.",
+  },
+  {
+    meta: "Catching It",
+    title: "Recognize It in Real Time",
+    desc: "Practice noticing the voice when it shows up, in the mirror, in a photo, in the middle of an ordinary day, and feeling what happens when its grip loosens.",
+  },
+  {
+    meta: "What Shifts",
+    title: "Move Toward Curiosity",
+    desc: "We practice shifting away from criticism and comparison and toward curiosity, compassion, sensation, and connection with the people in the room.",
+  },
+];
+
+const outcomes = [
+  "A deeper understanding of body image and shame, and where both come from",
+  "Tools for interrupting self-criticism and building self-compassion",
+  "Honest conversation and connection with other people in the room",
+  "Practical ways to relate to your body with more curiosity and care",
+];
+
+const details = [
+  { term: "Date", desc: "Saturday, November 14" },
+  { term: "Time", desc: "11:00am to 1:15pm" },
+  { term: "Where", desc: `${site.address.line1}, ${site.address.line2}` },
+  { term: "Fee", desc: "$40 per person" },
+  { term: "Who It's For", desc: "Adults of all ages, genders, and body types, members and non-members" },
+  { term: "Format", desc: "Reflection, group conversation, and experiential exercises" },
+  { term: "Bring", desc: "Something to write with, and anything that helps you sit comfortably" },
+  { term: "Led By", desc: "Alissa Renee, Somatic Relationship and Intimacy Coach, Certified Sexologist" },
+];
+---
+
+<BaseLayout
+  title="The Body You Live In — Body Image Workshop"
+  description="The Body You Live In: a two-hour body image workshop with somatic coach Alissa Renee at The Barn Fitness Collective. Saturday, November 14. Open to all."
+>
+  <section class="bd-hero">
+    <div class="bd-hero-inner">
+      <div class="section-eyebrow">Now Enrolling</div>
+      <h1 class="bd-hero-title">THE BODY YOU LIVE IN</h1>
+      <p class="bd-hero-sub">A Body Image Workshop</p>
+      <p class="bd-hero-lede">
+        Two hours with somatic coach Alissa Renee on the running commentary about our bodies,
+        where it comes from, and what happens when we loosen its grip. Open to adults of all
+        ages, genders, and body types.
+      </p>
+      <p class="bd-hero-when">Saturday, November 14 &middot; 11:00am to 1:15pm &middot; At The Barn</p>
+      <div class="bd-hero-cta">
+        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
+        <a href="#about" class="btn-ghost">What To Expect ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bd-about" id="about">
+    <div class="section-inner bd-about-inner">
+      <h2 class="section-title">What if the problem <em>isn't your body?</em></h2>
+      <p class="bd-thought">
+        If I could just get in better shape, change this part of my body, look better in a
+        swimsuit, look the way I used to, then I'd feel better about myself.
+      </p>
+      <p class="bd-lead">Maybe you have had some version of that thought.</p>
+      <p class="bd-prose">
+        Most of us know, intellectually, that our value is not determined by how we look. We
+        would never tell a friend that she needs to be younger, thinner, fitter, or more
+        attractive to be good enough or worthy of our care and attention. And yet it can be
+        surprisingly hard to extend that same grace to ourselves.
+      </p>
+      <p class="bd-prose">
+        Many of us live with a running commentary that says if we can just get our bodies
+        right, we will finally feel confident, at ease, and comfortable in our own skin.
+      </p>
+      <p class="bd-turn">
+        You do not have to love how your body looks to have a different relationship with it.
+      </p>
+    </div>
+  </section>
+
+  <section class="section bd-do">
+    <div class="section-inner">
+      <h2 class="section-title">What We'll <em>Do.</em></h2>
+      <p class="section-body">
+        Just over two hours of reflection, conversation, and experiential exercises, led by
+        Alissa.
+      </p>
+      <div class="bd-do-grid">
+        {whatWeDo.map((w) => (
+          <div class="bd-do-block fade-up">
+            <p class="bd-do-meta">{w.meta}</p>
+            <h3 class="bd-do-title">{w.title}</h3>
+            <p class="bd-do-desc">{w.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bd-coach">
+    <div class="section-inner bd-coach-inner">
+      <div class="bd-coach-media">
+        <Img
+          name="alissa-renee.jpg"
+          alt="Alissa Renee, smiling, outdoors"
+          class="bd-coach-img"
+          width={700}
+        />
+      </div>
+      <div class="bd-coach-copy">
+        <div class="section-eyebrow">Your Facilitator</div>
+        <h2 class="section-title">Alissa <em>Renee.</em></h2>
+        <p class="bd-coach-body">
+          Alissa is a trained Somatic Relationship and Intimacy Coach and a Certified Sexologist
+          through the American Board of Sexology. She has spent years helping people learn
+          experientially rather than just thinking their way through things.
+        </p>
+        <p class="bd-coach-body">
+          She is also one of the warmest people you will sit in a room with, which matters for a
+          workshop like this one.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bd-for">
+    <div class="section-inner">
+      <h2 class="section-title">Who It's <em>For.</em></h2>
+      <p class="section-body">
+        Adults of all ages, genders, and body types. You do not need to be a member of The Barn
+        to come. If someone you care about came to mind while reading this, send it to them and
+        come together.
+      </p>
+      <ul class="bd-for-list">
+        {outcomes.map((o) => (
+          <li class="fade-up">{o}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bd-pricing" id="pricing">
+    <div class="section-inner">
+      <h2 class="section-title">Joining <em>Us.</em></h2>
+      <p class="section-body">
+        Spots are limited so the room stays small enough for real conversation.
+      </p>
+      <div class="bd-price-card">
+        <span class="bd-price-tag">Saturday, November 14</span>
+        <h3 class="bd-price-title">The Body You Live In</h3>
+        <div class="bd-price-amt"><span>$</span>40</div>
+        <p class="bd-price-note">
+          11:00am to 1:15pm at The Barn Fitness Collective in Sebastopol. Open to members and
+          non-members.
+        </p>
+        <a href={signupUrl} class="btn-primary bd-price-cta" target="_blank" rel="noopener">
+          Reserve Your Spot
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bd-closer">
+    <div class="section-inner bd-closer-inner">
+      <h2 class="bd-closer-title">
+        One Saturday morning. <em>A different relationship</em> with the body you live in.
+      </h2>
+      <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
+    </div>
+  </section>
+
+  <section class="section bd-details">
+    <div class="section-inner">
+      <h2 class="section-title">The <em>Details.</em></h2>
+      <dl class="bd-details-list">
+        {details.map((d) => (
+          <>
+            <dt>{d.term}</dt>
+            <dd>{d.desc}</dd>
+          </>
+        ))}
+      </dl>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .bd-hero {
+    position: relative;
+    background: var(--dark);
+    padding: calc(var(--header-height) + 90px) 48px 90px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .bd-hero::before {
+    content: "";
+    position: absolute;
+    top: -26%;
+    right: -12%;
+    width: min(760px, 88vw);
+    aspect-ratio: 1;
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--coral) 34%, transparent), color-mix(in srgb, var(--coral) 10%, transparent) 42%, transparent 70%);
+    pointer-events: none;
+  }
+  .bd-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .bd-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 9vw, 6rem);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--cream);
+    margin: 18px 0 14px;
+  }
+  .bd-hero-sub {
+    font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--cream);
+    margin: 0 0 24px;
+  }
+  .bd-hero-lede {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.75;
+    max-width: 34em;
+    margin: 0 auto 18px;
+  }
+  .bd-hero-when {
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--coral);
+    margin: 0 0 34px;
+  }
+  .bd-hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== ABOUT ==================== */
+  .bd-about { background: var(--dark); }
+  .bd-about-inner { max-width: 760px; text-align: center; }
+  .bd-thought {
+    margin-top: 32px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    line-height: 1.5;
+    color: var(--cream);
+  }
+  .bd-lead {
+    margin-top: 24px;
+    font-size: 1.15rem;
+    color: var(--coral);
+    font-weight: 500;
+  }
+  .bd-prose {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.8;
+  }
+  .bd-turn {
+    margin-top: 36px;
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.35;
+    color: var(--cream);
+  }
+
+  /* ==================== WHAT WE'LL DO ==================== */
+  .bd-do { background: var(--dark-2); }
+  .bd-do-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+  }
+  .bd-do-block { border-top: 2px solid var(--coral); padding-top: 18px; }
+  .bd-do-meta {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--coral);
+    margin: 0 0 8px;
+  }
+  .bd-do-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .bd-do-desc { margin: 0; color: var(--cream); opacity: 0.72; font-size: 0.98rem; line-height: 1.7; }
+
+  /* ==================== FACILITATOR ==================== */
+  .bd-coach { background: var(--dark); }
+  .bd-coach-inner {
+    max-width: 1040px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 48px;
+    align-items: center;
+  }
+  .bd-coach-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(241, 231, 212, 0.15);
+    background: var(--plum);
+  }
+  .bd-coach-media :global(.bd-coach-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+  .bd-coach-body {
+    margin-top: 20px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--cream);
+    opacity: 0.8;
+  }
+
+  /* ==================== WHO IT'S FOR ==================== */
+  .bd-for { background: var(--dark-2); }
+  .bd-for-list {
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px 36px;
+  }
+  .bd-for-list li {
+    position: relative;
+    padding-left: 26px;
+    color: var(--cream);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .bd-for-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 12px;
+    height: 2px;
+    background: var(--coral);
+  }
+
+  /* ==================== PRICING ==================== */
+  .bd-pricing { background: var(--dark); }
+  .bd-price-card {
+    margin-top: 48px;
+    max-width: 440px;
+    background: var(--plum);
+    border: 1px solid var(--coral);
+    border-radius: var(--radius);
+    padding: 32px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bd-price-tag {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--coral);
+  }
+  .bd-price-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin: 0;
+  }
+  .bd-price-amt {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--cream);
+    font-variant-numeric: tabular-nums;
+  }
+  .bd-price-amt span { font-size: 1.4rem; opacity: 0.7; margin-right: 2px; }
+  .bd-price-note { margin: 0; font-size: 0.95rem; color: var(--cream); opacity: 0.7; line-height: 1.6; }
+  .bd-price-cta { margin-top: 12px; align-self: flex-start; }
+
+  /* ==================== CLOSER ==================== */
+  .bd-closer { background: var(--rust); text-align: center; }
+  .bd-closer-inner { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 32px; }
+  .bd-closer-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    font-weight: 500;
+    color: var(--cream);
+    margin: 0;
+  }
+  .bd-closer-title em { font-style: italic; color: var(--sky); }
+
+  /* ==================== DETAILS ==================== */
+  .bd-details { background: var(--dark-2); }
+  .bd-details-list {
+    margin: 40px 0 0;
+    display: grid;
+    grid-template-columns: minmax(170px, 260px) minmax(0, 1fr);
+  }
+  .bd-details-list dt,
+  .bd-details-list dd {
+    padding: 18px 0;
+    border-top: 1px solid rgba(241, 231, 212, 0.14);
+    margin: 0;
+  }
+  .bd-details-list dt {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--coral);
+    padding-right: 20px;
+  }
+  .bd-details-list dd { color: var(--cream); opacity: 0.75; font-size: 1rem; line-height: 1.6; }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 900px) {
+    .bd-hero { padding: 150px 24px 64px; }
+    .bd-coach-inner { grid-template-columns: 1fr; gap: 32px; }
+    .bd-coach-media { max-width: 340px; margin: 0 auto; }
+  }
+  @media (max-width: 600px) {
+    .section.bd-about,
+    .section.bd-do,
+    .section.bd-coach,
+    .section.bd-for,
+    .section.bd-pricing,
+    .section.bd-closer,
+    .section.bd-details {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .bd-details-list { grid-template-columns: 1fr; }
+    .bd-details-list dd { border-top: 0; padding-top: 0; }
+  }
+</style>
