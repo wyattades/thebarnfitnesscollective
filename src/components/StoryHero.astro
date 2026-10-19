@@ -160,6 +160,12 @@ import Img from "./Img.astro";
     flex-wrap: wrap;
   }
   @media (max-width: 900px) {
+    /* Don't force a full-screen section on mobile; it left a big gap under
+       the video. */
+    .hero {
+      min-height: 0;
+      padding: 36px 0 60px;
+    }
     .hero-content {
       grid-template-columns: 1fr;
       gap: 40px;
