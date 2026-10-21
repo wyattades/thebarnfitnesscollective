@@ -52,6 +52,15 @@ export const site = {
    *  "Schedule & Book" point here so people stay on the site. */
   scheduleUrl: "/schedule",
 
+  /** Paste IDs here to turn on analytics / Search Console (no Netlify access
+   *  needed). Leave blank to keep them off. */
+  analytics: {
+    /** Google Analytics 4 Measurement ID, e.g. "G-XXXXXXXXXX". */
+    gaMeasurementId: "G-NDD43FS0G5",
+    /** Google Search Console HTML-tag verification code (the content="..." value). */
+    googleSiteVerification: "",
+  },
+
   instagram: {
     handle: "@thebarnfitnesscollective",
     url: "https://instagram.com/thebarnfitnesscollective",

@@ -65,6 +65,11 @@ const structuredData = {
 <meta name="description" content={description} />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#211a1b" />
+{
+  site.analytics.googleSiteVerification && (
+    <meta name="google-site-verification" content={site.analytics.googleSiteVerification} />
+  )
+}
 <link rel="canonical" href={canonical} />
 
 <!-- Open Graph -->

@@ -18,11 +18,13 @@ interface Props {
   /** Rendered width in px (used to generate the srcset). Defaults to 1200. */
   width?: number;
   loading?: "lazy" | "eager";
+  /** Compression quality 1–100. 72 keeps photos sharp at a much smaller file size. */
+  quality?: number;
   [key: string]: any;
 }
 
-const { name, alt, class: className, width = 1200, loading = "lazy", ...rest } = Astro.props;
+const { name, alt, class: className, width = 1200, loading = "lazy", quality = 72, ...rest } = Astro.props;
 const src = getImageByName(name);
 ---
 
-<Image src={src} alt={alt} widths={[width, width * 2]} class={className} loading={loading} {...rest} />
+<Image src={src} alt={alt} widths={[width, width * 2]} quality={quality} class={className} loading={loading} {...rest} />

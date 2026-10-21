@@ -5,7 +5,10 @@
  * stays OFF during local development and turns ON automatically in production
  * once the ID is set in Netlify's environment variables.
  */
-const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+import { site } from "../data/site";
+
+// The Netlify env var wins if set; otherwise use the ID in src/data/site.ts.
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || site.analytics.gaMeasurementId;
 ---
 
 {
