@@ -18,6 +18,10 @@ export const faq: FaqCategory[] = [
         "a": "Workout clothes, a water bottle, and an open mind!"
       },
       {
+        "q": "What are your hours and class times?",
+        "a": "Classes are one hour and run within these windows: Monday and Wednesday 6:15–10am, 12–1pm, and 4–6:30pm; Tuesday 6:15–10am and 5:30–7:45pm; Thursday and Friday 6:15–10am, 12–1pm, and 5:30–6:30pm; and Saturday 8–10:30am. The gym is often open between classes, but open-gym hours aren't guaranteed, so check the Barn Fitness Co. app or the [schedule](/schedule) for the current times."
+      },
+      {
         "q": "How do I book my first class?",
         "a": "Download our mobile app. Booking through there is always easiest. Available on the [App Store](https://apps.apple.com/us/app/barn-fitness-co/id6759301744) and [Google Play](https://play.google.com/store/apps/details?id=ie.zappy.fennec.thebarnfitnesscollec)."
       }

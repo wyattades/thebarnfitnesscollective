@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../data/site";
+import { offers } from "../data/classes";
+import { classTimes, classTimesNote } from "../data/site";
 ---
 
 <BaseLayout
@@ -24,6 +26,29 @@ import { site } from "../data/site";
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           allow="payment"></iframe>
+      </div>
+
+      <div class="schedule-list">
+        <h2 class="schedule-list-title">Weekly classes <em>&amp; services.</em></h2>
+        <p class="schedule-list-note">
+          Here's what runs at The Barn and on which days. For exact start times and open spots,
+          use the booking calendar above or the Barn Fitness Co. app.
+        </p>
+        <ul class="schedule-times">
+          {classTimes.map((c) => (
+            <li><strong>{c.label}</strong> {c.times.join(" · ")}</li>
+          ))}
+        </ul>
+        <p class="schedule-list-note">{classTimesNote}</p>
+        <ul class="schedule-list-items">
+          {offers.map((o) => (
+            <li>
+              <span class="schedule-list-days">{o.tag}</span>
+              <span class="schedule-list-name">{o.name}</span>
+              <span class="schedule-list-desc">{o.description}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
@@ -92,6 +117,82 @@ import { site } from "../data/site";
     }
     .schedule-frame-wrap {
       min-height: 560px;
+    }
+  }
+  .schedule-list {
+    margin-top: 64px;
+    border-top: 1px solid rgba(241, 231, 212, 0.14);
+    padding-top: 40px;
+  }
+  .schedule-list-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .schedule-list-title em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .schedule-list-note {
+    margin-top: 12px;
+    max-width: 640px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.7;
+  }
+  .schedule-times {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    color: var(--cream);
+    font-size: 1rem;
+  }
+  .schedule-times strong {
+    display: inline-block;
+    min-width: 110px;
+    color: var(--coral);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+  }
+  .schedule-list-items {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+  }
+  .schedule-list-items li {
+    display: grid;
+    grid-template-columns: 150px 220px 1fr;
+    gap: 8px 24px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(241, 231, 212, 0.1);
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .schedule-list-days {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--coral);
+  }
+  .schedule-list-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .schedule-list-desc {
+    opacity: 0.72;
+    font-size: 0.95rem;
+  }
+  @media (max-width: 760px) {
+    .schedule-list-items li {
+      grid-template-columns: 1fr;
+      gap: 4px;
     }
   }
 </style>

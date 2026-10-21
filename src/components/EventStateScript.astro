@@ -1,0 +1,18 @@
+---
+/**
+ * EventStateScript — flips an event landing page from "upcoming" to "past".
+ * Mark upcoming-only elements with `data-live` and past-only elements with
+ * `data-ended`; the page sets `hidden` at build time, and this script corrects
+ * it in the browser once the event's end time passes (no redeploy needed).
+ */
+interface Props {
+  endMs: number;
+}
+const { endMs } = Astro.props;
+---
+
+<script is:inline define:vars={{ endMs }}>
+  var ended = Date.now() > endMs;
+  document.querySelectorAll("[data-live]").forEach(function (el) { el.hidden = ended; });
+  document.querySelectorAll("[data-ended]").forEach(function (el) { el.hidden = !ended; });
+</script>

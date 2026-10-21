@@ -6,11 +6,18 @@
  * to point to Nov 14 2026.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EventStateScript from "../components/EventStateScript.astro";
 import Img from "../components/Img.astro";
 import { site } from "../data/site";
 
 const signupUrl =
   "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes-week-view/6acd5b51c73dd6fa74023fe6/book?book_from=1794643200";
+
+// The event's end time (UTC). After it passes, the page switches to a "past
+// event" state at build time and, for visitors, in the browser.
+const endMs = Date.UTC(2026, 10, 14, 21, 15);
+const ended = Date.now() > endMs;
+const nextEventMailto = `mailto:${site.email}?subject=Next Body You Live In workshop`;
 
 const whatWeDo = [
   {
@@ -51,11 +58,12 @@ const details = [
 
 <BaseLayout
   title="The Body You Live In — Body Image Workshop"
-  description="The Body You Live In: a two-hour body image workshop with somatic coach Alissa Renee at The Barn Fitness Collective. Saturday, November 14. A workshop for women of all ages."
+  description={ended ? "The Body You Live In was a body image workshop for women at The Barn Fitness Collective with somatic coach Alissa Renee. Email us about the next one." : "The Body You Live In: a two-hour body image workshop with somatic coach Alissa Renee at The Barn Fitness Collective. Saturday, November 14. A workshop for women of all ages."}
 >
   <section class="bd-hero">
     <div class="bd-hero-inner">
-      <div class="section-eyebrow">Now Enrolling</div>
+      <div class="section-eyebrow" data-live hidden={ended}>Now Enrolling</div>
+      <div class="section-eyebrow" data-ended hidden={!ended}>Past Event</div>
       <h1 class="bd-hero-title">THE BODY YOU LIVE IN</h1>
       <p class="bd-hero-sub">A Body Image Workshop</p>
       <p class="bd-hero-lede">
@@ -64,9 +72,16 @@ const details = [
         ages and body types.
       </p>
       <p class="bd-hero-when">Saturday, November 14 &middot; 11:00am to 1:15pm &middot; At The Barn</p>
-      <div class="bd-hero-cta">
+      <div class="bd-hero-cta" data-live hidden={ended}>
         <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
         <a href="#about" class="btn-ghost">What To Expect ↓</a>
+      </div>
+      <p class="bd-hero-ended" data-ended hidden={!ended}>
+        This event has taken place. Email us and we'll let you know when the next one is scheduled.
+      </p>
+      <div class="bd-hero-cta" data-ended hidden={!ended}>
+        <a href={nextEventMailto} class="btn-primary">Ask About the Next One</a>
+        <a href="/schedule" class="btn-ghost">See Current Classes</a>
       </div>
     </div>
   </section>
@@ -156,7 +171,7 @@ const details = [
     </div>
   </section>
 
-  <section class="section bd-pricing" id="pricing">
+  <section class="section bd-pricing" id="pricing" data-live hidden={ended}>
     <div class="section-inner">
       <h2 class="section-title">Joining <em>Us.</em></h2>
       <p class="section-body">
@@ -177,12 +192,19 @@ const details = [
     </div>
   </section>
 
-  <section class="section bd-closer">
+  <section class="section bd-closer" data-live hidden={ended}>
     <div class="section-inner bd-closer-inner">
       <h2 class="bd-closer-title">
         One Saturday morning. <em>A different relationship</em> with the body you live in.
       </h2>
       <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">Reserve Your Spot</a>
+    </div>
+  </section>
+
+  <section class="section bd-closer" data-ended hidden={!ended}>
+    <div class="section-inner bd-closer-inner">
+      <h2 class="bd-closer-title">Missed this one? <em>Ask about the next.</em></h2>
+      <a href={nextEventMailto} class="btn-primary">Ask About the Next One</a>
     </div>
   </section>
 
@@ -199,6 +221,7 @@ const details = [
       </dl>
     </div>
   </section>
+  <EventStateScript endMs={endMs} />
 </BaseLayout>
 
 <style>
@@ -477,5 +500,13 @@ const details = [
     }
     .bd-details-list { grid-template-columns: 1fr; }
     .bd-details-list dd { border-top: 0; padding-top: 0; }
+  }
+  .bd-hero-ended {
+    max-width: 32em;
+    margin: 0 auto 28px;
+    color: var(--cream);
+    opacity: 0.85;
+    font-size: 1.05rem;
+    line-height: 1.7;
   }
 </style>

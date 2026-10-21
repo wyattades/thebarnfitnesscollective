@@ -112,3 +112,21 @@ export const footerNav = {
     { label: "Book a Class", href: site.bookingUrl },
   ],
 } as const;
+
+/**
+ * CLASS TIMES — when classes run (not guaranteed open hours; the gym is often
+ * open between classes but that varies). Shown in the footer, on the Contact
+ * and Schedule pages, and answered in the FAQ. Edit here to update everywhere.
+ */
+export interface ClassTimes {
+  label: string;
+  times: string[];
+}
+export const classTimes: ClassTimes[] = [
+  { label: "Mon & Wed", times: ["6:15–10am", "12–1pm", "4–6:30pm"] },
+  { label: "Tue", times: ["6:15–10am", "5:30–7:45pm"] },
+  { label: "Thu & Fri", times: ["6:15–10am", "12–1pm", "5:30–6:30pm"] },
+  { label: "Sat", times: ["8–10:30am"] },
+];
+export const classTimesNote =
+  "Classes are one hour and run within these windows. The gym is often open between classes, but open-gym hours aren't guaranteed. Check the app for the current schedule.";

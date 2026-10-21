@@ -209,3 +209,8 @@ a {
     padding-right: var(--section-padding-x-mobile);
   }
 }
+
+/* Elements toggled by the event-state script (upcoming vs. past events). */
+[hidden] {
+  display: none !important;
+}

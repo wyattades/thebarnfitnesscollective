@@ -2,7 +2,7 @@
 /**
  * Global site footer. Links come from src/data/site.ts (footerNav).
  */
-import { site, footerNav } from "../data/site";
+import { site, footerNav, classTimes } from "../data/site";
 const year = new Date().getFullYear();
 const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWith("mailto:");
 ---
@@ -42,11 +42,12 @@ const isExternal = (href: string) => /^https?:\/\//.test(href) || href.startsWit
     </div>
 
     <div>
-      <div class="footer-col-title">Hours</div>
+      <div class="footer-col-title">Class Times</div>
       <div class="footer-hours">
-        Check the app for<br />
-        current class schedule<br />
-        &amp; times.
+        {classTimes.map((c) => (
+          <div><strong>{c.label}:</strong> {c.times.join(", ")}</div>
+        ))}
+        <div style="margin-top:8px;">Check the app for the current schedule.</div>
       </div>
       <div style="margin-top:24px;">
         <a href={site.bookingUrl} class="btn-primary" style="font-size:.75rem;padding:12px 24px;" target="_blank" rel="noopener">Book Now</a>

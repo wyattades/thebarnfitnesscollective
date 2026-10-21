@@ -12,9 +12,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Img from "../components/Img.astro";
 import { site } from "../data/site";
 
-/** Direct Glofox signup link for the HYROX 12-Week Training Program class. */
-const signupUrl =
-  "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/classes-week-view/6a6be1cd5d6770311a001280/book?book_from=1788764400";
+/** The Sept 7 class link has passed; interest comes in by email until the next session is set up. */
+const joinMailto = `mailto:${site.email}?subject=${encodeURIComponent("HYROX 12-Week Training Program")}`;
 
 const schedule = [
   {
@@ -69,7 +68,7 @@ const pricing = [
     />
     <div class="hp-hero-scrim"></div>
     <div class="hp-hero-inner">
-      <div class="section-eyebrow hp-hero-eyebrow">Now Enrolling</div>
+      <div class="section-eyebrow hp-hero-eyebrow">In Session</div>
       <h1 class="hp-hero-title">HYROX 12-Week <em>Training Program.</em></h1>
       <p class="hp-hero-sub">
         A 12-week program built to get you race-ready for HYROX Anaheim this
@@ -78,9 +77,7 @@ const pricing = [
         building gym day, and a HYROX specific workout</span>.
       </p>
       <div class="hp-hero-cta">
-        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">
-          Reserve Your Spot
-        </a>
+        <a href={joinMailto} class="btn-primary">Ask About Joining</a>
         <a href="#pricing" class="btn-ghost">See Pricing ↓</a>
       </div>
     </div>
@@ -128,22 +125,18 @@ const pricing = [
         ))}
       </div>
       <div class="hp-pricing-cta">
-        <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">
-          Reserve Your Spot
-        </a>
+        <a href={joinMailto} class="btn-primary">Ask About Joining</a>
       </div>
     </div>
   </section>
 
   <section class="section hp-cta">
     <div class="section-inner hp-cta-inner">
-      <h2 class="hp-cta-title">20 spots. <em>12 weeks.</em> One goal.</h2>
+      <h2 class="hp-cta-title">12 weeks. <em>One goal.</em> HYROX Anaheim.</h2>
       <p class="hp-cta-body">
-        Spots are limited — reserve yours today.
+        This session is underway. Email us to ask about joining or the next session.
       </p>
-      <a href={signupUrl} class="btn-primary" target="_blank" rel="noopener">
-        Reserve Your Spot
-      </a>
+      <a href={joinMailto} class="btn-primary">Ask About Joining</a>
     </div>
   </section>
 </BaseLayout>
