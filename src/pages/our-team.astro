@@ -4,9 +4,20 @@ import PageHero from "../components/PageHero.astro";
 import Img from "../components/Img.astro";
 import { team } from "../data/team";
 import { site } from "../data/site";
+
+const peopleSchema = {
+  "@context": "https://schema.org",
+  "@graph": team.map((c) => ({
+    "@type": "Person",
+    name: c.name,
+    jobTitle: c.role.replace(/ · /g, ", "),
+    worksFor: { "@type": "HealthClub", name: site.name, url: "https://www.thebarnfitnesscollective.com/" },
+  })),
+};
 ---
 
-<BaseLayout title="Our Team" description="Meet the coaches of The Barn Fitness Collective — credentials, heart, and a love of helping people move better.">
+<BaseLayout title="Meet Our Coaches in Sebastopol" description="Meet the coaches of The Barn Fitness Collective in Sebastopol, CA: certified CrossFit, nutrition, and fitness coaches who help you move better.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(peopleSchema)} is:inline />
   <PageHero
     eyebrow="Meet the Team"
     title="Meet the <em>Team</em>"

@@ -22,6 +22,26 @@ export const faq: FaqCategory[] = [
         "a": "Classes are one hour and run within these windows: Monday and Wednesday 6:15–10am, 12–1pm, and 4–6:30pm; Tuesday 6:15–10am and 5:30–7:45pm; Thursday and Friday 6:15–10am, 12–1pm, and 5:30–6:30pm; and Saturday 8–10:30am. The gym is often open between classes, but open-gym hours aren't guaranteed, so check the Barn Fitness Co. app or the [schedule](/schedule) for the current times."
       },
       {
+        "q": "Where is The Barn located?",
+        "a": "The Barn Fitness Collective is at 6731 Sebastopol Ave, Suite 110, Sebastopol, CA 95472. See [contact](/contact) for directions."
+      },
+      {
+        "q": "How much does a class cost?",
+        "a": "A single drop-in class is $25. A 10-class pack is $199 ($19.90 per class, expires in 6 months). Memberships are $149 per month for 2 classes a week (8 per month) or $199 per month for unlimited classes. See [pricing](/programming-and-pricing) for details."
+      },
+      {
+        "q": "Do you offer HYROX training?",
+        "a": "Yes. The Barn is an official HYROX affiliate, and our classes include elements of the race. We also run a 12-week HYROX training program. Learn more on our [HYROX page](/hyrox)."
+      },
+      {
+        "q": "Can I buy food at The Barn?",
+        "a": "Yes. Wylde Provisions Co. sells fresh, high-protein bowls at The Barn Monday through Saturday. Their cafe, Wylde Playground & Cafe, has the full bowl menu. See [Wylde Bowls](/eat)."
+      },
+      {
+        "q": "How do I contact The Barn?",
+        "a": "Call or text (707) 242-1961, or email zoe@thebarnfitnesscollective.com. See [contact](/contact)."
+      },
+      {
         "q": "How do I book my first class?",
         "a": "Download our mobile app. Booking through there is always easiest. Available on the [App Store](https://apps.apple.com/us/app/barn-fitness-co/id6759301744) and [Google Play](https://play.google.com/store/apps/details?id=ie.zappy.fennec.thebarnfitnesscollec)."
       }

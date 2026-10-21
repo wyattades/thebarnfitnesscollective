@@ -21,7 +21,6 @@ const { title, description, image = site.seo.ogImage } = Astro.props;
 // Absolute URLs (needed by canonical + Open Graph). Astro.site is set in astro.config.
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const imageUrl = new URL(image, Astro.site).toString();
-const isHome = Astro.url.pathname === "/";
 
 // Gentle build-time guardrails so pages don't ship weak SEO by accident.
 if (import.meta.env.DEV) {
@@ -59,6 +58,8 @@ const structuredData = {
     longitude: site.seo.geo.longitude,
   },
   sameAs: [site.instagram.url],
+  hasMap: "https://maps.google.com/?q=6731+Sebastopol+Ave+Suite+110+Sebastopol+CA+95472",
+  areaServed: ["Sebastopol", "Sonoma County"],
 };
 ---
 
@@ -73,7 +74,7 @@ const structuredData = {
 <link rel="canonical" href={canonical} />
 
 <!-- Open Graph -->
-<meta property="og:type" content={isHome ? "website" : "article"} />
+<meta property="og:type" content="website" />
 <meta property="og:site_name" content={site.name} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />

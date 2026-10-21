@@ -17,6 +17,38 @@ const signupUrl =
 // event" state at build time and, for visitors, in the browser.
 const endMs = Date.UTC(2026, 10, 14, 21, 15);
 const ended = Date.now() > endMs;
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "The Body You Live In: A Body Image Workshop",
+  description:
+    "A two-hour body image workshop for women of all ages with somatic coach Alissa Renee: reflection, group conversation, and experiential exercises.",
+  startDate: "2026-11-14T11:00:00-08:00",
+  endDate: "2026-11-14T13:15:00-08:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  location: {
+    "@type": "Place",
+    name: site.name,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "6731 Sebastopol Ave, Suite 110",
+      addressLocality: "Sebastopol",
+      addressRegion: "CA",
+      postalCode: "95472",
+      addressCountry: "US",
+    },
+  },
+  performer: { "@type": "Person", name: "Alissa Renee" },
+  organizer: { "@type": "Organization", name: site.name, url: "https://www.thebarnfitnesscollective.com/" },
+  offers: {
+    "@type": "Offer",
+    price: "40",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: signupUrl,
+  },
+};
 const nextEventMailto = `mailto:${site.email}?subject=Next Body You Live In workshop`;
 
 const whatWeDo = [
@@ -58,8 +90,9 @@ const details = [
 
 <BaseLayout
   title="The Body You Live In — Body Image Workshop"
-  description={ended ? "The Body You Live In was a body image workshop for women at The Barn Fitness Collective with somatic coach Alissa Renee. Email us about the next one." : "The Body You Live In: a two-hour body image workshop with somatic coach Alissa Renee at The Barn Fitness Collective. Saturday, November 14. A workshop for women of all ages."}
+  description={ended ? "The Body You Live In was a body image workshop for women at The Barn Fitness Collective with somatic coach Alissa Renee. Email us about the next one." : "The Body You Live In: a two-hour body image workshop for women with somatic coach Alissa Renee at The Barn in Sebastopol. Saturday, November 14."}
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(eventSchema)} is:inline />
   <section class="bd-hero">
     <div class="bd-hero-inner">
       <div class="section-eyebrow" data-live hidden={ended}>Now Enrolling</div>

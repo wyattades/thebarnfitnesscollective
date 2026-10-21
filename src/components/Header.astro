@@ -2,7 +2,7 @@
 /**
  * Global site header — solid charcoal bar, fixed to the top. Nav items come from
  * src/data/site.ts (mainNav). The link for the current page is highlighted.
- * Collapses to a mobile menu below 1040px.
+ * Collapses to a mobile menu below 1100px.
  */
 import { mainNav, site } from "../data/site";
 import { getImageByName } from "../lib/images";
@@ -253,7 +253,7 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
   }
 
   /* Tighten spacing on mid widths before collapsing to the mobile menu. */
-  @media (max-width: 1140px) {
+  @media (max-width: 1220px) {
     #mainNav {
       padding: 0 28px;
     }
@@ -266,7 +266,7 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
       padding: 8px 11px;
     }
   }
-  @media (max-width: 1040px) {
+  @media (max-width: 1100px) {
     #mainNav {
       padding: 16px 24px;
     }
