@@ -14,10 +14,10 @@ export interface InstaPost {
 }
 
 export const instaPosts: InstaPost[] = [
-  { image: "insta-01.jpg", alt: "Members at the Reset goal-setting workshop at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/p/Depxcy0GWHO/" },
-  { image: "insta-02.jpg", alt: "Training with battle ropes at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DehyYSWS0W3/" },
-  { image: "insta-03.jpg", alt: "Reset goal-setting workshop with Sandra Possing", link: "https://www.instagram.com/sandrapossing/p/DeaFA-HStRI/" },
-  { image: "insta-04.jpg", alt: "Partner workout with kettlebells at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DePmDrWp-kL/" },
-  { image: "insta-05.jpg", alt: "Sandra Possing answers goal-setting workshop questions", link: "https://www.instagram.com/sandrapossing/reel/DeNO-cRyytu/" },
-  { image: "insta-06.jpg", alt: "Mobility and stretching at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DeIa5ELOaKn/" },
+  { image: "insta-01.jpg", alt: "Training with battle ropes at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DehyYSWS0W3/" },
+  { image: "insta-02.jpg", alt: "Partner workout with kettlebells at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DePmDrWp-kL/" },
+  { image: "insta-03.jpg", alt: "Mobility and stretching at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DeIa5ELOaKn/" },
+  { image: "insta-04.jpg", alt: "The Barn lobby and entrance", link: "https://www.instagram.com/thebarnfitnesscollective/reel/Dd5IG74JFif/" },
+  { image: "insta-05.jpg", alt: "Bloopers in The Barn sauna", link: "https://www.instagram.com/thebarnfitnesscollective/reel/Dd10SjsutVz/" },
+  { image: "insta-06.jpg", alt: "The Barn recovery room sauna", link: "https://www.instagram.com/thebarnfitnesscollective/p/DdCbhZqD_jj/" },
 ];
