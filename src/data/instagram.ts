@@ -14,10 +14,10 @@ export interface InstaPost {
 }
 
 export const instaPosts: InstaPost[] = [
-  { image: "insta-01.jpg", alt: "We're the Barn Fitness Collective", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DZ5vxOKy-JF/" },
-  { image: "insta-02.jpg", alt: "Words of wisdom from Coach Chris", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DaoUUFvFG6_/" },
-  { image: "insta-03.jpg", alt: "Everything is better with a friend — kickboxing", link: "https://www.instagram.com/thebarnfitnesscollective/p/DaTrE6PHIzW/" },
-  { image: "insta-04.jpg", alt: "Throwback to our Pride workout", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DaOhZD1ijXi/" },
-  { image: "insta-05.jpg", alt: "Pride Month raffle results", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DaBnkr9PZ7i/" },
-  { image: "insta-06.jpg", alt: "Behind the scenes at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DZx_r1CT-E-/" },
+  { image: "insta-01.jpg", alt: "Members at the Reset goal-setting workshop at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/p/Depxcy0GWHO/" },
+  { image: "insta-02.jpg", alt: "Training with battle ropes at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DehyYSWS0W3/" },
+  { image: "insta-03.jpg", alt: "Reset goal-setting workshop with Sandra Possing", link: "https://www.instagram.com/sandrapossing/p/DeaFA-HStRI/" },
+  { image: "insta-04.jpg", alt: "Partner workout with kettlebells at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DePmDrWp-kL/" },
+  { image: "insta-05.jpg", alt: "Sandra Possing answers goal-setting workshop questions", link: "https://www.instagram.com/sandrapossing/reel/DeNO-cRyytu/" },
+  { image: "insta-06.jpg", alt: "Mobility and stretching at The Barn", link: "https://www.instagram.com/thebarnfitnesscollective/reel/DeIa5ELOaKn/" },
 ];
