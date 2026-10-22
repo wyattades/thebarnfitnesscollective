@@ -60,7 +60,7 @@ export const offers: Offer[] = [
   },
   {
     tag: "Sat",
-    name: "Hybrid Hustle",
+    name: "Hybrid Hustle/HYROX",
     description:
       "Often a partner workout. Come for a big sweat and a good time. Great for Hyrox athletes.",
     icon: "HH",
