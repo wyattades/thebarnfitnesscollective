@@ -78,4 +78,16 @@ export const team: Coach[] = [
       "With a background in psychology, he believes in the importance of the mind-body connection and values exercising in community as an integrated means of fostering physical, mental, and spiritual wellness. As a proud plant and cat dad, Jon enjoys nurturing his bonsai collection and spending time with his feline friend, Zora.",
     ],
   },
+  {
+    name: "Elijah",
+    role: "Coach",
+    photo: "team-elijah.jpg",
+    initial: "E",
+    creds: ["Powerlifting", "Barbell Technique"],
+    bio: [
+      "Elijah comes to The Barn from the world of strength sports, with a background in bodybuilding and competitive powerlifting. He has competed in raw, drug-tested meets in the Netherlands, taking 3rd place at the 2025 Dutch Open Nationals with a 1,714 lb (777.5 kg) total.",
+      "Elijah coaches group classes and works one-on-one with personal training clients. His specialty is barbell technique and the principles behind building strength and muscle: lifting with clean, efficient form and using smart progressive overload, so you keep getting stronger long after the beginner gains wear off. Whether it's your first deadlift or a new PR, Elijah will help you lift well and keep progressing.",
+      "When not in the gym you'll find Elijah surfing, or deep in a rabbit hole about neuroscience and AI.",
+    ],
+  },
 ];

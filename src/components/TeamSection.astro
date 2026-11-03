@@ -58,6 +58,13 @@ import { team } from "../data/team";
     margin-left: auto;
     margin-right: auto;
   }
+  /* Six coaches: a balanced 3 + 3 on desktop instead of an uneven last row. */
+  @media (min-width: 1000px) {
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1040px;
+    }
+  }
   @media (max-width: 900px) {
     .section-team {
       padding-left: 24px;
