@@ -90,6 +90,7 @@ export interface NavItem {
 }
 
 export const mainNav: NavItem[] = [
+  { label: "New Here", href: "/new-here" },
   { label: "Schedule & Book", href: site.scheduleUrl },
   {
     label: "Programming & Pricing",
@@ -111,6 +112,7 @@ export const mainNav: NavItem[] = [
 /** FOOTER link columns. */
 export const footerNav = {
   explore: [
+    { label: "New Here", href: "/new-here" },
     { label: "Programming & Pricing", href: "/programming-and-pricing" },
     { label: "Schedule & Book", href: site.scheduleUrl },
     { label: "Wylde Bowls", href: "/eat" },
