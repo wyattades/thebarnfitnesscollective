@@ -1,119 +1,148 @@
 ---
 /**
- * WeeklySchedule — the week's classes as a simple, high-contrast grid:
- *   DAY across the top → the WORKOUT in a bold colored band → the TIMES listed
- *   underneath. Rows line up across all days like a spreadsheet.
+ * WeeklySchedule — the week's classes as a true spreadsheet grid:
+ *   DAYS across the top, START TIMES down the left, and each box says which
+ *   workout is happening then. A time that appears on several days sits on the
+ *   same row, so it lines up straight across.
  *
- * Built to be easy to read at a glance: large dark text on a light background,
- * heavy grid lines, no tiny tags, nothing clickable. Data: src/data/schedule.ts
+ * Built to be easy to read at a glance: large dark text, heavy grid lines,
+ * brand colors, nothing clickable. Data: src/data/schedule.ts
  *
- * Layout notes: each day is a column that spans 3 rows (day name, first
- * workout, second workout) and uses CSS subgrid so the rows line up across
- * days. Desktop = 6 columns, tablet = 3, phone = 1.
+ * Phones can't fit 7 columns, so below 760px the same data is shown as one
+ * card per day (time on the left, workout beside it, still in time order).
  */
 import { weeklySchedule } from "../data/schedule";
 
-const SLOTS = 2; // at most two kinds of workout per day
+const toMinutes = (t: string) => {
+  const [, h, m, ap] = t.match(/(\d+):(\d+)\s*(AM|PM)/i)!;
+  return ((Number(h) % 12) + (ap.toUpperCase() === "PM" ? 12 : 0)) * 60 + Number(m);
+};
+
+// Every distinct start time in the week, earliest first (one grid row each).
+const times = [
+  ...new Set(weeklySchedule.flatMap((d) => d.classes.flatMap((c) => c.times))),
+].sort((a, b) => toMinutes(a) - toMinutes(b));
+
+const classAt = (dayIndex: number, time: string) =>
+  weeklySchedule[dayIndex].classes.find((c) => c.times.includes(time));
+
+// For the phone cards: a day's classes in time order.
+const dayRows = weeklySchedule.map((d) =>
+  d.classes
+    .flatMap((c) => c.times.map((t) => ({ time: t, name: c.name, color: c.color })))
+    .sort((a, b) => toMinutes(a.time) - toMinutes(b.time)),
+);
 ---
 
-<div class="ws" role="group" aria-label="Weekly class schedule">
-  {
-    weeklySchedule.map((d) => (
-      <section class="ws-day">
-        <h3 class="ws-dayname">{d.day}</h3>
-        {Array.from({ length: SLOTS }).map((_, i) => {
-          const c = d.classes[i];
-          return c ? (
-            <div class={`ws-slot ws-${c.color}`}>
-              <div class="ws-name">{c.name}</div>
-              <ul class="ws-times">
-                {c.times.map((t) => (
-                  <li>{t}</li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <div class="ws-slot ws-empty" aria-hidden="true"></div>
-          );
-        })}
-      </section>
-    ))
-  }
+<div class="ws-wrap">
+  <table class="ws-table">
+    <caption class="ws-sr">Weekly class schedule: days across the top, start times down the side.</caption>
+    <thead>
+      <tr>
+        <th class="ws-corner" scope="col">Time</th>
+        {weeklySchedule.map((d) => <th scope="col" class="ws-dayname">{d.day}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        times.map((t) => (
+          <tr>
+            <th scope="row" class="ws-time">{t}</th>
+            {weeklySchedule.map((_, i) => {
+              const c = classAt(i, t);
+              return c ? (
+                <td class={`ws-cell ws-${c.color}`}>{c.name}</td>
+              ) : (
+                <td class="ws-cell ws-empty" aria-label="No class" />
+              );
+            })}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <div class="ws-days" aria-label="Weekly class schedule by day">
+    {
+      weeklySchedule.map((d, i) => (
+        <section class="ws-day">
+          <h3 class="ws-dayname-card">{d.day}</h3>
+          <ul>
+            {dayRows[i].map((r) => (
+              <li>
+                <span class="ws-card-time">{r.time}</span>
+                <span class={`ws-card-name ws-${r.color}`}>{r.name}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
 </div>
 
 <style>
-  .ws {
+  .ws-wrap {
     --line: 3px solid #211a1b;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-auto-rows: auto;
-    background: #fbf7ef;
+    --thin: 1px solid rgba(33, 26, 27, 0.35);
+    background: #faf6ef;
     color: #211a1b;
     border: var(--line);
     border-radius: var(--radius-sm);
     overflow: hidden;
     user-select: none;
   }
-  .ws-day {
-    grid-row: span 3;
-    display: grid;
-    grid-template-rows: subgrid;
-    border-left: var(--line);
-  }
-  .ws-day:first-child {
-    border-left: none;
+  .ws-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
   }
 
-  /* DAY header */
+  /* ---------- Big grid (computers + tablets) ---------- */
+  .ws-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-family: var(--font-body);
+  }
+  .ws-table th,
+  .ws-table td {
+    border: var(--thin);
+    text-align: center;
+    vertical-align: middle;
+  }
+  .ws-corner,
   .ws-dayname {
-    margin: 0;
-    padding: 18px 8px;
-    text-align: center;
     background: #211a1b;
-    color: #fbf7ef;
-    font-family: var(--font-body);
-    font-size: 1.3rem;
+    color: #faf6ef;
+    padding: 16px 4px;
+    font-size: 1.05rem;
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    border: var(--line) !important;
   }
-
-  /* WORKOUT band + TIMES */
-  .ws-slot {
-    --tint: #ffd9d5;
-    border-top: var(--line);
-    display: flex;
-    flex-direction: column;
+  .ws-corner {
+    width: 112px;
+    color: var(--coral);
   }
-  .ws-name {
-    min-height: 4.4em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 8px;
-    text-align: center;
-    background: var(--tint);
-    border-bottom: 2px solid #211a1b;
-    font-family: var(--font-body);
-    font-size: 1.2rem;
+  .ws-time {
+    background: #f1e7d4;
+    padding: 0 8px;
+    font-size: 1.1rem;
     font-weight: 800;
-    line-height: 1.2;
-  }
-  .ws-times {
-    list-style: none;
-    margin: 0;
-    padding: 12px 8px 16px;
-    text-align: center;
-  }
-  .ws-times li {
-    padding: 6px 0;
-    font-size: 1.2rem;
-    font-weight: 600;
+    white-space: nowrap;
     font-variant-numeric: tabular-nums;
-    line-height: 1.3;
+    border-right: var(--line) !important;
   }
-  .ws-times li + li {
-    border-top: 1px solid rgba(33, 26, 27, 0.22);
+  .ws-cell {
+    height: 62px;
+    padding: 6px 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.2;
   }
   .ws-empty {
     background: repeating-linear-gradient(
@@ -123,60 +152,72 @@ const SLOTS = 2; // at most two kinds of workout per day
     );
   }
 
-  /* Each kind of workout keeps its own light tint everywhere it appears. */
-  .ws-coral { --tint: #ffd0cb; }
-  .ws-sky { --tint: #cfe6ff; }
-  .ws-teal { --tint: #c9ebf3; }
-  .ws-acid { --tint: #e6f5a8; }
-  .ws-peach { --tint: #ffdcb0; }
-  .ws-lavender { --tint: #e3d6ff; }
-  .ws-cream { --tint: #e8dfcb; }
+  /* On-brand class colors (all pass contrast with their text color). */
+  .ws-coral { background: var(--coral); color: #211a1b; }
+  .ws-sky { background: var(--sky); color: #211a1b; }
+  .ws-teal { background: var(--teal); color: #fff; }
+  .ws-acid { background: var(--acid); color: #211a1b; }
+  .ws-rust { background: var(--rust); color: #faf6ef; }
+  .ws-dark { background: #211a1b; color: #faf6ef; }
+  .ws-cream { background: #f1e7d4; color: #211a1b; box-shadow: inset 0 0 0 2px #211a1b; }
 
-  /* Tablet: 3 days across, 2 rows of days. */
-  @media (max-width: 1000px) {
-    .ws {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    .ws-day:nth-child(3n + 1) {
-      border-left: none;
-    }
-    .ws-day:nth-child(n + 4) {
-      border-top: var(--line);
-    }
+  /* ---------- Phone cards ---------- */
+  .ws-days {
+    display: none;
   }
-
-  /* Phone: one day at a time, stacked. */
-  @media (max-width: 600px) {
-    .ws {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .ws-day {
-      border-left: none;
-    }
-    .ws-day:nth-child(n + 2) {
-      border-top: var(--line);
-    }
-    .ws-empty {
+  @media (max-width: 760px) {
+    .ws-table {
       display: none;
     }
-    .ws-dayname {
-      font-size: 1.5rem;
-      text-align: left;
-      padding: 16px 18px;
+    .ws-days {
+      display: block;
     }
-    .ws-name {
-      min-height: 0;
-      justify-content: flex-start;
+    .ws-day + .ws-day {
+      border-top: var(--line);
+    }
+    .ws-dayname-card {
+      margin: 0;
       padding: 14px 18px;
-      font-size: 1.35rem;
+      background: #211a1b;
+      color: #faf6ef;
+      font-family: var(--font-body);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
-    .ws-times {
-      text-align: left;
-      padding: 8px 18px 14px;
+    .ws-day ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
-    .ws-times li {
-      font-size: 1.35rem;
-      padding: 8px 0;
+    .ws-day li {
+      display: grid;
+      grid-template-columns: 7.2rem 1fr;
+      align-items: stretch;
+      border-top: var(--thin);
+    }
+    .ws-day li:first-child {
+      border-top: none;
+    }
+    .ws-card-time {
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      background: #f1e7d4;
+      border-right: var(--line);
+      font-size: 1.25rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .ws-card-name {
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
     }
   }
 </style>

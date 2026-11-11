@@ -13,8 +13,8 @@ export interface ScheduledClass {
   name: string;
   /** Start times, earliest first, e.g. "6:15 AM". */
   times: string[];
-  /** Accent color key used for the left stripe + chips (see WeeklySchedule.astro). */
-  color: "coral" | "sky" | "teal" | "acid" | "peach" | "lavender" | "cream";
+  /** Brand color key for this class's cells (see WeeklySchedule.astro). */
+  color: "coral" | "sky" | "teal" | "acid" | "rust" | "dark" | "cream";
 }
 
 export interface ScheduleDay {
@@ -34,7 +34,7 @@ export const weeklySchedule: ScheduleDay[] = [
     day: "Tuesday",
     classes: [
       { name: "Build + Blast", color: "sky", times: ["6:15 AM", "7:30 AM", "9:00 AM", "5:30 PM"] },
-      { name: "Buttery Bod", color: "lavender", times: ["6:45 PM"] },
+      { name: "Buttery Bod", color: "dark", times: ["6:45 PM"] },
     ],
   },
   {
@@ -48,7 +48,7 @@ export const weeklySchedule: ScheduleDay[] = [
     day: "Thursday",
     classes: [
       { name: "Build + Endurance", color: "teal", times: ["6:15 AM", "7:30 AM", "9:00 AM", "5:30 PM"] },
-      { name: "Buttery Bod", color: "lavender", times: ["12:00 PM"] },
+      { name: "Buttery Bod", color: "dark", times: ["12:00 PM"] },
     ],
   },
   {
@@ -61,7 +61,7 @@ export const weeklySchedule: ScheduleDay[] = [
   {
     day: "Saturday",
     classes: [
-      { name: "Hybrid Hustle/HYROX", color: "peach", times: ["8:00 AM", "9:15 AM"] },
+      { name: "Hybrid Hustle/HYROX", color: "rust", times: ["8:00 AM", "9:15 AM"] },
     ],
   },
 ];
