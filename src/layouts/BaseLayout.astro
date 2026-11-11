@@ -11,6 +11,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Analytics from "../components/Analytics.astro";
 import Seo from "../components/Seo.astro";
+import NewHerePopup from "../components/NewHerePopup.astro";
 import { site } from "../data/site";
 
 interface Props {
@@ -65,6 +66,7 @@ const fullTitle =
       <slot />
     </main>
     {showFooter && <Footer />}
+    <NewHerePopup />
 
     <script>
       // Reveal .fade-up elements as they scroll into view.

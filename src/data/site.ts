@@ -48,6 +48,11 @@ export const site = {
   recoveryBookingUrl:
     "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/facilities",
 
+  /** New-member lead-capture form ("Book Your First Class"). Embedded on /new-here
+   *  and in the delayed pop-up. */
+  leadFormUrl:
+    "https://app.glofox.com/portal/#/branch/691f4a6d9e80973ea40dac4c/lead-register/membership/6aed09baf2cde440830c91d7/plan/1793919276372",
+
   /** The on-site schedule page that embeds the booking portal. Nav + footer
    *  "Schedule & Book" point here so people stay on the site. */
   scheduleUrl: "/schedule",

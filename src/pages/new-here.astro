@@ -1,0 +1,106 @@
+---
+/**
+ * NEW HERE — lead-capture page. Embeds the studio's Glofox lead-capture form
+ * (code supplied by Meghan, our marketing consultant). The embed is the
+ * vendor's standard snippet: a stylesheet, the iframe-resizer script, the
+ * form iframe, and a resize call. The "powered by Glofox" credit line from
+ * the stock snippet is intentionally left out (we don't name the booking
+ * platform in client-facing copy) — add it back below if the vendor requires it.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+
+const formUrl = site.leadFormUrl;
+---
+
+<BaseLayout
+  title="New Here"
+  description="New to The Barn Fitness Collective in Sebastopol, CA? Create your account and book your first class."
+>
+  <PageHero
+    eyebrow="New Here"
+    title="Start <em>here.</em>"
+    intro="New to The Barn? Create your account below to book your first class."
+  />
+
+  <section class="section newhere">
+    <div class="newhere-inner">
+      <div id="hero-form">
+        <div id="iframecontainer">
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://lead-capture-stylesheet.s3-eu-west-1.amazonaws.com/leadcapstyles.css"
+          />
+          <script
+            is:inline
+            src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.1/iframeResizer.min.js"
+          ></script>
+          <iframe
+            class="glofox_iframe"
+            id="glofox_691f4a6d9e80973ea40dac4c"
+            src={formUrl}
+            title="New member sign-up form"
+            width="0"
+            height="0"
+            scrolling="yes"
+            frameborder="0"></iframe>
+          <script is:inline>
+            iFrameResize(
+              {
+                log: false,
+                checkOrigin: false,
+                tolerance: 0,
+                sizeHeight: true,
+                heightCalculationMethod: "lowestElement",
+                minHeight: 300,
+                maxHeight: 1800,
+                sizeWidth: true,
+                widthCalculationMethod: "bodyOffset",
+                maxWidth: 980,
+                scrolling: "auto",
+              },
+              "#glofox_691f4a6d9e80973ea40dac4c",
+            );
+          </script>
+        </div>
+      </div>
+      <p class="newhere-fallback">
+        Form not loading? <a href={formUrl} target="_blank" rel="noopener">Open it in a new tab →</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .newhere {
+    background: var(--dark);
+    padding-top: 24px;
+    padding-bottom: 100px;
+  }
+  .newhere-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .newhere-fallback {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--cream);
+    opacity: 0.7;
+  }
+  .newhere-fallback a {
+    color: var(--coral);
+    text-decoration: none;
+  }
+  .newhere-fallback a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 600px) {
+    .newhere {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+</style>
