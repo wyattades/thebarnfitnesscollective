@@ -22,6 +22,10 @@ import { offers } from "../data/classes";
       <p class="schedule-note">
         Every class is one hour and every level is welcome. Here's what a typical week looks like.
       </p>
+      <p class="schedule-howto">
+        <strong>How to read it:</strong> find your day across the top. The colored box is the
+        workout. The times are listed underneath it.
+      </p>
       <div class="schedule-cta">
         <a href="/new-here" class="btn-primary">New? Book your first class</a>
       </div>
@@ -82,11 +86,21 @@ import { offers } from "../data/classes";
   }
   .schedule-note {
     margin-top: 12px;
-    max-width: 560px;
-    font-size: 1.02rem;
+    max-width: 620px;
+    font-size: 1.15rem;
     line-height: 1.7;
     color: var(--cream);
-    opacity: 0.75;
+    opacity: 0.85;
+  }
+  .schedule-howto {
+    margin-top: 14px;
+    max-width: 620px;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--cream);
+  }
+  .schedule-howto strong {
+    color: var(--coral);
   }
   .schedule-cta {
     margin-top: 24px;
