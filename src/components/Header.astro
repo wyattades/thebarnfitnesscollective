@@ -2,7 +2,7 @@
 /**
  * Global site header — solid charcoal bar, fixed to the top. Nav items come from
  * src/data/site.ts (mainNav). The link for the current page is highlighted.
- * Collapses to a mobile menu below 1240px.
+ * Collapses to a mobile menu below 1360px.
  */
 import { mainNav, site } from "../data/site";
 import { getImageByName } from "../lib/images";
@@ -16,9 +16,12 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
 ---
 
 <header id="mainNav">
-  <a class="nav-logo" href="/" aria-label={`${site.name} — home`}>
-    <Image src={goat} alt="" class="logo-mark" width={88} loading="eager" />
-  </a>
+  <div class="nav-left">
+    <a class="nav-logo" href="/" aria-label={`${site.name} — home`}>
+      <Image src={goat} alt="" class="logo-mark" width={88} loading="eager" />
+    </a>
+    <a class="nav-cta" href="/new-here"><span class="nav-cta-lead">New? </span>Book your first class</a>
+  </div>
 
   <nav aria-label="Primary">
     <ul class="nav-links">
@@ -106,6 +109,36 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
     box-shadow: 0 1px 0 rgba(241, 231, 212, 0.08), 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+  /* "New? Book your first class" — always-on call-to-action button. */
+  .nav-cta {
+    display: inline-block;
+    white-space: nowrap;
+    background: var(--coral);
+    color: #2a1210;
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 11px 20px;
+    border-radius: var(--radius-pill);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover {
+    background: #ff8177;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--coral) 70%, transparent);
+  }
+  .nav-cta:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: 3px;
+  }
   .nav-logo {
     display: flex;
     align-items: center;
@@ -254,9 +287,13 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
   }
 
   /* Tighten spacing on mid widths before collapsing to the mobile menu. */
-  @media (max-width: 1340px) {
+  /* Compact menu spacing on mid-size screens so the button + menu both fit. */
+  @media (max-width: 1560px) {
     #mainNav {
       padding: 0 28px;
+    }
+    .nav-left {
+      gap: 14px;
     }
     .nav-links {
       gap: 3px;
@@ -267,15 +304,33 @@ const isActive = (href: string) => !isExternal(href) && norm(href) === current;
       padding: 8px 11px;
     }
   }
-  @media (max-width: 1240px) {
+  /* Where space is tight (narrow laptops and small phones) the button drops
+     its "New?" lead-in. */
+  @media (min-width: 1361px) and (max-width: 1439px), (max-width: 520px) {
+    .nav-cta-lead {
+      display: none;
+    }
+  }
+  @media (max-width: 1360px) {
     #mainNav {
-      padding: 16px 24px;
+      padding: 12px 24px;
     }
     .nav-links {
       display: none;
     }
     .nav-toggle {
       display: flex;
+    }
+  }
+  /* Phones: keep the button on one line next to the logo. */
+  @media (max-width: 480px) {
+    .nav-left {
+      gap: 10px;
+    }
+    .nav-cta {
+      font-size: 0.66rem;
+      letter-spacing: 0.05em;
+      padding: 10px 14px;
     }
   }
 </style>

@@ -90,7 +90,6 @@ export interface NavItem {
 }
 
 export const mainNav: NavItem[] = [
-  { label: "New Here", href: "/new-here" },
   { label: "Schedule & Book", href: site.scheduleUrl },
   {
     label: "Programming & Pricing",
