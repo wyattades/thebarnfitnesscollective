@@ -1,45 +1,50 @@
 ---
+/**
+ * SCHEDULE — a clean picture of the week's classes (see WeeklySchedule), with
+ * the new-member sign-up front and center. The interactive booking calendar is
+ * intentionally not embedded here so first-timers go to the lead-capture form
+ * instead of browsing; current members get a smaller "book your class" link.
+ */
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WeeklySchedule from "../components/WeeklySchedule.astro";
 import { site } from "../data/site";
 import { offers } from "../data/classes";
-import { classTimes, classTimesNote } from "../data/site";
 ---
 
 <BaseLayout
-  title="Schedule & Book"
-  description="View the class schedule and book your spot at The Barn Fitness Collective in Sebastopol, CA."
+  title="Class Schedule"
+  description="The Barn's weekly class schedule in Sebastopol, CA: strength, conditioning, and mobility classes, all levels welcome. New here? Book your first class."
 >
   <section class="schedule">
     <div class="schedule-inner">
-      <div class="section-eyebrow">Schedule &amp; Book</div>
-      <h1 class="schedule-title">Book a <em>class.</em></h1>
+      <div class="section-eyebrow">The Schedule</div>
+      <h1 class="schedule-title">A week at <em>The Barn.</em></h1>
       <p class="schedule-note">
-        Pick a class below to reserve your spot. Having trouble?
-        <a href={site.bookingUrl} target="_blank" rel="noopener">Open the booking portal in a new tab →</a>
+        Every class is one hour and every level is welcome. Here's what a typical week looks like.
       </p>
+      <div class="schedule-cta">
+        <a href="/new-here" class="btn-primary">New? Book your first class</a>
+      </div>
 
-      <div class="schedule-frame-wrap">
-        <iframe
-          class="schedule-frame"
-          src={site.bookingUrl}
-          title="The Barn class schedule and booking"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allow="payment"></iframe>
+      <div class="schedule-grid">
+        <WeeklySchedule />
+      </div>
+
+      <div class="schedule-cta schedule-cta-bottom">
+        <p class="schedule-cta-line">Ready to try it? Create your account and book your first class.</p>
+        <a href="/new-here" class="btn-primary">New? Book your first class</a>
+        <p class="schedule-member">
+          Already a member?
+          <a href={site.bookingUrl} target="_blank" rel="noopener">Book your class →</a>
+        </p>
       </div>
 
       <div class="schedule-list">
         <h2 class="schedule-list-title">Weekly classes <em>&amp; services.</em></h2>
         <p class="schedule-list-note">
-          Here's what runs at The Barn and on which days. For exact start times and open spots,
-          use the booking calendar above or the Barn Fitness Co. app.
+          What runs at The Barn and on which days. The gym is often open between classes, but
+          open-gym hours aren't guaranteed.
         </p>
-        <ul class="schedule-times">
-          {classTimes.map((c) => (
-            <li><strong>{c.label}</strong> {c.times.join(" · ")}</li>
-          ))}
-        </ul>
-        <p class="schedule-list-note">{classTimesNote}</p>
         <ul class="schedule-list-items">
           {offers.map((o) => (
             <li>
@@ -57,7 +62,7 @@ import { classTimes, classTimesNote } from "../data/site";
 <style>
   .schedule {
     background: var(--dark);
-    padding: calc(var(--header-height) + 32px) 24px 56px;
+    padding: calc(var(--header-height) + 40px) 24px 80px;
   }
   .schedule-inner {
     max-width: 1100px;
@@ -68,7 +73,7 @@ import { classTimes, classTimesNote } from "../data/site";
     font-size: clamp(2.2rem, 5vw, 3.6rem);
     font-weight: 500;
     color: var(--cream);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     margin-top: 6px;
   }
   .schedule-title em {
@@ -77,50 +82,49 @@ import { classTimes, classTimesNote } from "../data/site";
   }
   .schedule-note {
     margin-top: 12px;
+    max-width: 560px;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.75;
+  }
+  .schedule-cta {
+    margin-top: 24px;
+  }
+  .schedule-grid {
+    margin-top: 40px;
+  }
+  .schedule-cta-bottom {
+    margin-top: 48px;
+    padding: 36px 24px;
+    text-align: center;
+    border-radius: var(--radius);
+    background: rgba(255, 111, 100, 0.08);
+    border: 1px solid color-mix(in srgb, var(--coral) 35%, transparent);
+  }
+  .schedule-cta-line {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+  .schedule-member {
+    margin-top: 22px;
     font-size: 0.92rem;
-    line-height: 1.6;
     color: var(--cream);
     opacity: 0.7;
   }
-  .schedule-note a {
+  .schedule-member a {
     color: var(--coral);
     text-decoration: none;
-    white-space: nowrap;
+    margin-left: 4px;
   }
-  .schedule-note a:hover {
+  .schedule-member a:hover {
     text-decoration: underline;
   }
 
-  /* Embed panel: a tall, fixed-height frame that scrolls INTERNALLY, so the
-     booking app has room on both desktop and mobile without hijacking the page.
-     Kept generous so a full day's class list fits with minimal inner scrolling.
-     100dvh handles mobile browser chrome correctly. */
-  .schedule-frame-wrap {
-    margin-top: 24px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid rgba(241, 231, 212, 0.12);
-    background: var(--off-white);
-    height: calc(100dvh - var(--header-height) - 80px);
-    min-height: 1100px;
-  }
-  .schedule-frame {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-  }
-  @media (max-width: 600px) {
-    .schedule {
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-    .schedule-frame-wrap {
-      min-height: 560px;
-    }
-  }
   .schedule-list {
-    margin-top: 64px;
+    margin-top: 72px;
     border-top: 1px solid rgba(241, 231, 212, 0.14);
     padding-top: 40px;
   }
@@ -141,23 +145,6 @@ import { classTimes, classTimesNote } from "../data/site";
     line-height: 1.7;
     color: var(--cream);
     opacity: 0.7;
-  }
-  .schedule-times {
-    list-style: none;
-    margin: 20px 0 0;
-    padding: 0;
-    display: grid;
-    gap: 8px;
-    color: var(--cream);
-    font-size: 1rem;
-  }
-  .schedule-times strong {
-    display: inline-block;
-    min-width: 110px;
-    color: var(--coral);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.82rem;
   }
   .schedule-list-items {
     list-style: none;
